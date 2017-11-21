@@ -37,6 +37,9 @@ public class Carte {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public String toString() {
+		return couleur + " de " + valeur;
+	}
 
 }
 
