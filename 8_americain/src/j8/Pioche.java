@@ -38,16 +38,8 @@ public class Pioche {
 
 	public void melanger() {
 		Collections.shuffle(jeuDeCartes);
-		
-		for(int i = 0; i < jeuDeCartes.size(); i++)
-		{
-		  System.out.println(jeuDeCartes.get(i));
 	
 		}
-		
-	}
-	
-	protected ArrayList<Carte> a = new ArrayList<Carte>();
 	
 	public void distribuer() {
 	
