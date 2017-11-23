@@ -4,30 +4,33 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class Partie {
 	
-	private int nbreOrdinateur;
+	private int nombreOrdinateur;
 	private String variante;
 	private String nomGagnant;
 	private Scanner sc;
-	protected ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
+	protected LinkedList<Joueur> listeJoueur = new LinkedList<Joueur>();
 	
 	
 	public Partie() {
 		
 		sc = new Scanner(System.in);
+		JoueurPhysique moi= new JoueurPhysique();
 		
-		System.out.println("Nombre d'Ordinateurs?");
-		nbreOrdinateur = sc.nextLine();
-	
-		System.out.println("Choisisez la difficulté des Ordinateurs (de 1 à 3)");
-		nbreOrdinateur = nbreJ;
+		listeJoueur.add(moi);
 		
-		
-		// TODO Auto-generated constructor stub
+		System.out.println("Saisissez le nombre d'ordinateurs");
+		nombreOrdinateur = sc.nextInt();
+		for (int i=0; i<nombreOrdinateur; i++) {
+			Ordinateur ordi = new Ordinateur();
+			listeJoueur.add(ordi);
+		}
+		System.out.println(listeJoueur);
 	}
 	
 	public void changerVariante() {
@@ -38,8 +41,5 @@ public class Partie {
 		
 	}
 	
-	public void addOrdinateur() {
-		nbreOrdinateur++;
-	}
 	
 }

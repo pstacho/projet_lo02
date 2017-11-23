@@ -1,9 +1,19 @@
 package j8;
+import java.util.Scanner;
 
-public class MainOrdinateur extends Joueur {
+public class Ordinateur extends Joueur {
 
-	public MainOrdinateur() {
-		// TODO Auto-generated constructor stub
+	private Scanner sc;
+	private int difficultee;
+	public Ordinateur() {
+		
+		super();
+		sc = new Scanner(System.in);
+		System.out.println("Saisisez le nom de l'Ordinateur "+(indiceJoueur-1));
+		nom = sc.nextLine();
+		
+		System.out.println("Choisisez la difficulté des Ordinateurs (de 1 à 3)");
+		difficultee=sc.nextInt();
 	}
 
 }
