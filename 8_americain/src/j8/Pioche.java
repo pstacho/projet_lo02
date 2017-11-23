@@ -2,13 +2,13 @@ package j8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 //création du paquet de carte
 public class Pioche {
 	
 	protected ArrayList<Carte> jeuDeCartes = new ArrayList<Carte>();	
-
+	
 	public Pioche() {
 		// TODO Auto-generated constructor stub
 		
@@ -36,6 +36,10 @@ public class Pioche {
 		System.out.println(k);
 	}
 
+	
+	
+	
+	
 	public void melanger() {
 		Collections.shuffle(jeuDeCartes);
 	
@@ -43,15 +47,22 @@ public class Pioche {
 	
 	public void distribuer() {
 	
-		for(int i = 0; i <8 ; i++)
-		{
-			//Joueur.getMainJoueur().add(this.JeuDeCartes.get(i));
-
-		}
+		for(int i = 0; i <8 ; i++) {
+			for(int j=0; i < (Partie.getPartie().getNombreOrdinateur()+1); j++) {
 		
+			Partie.getPartie().listeJoueur.get(j).mainJoueur.add(this.jeuDeCartes.get(0));
+			System.out.println(Partie.getPartie().listeJoueur.get(j).mainJoueur);
+			jeuDeCartes.remove(0);
+			}
+	
+		}
 	}
 
-	
+	public Carte piocherCarte() {
+		Carte cartePioche = jeuDeCartes.get(0);
+		jeuDeCartes.remove(0);
+		return cartePioche;
+	}
 	
 
 	

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Joueur {
 	
-	protected ArrayList<Carte> mainJoueur = new ArrayList<Carte>();
+	protected ArrayList<Carte> mainJoueur;
 	protected String nom;
 	//private int nbCartes;
 	//private int point;
@@ -21,7 +21,7 @@ public class Joueur {
 		
 		indiceJoueur++;
 		this.numero=indiceJoueur;
-		
+		mainJoueur = new ArrayList<Carte>();
 	}
 
 	public ArrayList<Carte> getMainJoueur() {
