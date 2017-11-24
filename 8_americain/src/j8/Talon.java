@@ -1,10 +1,30 @@
 package j8;
 
-public class Talon {
+import java.util.ArrayList;
 
-	public Talon() {
-		// TODO Auto-generated constructor stub
-		System.out.println("hello");
+public class Talon {
+	
+	private Carte carteDessus;
+	private ArrayList<Carte> carteDessous;
+
+	public Talon(Pioche pioche) {
+		carteDessus = pioche.piocherCarte();
+		carteDessous = new ArrayList<Carte>();
+		carteDessous.add(carteDessus);
 	}
 	
+
+	public Carte getCarteDessus() {
+		return carteDessus;
+	}
+
+
+	public void setCarteDessus(Carte carteDessus) {
+		this.carteDessus = carteDessus;
+	}
+
+
+	public void afficherCarteDessus() {
+		System.out.println("Carte du Talon : "+ carteDessus.toString());
+	}
 }

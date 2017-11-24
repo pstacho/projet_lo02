@@ -2,16 +2,43 @@ package j8;
 
 public class Manche {
 
-	private int JoueurEnCours;
+	private Joueur joueurEnCours;
 	private boolean sensPossitif;
-	
+	private int numeroManche = 0;
 	public Manche() {
-		super();
-		this.JoueurEnCours = 1;
+		
+		numeroManche++;
+		
+		System.out.println("Début de la manche n° " + numeroManche);
+		Pioche laPioche = new Pioche();
+		laPioche.distribuer();
+		
+		Talon leTalon = new Talon(laPioche);
+		leTalon.afficherCarteDessus();
+				
+		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(1);
 		this.sensPossitif = true;
+		while (joueurEnCours.mainJoueur.size() != 0) {
+			jouerTourDeJeu();
+		}
+	
 	}
 	
-	public void joueurSuivant() {
+	private void jouerTourDeJeu() {
+		System.out.println(joueurEnCours.getNom() + " doit jouer\n");
+		if (joueurEnCours instanceof JoueurPhysique) {
+			((JoueurPhysique)joueurEnCours).afficherMainJoueur();
+			((JoueurPhysique)joueurEnCours).jouerCarte();
+			//créer la méthode jouerCarte pour le joueur
+			//J'ai déjà fait un comparateur qui vérifie si la carte est compatible avec le talon dans la classe joueur
+			
+			
+		}
+		
+		
+	}
+
+	/*public void joueurSuivant() {
 		if (sensPossitif = true) {
 			JoueurEnCours++;
 			if (JoueurEnCours < Partie.getPartie().getNombreOrdinateur()+1) {
@@ -28,5 +55,5 @@ public class Manche {
 		}
 			
 		System.out.println(JoueurEnCours);
-	}
+	}*/
 }

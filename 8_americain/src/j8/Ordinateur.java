@@ -12,7 +12,7 @@ public class Ordinateur extends Joueur {
 		System.out.println("Saisisez le nom de l'Ordinateur "+(indiceJoueur-1));
 		nom = sc.nextLine();
 		
-		System.out.println("Choisisez la difficulté des Ordinateurs (de 1 à 3)");
+		System.out.println("Choisisez la difficulté de l'ordinateur" + (indiceJoueur-1) + "(de 1 à 3)");
 		difficultee=sc.nextInt();
 	}
 
