@@ -6,9 +6,10 @@ public class Main {
 		// TODO Auto-generated method stub
  
  Partie.getPartie();
- Pioche maPioche = new Pioche();
- maPioche.distribuer();
- 
+ //Pioche maPioche = new Pioche();
+ //maPioche.distribuer();
+ Manche manchecool = new Manche();
+ Manche.joueurSuivant();
 	}
 
 }

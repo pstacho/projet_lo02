@@ -52,7 +52,7 @@ public class Partie {
 	{
 	Partie.instancePartie= new Partie();
 	}
-	return Partie.instancePartie; 
+		return Partie.instancePartie; 
 	}
 	
 	public int getNombreOrdinateur() {

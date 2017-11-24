@@ -26,7 +26,8 @@ public class Pioche {
 		
 		Collections.shuffle(jeuDeCartes);
 		 int k=0;
-		for(int i = 0; i < jeuDeCartes.size(); i++)
+		
+/*		 for(int i = 0; i < jeuDeCartes.size(); i++)
 		{
 		  System.out.println(jeuDeCartes.get(i));
 		 
@@ -34,6 +35,7 @@ public class Pioche {
 			
 		}
 		System.out.println(k);
+		*/
 	}
 
 	
@@ -48,7 +50,7 @@ public class Pioche {
 	public void distribuer() {
 	
 		for(int i = 0; i <8 ; i++) {
-			for(int j=0; i < (Partie.getPartie().getNombreOrdinateur()+1); j++) {
+			for(int j=0; j < (Partie.getPartie().getNombreOrdinateur()+1); j++) {
 		
 			Partie.getPartie().listeJoueur.get(j).mainJoueur.add(this.jeuDeCartes.get(0));
 			System.out.println(Partie.getPartie().listeJoueur.get(j).mainJoueur);
