@@ -49,5 +49,6 @@ public class Joueur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
 
 }

@@ -16,4 +16,11 @@ public class Ordinateur extends Joueur {
 		difficultee=sc.nextInt();
 	}
 
+	public Carte ChoisirCarte() {
+		Carte CarteJouee;
+		return CarteJouee; //a faire pour ordinateur, normal qu'il y ai une erreur
+	}
+	public void JouerCarte(Carte carteJouee) {
+		 //a faire pour ordinateur
+	}
 }

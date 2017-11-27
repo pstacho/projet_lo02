@@ -20,8 +20,23 @@ public class JoueurPhysique extends Joueur {
 		}
 	}	
 	
+	public Carte choisirCarte() {
+		System.out.println("Saisissez la carte a jouer");
+		int carteChoisie = sc.nextInt(); //le numero affiché par le afficher mainjoueur
+		if (carteChoisie>=1 && carteChoisie <= maManche.getJoueurEnCours().mainJoueur.size()) {
+			Carte carteJouee=mainJoueur.get(carteChoisie-1); //on affecte le numero de la carte la carte correspondante.
+			return carteJouee;
+		}
+		else {
+			System.out.println("Saisissez la carte a jouer");
+		}
+	}
+	
 	public void jouerCarte() {
-		
+		Carte carteJouee = this.choisirCarte();
+		if (Joueur.carteCompatible(leTalon,carteJouee) == true) {
+			Talon.setCarteDessus(carteJouee);
+		}
 	}
 	
 	

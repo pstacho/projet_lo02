@@ -13,7 +13,7 @@ public class Partie {
 	private int nombreOrdinateur;
 	private String variante;
 	private String nomGagnant;
-	private Scanner s;
+	private Scanner sc;
 	protected LinkedList<Joueur> listeJoueur = new LinkedList<Joueur>();
     private static Partie instancePartie;
 	
@@ -27,13 +27,13 @@ public class Partie {
 
 	private Partie() {
 		
-		s = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		JoueurPhysique moi= new JoueurPhysique();
 		
 		listeJoueur.add(moi);
 		
 		System.out.println("Saisissez le nombre d'ordinateurs");
-		nombreOrdinateur = s.nextInt();
+		nombreOrdinateur = sc.nextInt();
 		for (int i=0; i<nombreOrdinateur; i++) {
 			Ordinateur ordi = new Ordinateur();
 			listeJoueur.add(ordi);
@@ -59,7 +59,7 @@ public class Partie {
 	
 	
 	public void lancerJeu() {
-		Manche manche = new Manche();
+		Manche maManche = new Manche();
 		
 	}
 	
