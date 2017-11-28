@@ -18,15 +18,27 @@ public class Ordinateur extends Joueur {
 		difficultee=sc.nextInt();
 	}
 
-	public void jouerCarte(Manche maManche, Talon leTalon) {
-		int i=-1;
-		while (!carteCompatible(leTalon,carteJouee)) {
-			i++;
-			carteJouee = mainJoueur.get(i);
-			
-		}
-		leTalon.setCarteDessus(carteJouee);
-		this.mainJoueur.remove(0);
+	public void jouerCarte(Manche maManche, Talon leTalon, Pioche laPioche) {
 		
+		if (difficultee == 1) {
+			int i=0;
+			carteJouee = mainJoueur.get(i);
+			while (!carteCompatible(leTalon,carteJouee)) {
+				while(i <= mainJoueur.size()) {
+					i++;
+				}
+			}
+			carteJouee = mainJoueur.get(i);
+			if (!carteCompatible(leTalon,carteJouee)) {
+				laPioche.piocherCarte();
+				mainJoueur.add(cartePioche);
+				System.out.println(this.nom + " pioche une carte.");
+			}
+			else {
+				System.out.println(this.nom + "a joué la carte " + carteJouee.toString() + " .");	
+				leTalon.ajouterCarte(carteJouee);
+				this.mainJoueur.remove(carteJouee);
+			}
+		}	
 	}
 }

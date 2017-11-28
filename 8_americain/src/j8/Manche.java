@@ -4,9 +4,12 @@ public class Manche {
 
 	private Joueur joueurEnCours;
 	private int indiceJoueurEnCours=0; //je test avec le premier joueur
-	private boolean sensPositif = true;
+	private boolean sensPositif;
 	private int numeroManche = 0;
 	private Talon leTalon;
+	private Pioche laPioche;
+	
+	
 	public Joueur getJoueurEnCours() {
 		return joueurEnCours;
 	}
@@ -17,9 +20,8 @@ public class Manche {
 	
 	public Manche() {
 		
-		
-		
 		numeroManche++;
+		sensPositif = true;
 		
 		System.out.println("Début de la manche n° " + numeroManche);
 		Pioche laPioche = new Pioche();
@@ -29,7 +31,7 @@ public class Manche {
 		leTalon.afficherCarteDessus();
 				
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(0);
-		this.sensPossitif = true;
+		//this.sensPossitif = true;
 		while (joueurEnCours.mainJoueur.size() != 0) {
 			jouerTourDeJeu();
 		}
@@ -40,16 +42,25 @@ public class Manche {
 		System.out.println(joueurEnCours.getNom() + " doit jouer\n");
 		if (joueurEnCours instanceof JoueurPhysique) {
 			((JoueurPhysique)joueurEnCours).afficherMainJoueur();
-			((JoueurPhysique)joueurEnCours).jouerCarte(this, leTalon);
-			//créer la méthode jouerCarte pour le joueur
-			//J'ai déjà fait un comparateur qui vérifie si la carte est compatible avec le talon dans la classe joueur
+			((JoueurPhysique)joueurEnCours).jouerCarte(this, leTalon, laPioche);
 			
 		}
 		else if (joueurEnCours instanceof Ordinateur) {
-			((Ordinateur)joueurEnCours).jouerCarte(this, leTalon);
+			((Ordinateur)joueurEnCours).jouerCarte(this,leTalon,laPioche);
 		}
-		joueurSuivant();
+		
+		if (joueurEnCours.mainJoueur.size() != 0) {
+			this.joueurSuivant();
+		}
+		else {
+			this.finirManche();
+		}
 		System.out.println(joueurEnCours);
+		
+	}
+
+	private void finirManche() {
+		// TODO Auto-generated method stub
 		
 	}
 

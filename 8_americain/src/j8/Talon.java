@@ -1,16 +1,16 @@
 package j8;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Talon {
 	
 	private Carte carteDessus;
-	private ArrayList<Carte> carteDessous;
+	private LinkedList<Carte> cartesTalon;
 
 	public Talon(Pioche pioche) {
 		carteDessus = pioche.piocherCarte();
-		carteDessous = new ArrayList<Carte>();
-		carteDessous.add(carteDessus);
+		cartesTalon = new LinkedList<Carte>();
+		cartesTalon.add(carteDessus);
 	}
 	
 
@@ -23,8 +23,16 @@ public class Talon {
 		this.carteDessus = carteDessus;
 	}
 
-
+	// Affiche la carte sur le dessu du Talon
 	public void afficherCarteDessus() {
 		System.out.println("Carte du Talon : "+ carteDessus.toString());
+	}
+	
+	// Change la carte du dessus du talon
+	public void ajouterCarte(Carte carteJouee) {
+		cartesTalon.add(carteJouee);
+		setCarteDessus(carteJouee);
+		
+		
 	}
 }

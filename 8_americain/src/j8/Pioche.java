@@ -1,14 +1,15 @@
 package j8;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.*;
 
-//création du paquet de carte
+import java.util.LinkedList;
+import java.util.Collections;
+
+// Classe représentant le paquet de carte qui constituera la pioche
 public class Pioche {
 	
-	protected ArrayList<Carte> jeuDeCartes = new ArrayList<Carte>();	
+	protected LinkedList<Carte> jeuDeCartes = new LinkedList<Carte>();	
 	
+	
+	// Création du jeu de cartes
 	public Pioche() {
 		// TODO Auto-generated constructor stub
 		
@@ -19,34 +20,27 @@ public class Pioche {
 			for (int j=0; j<valeur.length; j++) {
 				Carte carte = new Carte(couleur[i],valeur[j]);
 				this.jeuDeCartes.add(carte);
-				
-				
 				}
 			}
 		
 		Collections.shuffle(jeuDeCartes);
-		 int k=0;
-		
-/*		 for(int i = 0; i < jeuDeCartes.size(); i++)
+		/* int k=0;
+		 for(int i = 0; i < jeuDeCartes.size(); i++)
 		{
 		  System.out.println(jeuDeCartes.get(i));
-		 
-			k++;
-			
+			k++;	
 		}
 		System.out.println(k);
 		*/
 	}
 
-	
-	
-	
-	
+	// Mélange les cartes du jeu de cartes
 	public void melanger() {
 		Collections.shuffle(jeuDeCartes);
-	
 		}
 	
+	
+	// Distribue les cartes aux joueurs
 	public void distribuer() {
 	
 		for(int i = 0; i <8 ; i++) {
@@ -56,17 +50,14 @@ public class Pioche {
 			System.out.println(Partie.getPartie().listeJoueur.get(j).mainJoueur);
 			jeuDeCartes.remove(0);
 			}
-	
 		}
 	}
-
+	
+	// Permet de piocher la première carte de la Pioche
 	public Carte piocherCarte() {
-		Carte cartePioche = jeuDeCartes.get(0);
-		jeuDeCartes.remove(0);
+		Carte cartePioche = jeuDeCartes.getFirst();
+		jeuDeCartes.removeFirst();
 		return cartePioche;
 	}
-	
-
-	
 }
 
