@@ -5,6 +5,8 @@ public class Ordinateur extends Joueur {
 
 	private Scanner sc;
 	private int difficultee;
+	private Carte carteJouee;
+	
 	public Ordinateur() {
 		
 		super();
@@ -16,11 +18,15 @@ public class Ordinateur extends Joueur {
 		difficultee=sc.nextInt();
 	}
 
-	public Carte ChoisirCarte() {
-		Carte CarteJouee;
-		return CarteJouee; //a faire pour ordinateur, normal qu'il y ai une erreur
-	}
-	public void JouerCarte(Carte carteJouee) {
-		 //a faire pour ordinateur
+	public void jouerCarte(Manche maManche, Talon leTalon) {
+		int i=-1;
+		while (!carteCompatible(leTalon,carteJouee)) {
+			i++;
+			carteJouee = mainJoueur.get(i);
+			
+		}
+		leTalon.setCarteDessus(carteJouee);
+		this.mainJoueur.remove(0);
+		
 	}
 }

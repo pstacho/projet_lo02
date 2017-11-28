@@ -7,7 +7,6 @@ public class Main {
  
 	Partie.getPartie();
 	Pioche maPioche = new Pioche();
-	maPioche.distribuer();
 	Partie.getPartie().lancerJeu();
 	}
 }

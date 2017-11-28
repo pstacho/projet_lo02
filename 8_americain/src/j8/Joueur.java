@@ -12,7 +12,7 @@ public class Joueur {
 	private int numero;
 	protected static int indiceJoueur=0;
 	
-	@Override
+	
 	public String toString() {
 		return "Joueur [mainJoueur=" + mainJoueur + ", nom=" + nom + ", indiceJoueur=" + numero + "]";
 	}

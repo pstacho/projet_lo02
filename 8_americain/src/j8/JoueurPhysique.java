@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class JoueurPhysique extends Joueur {
 	
 	Scanner sc = new Scanner(System.in);
+	private Carte carteJouee;
 
 	public JoueurPhysique() {
 		
@@ -20,22 +21,23 @@ public class JoueurPhysique extends Joueur {
 		}
 	}	
 	
-	public Carte choisirCarte() {
+	public void choisirCarte(Manche maManche) {
 		System.out.println("Saisissez la carte a jouer");
 		int carteChoisie = sc.nextInt(); //le numero affiché par le afficher mainjoueur
 		if (carteChoisie>=1 && carteChoisie <= maManche.getJoueurEnCours().mainJoueur.size()) {
-			Carte carteJouee=mainJoueur.get(carteChoisie-1); //on affecte le numero de la carte la carte correspondante.
-			return carteJouee;
+			carteJouee=mainJoueur.get(carteChoisie-1); //on affecte le numero de la carte la carte correspondante.
+			
 		}
 		else {
-			System.out.println("Saisissez la carte a jouer");
+			choisirCarte(maManche);
 		}
 	}
 	
-	public void jouerCarte() {
-		Carte carteJouee = this.choisirCarte();
-		if (Joueur.carteCompatible(leTalon,carteJouee) == true) {
-			Talon.setCarteDessus(carteJouee);
+	public void jouerCarte(Manche maManche, Talon leTalon) {
+		choisirCarte(maManche);
+		if (carteCompatible(leTalon,carteJouee) == true) {
+			leTalon.setCarteDessus(carteJouee);
+			this.mainJoueur.remove(0);
 		}
 	}
 	
