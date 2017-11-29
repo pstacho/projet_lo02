@@ -22,41 +22,38 @@ public class JoueurPhysique extends Joueur {
 		}
 	}	
 	
-	public void choisirCarte(Manche maManche, Talon leTalon, Pioche laPioche) {
+	public void choisirCarte(Talon leTalon, Pioche laPioche) {
+	
 		
-		//revoir ce bloc
-		
-		/*for (int i=0 ; i <= mainJoueur.size(); i++ ) {
-			if (carteCompatible(leTalon, mainJoueur.get(i)) == true) {
-				cartesJouable.add(mainJoueur.get(i));
-			}
-		}*/ 
-		
-		System.out.println("Saisissez la carte a jouer\n");
+		System.out.println("Saisissez la carte a jouer ou appuyer sur 0 pour piocher\n");
 		leTalon.afficherCarteDessus();
 		int carteChoisie = sc.nextInt(); //le numero affiché par le afficher mainjoueur
-		if (carteChoisie>=1 && carteChoisie <= maManche.getJoueurEnCours().mainJoueur.size()) {
+		if (carteChoisie>=1 && carteChoisie <= mainJoueur.size()) {
 			carteJouee=mainJoueur.get(carteChoisie-1); //on affecte le numero de la carte la carte correspondante.
 			
 		}
+		else if (carteChoisie > mainJoueur.size()) {
+			System.out.println("Tu n'as pas autant de cartes ! Choisi une autre carte");
+			choisirCarte(leTalon, laPioche);
+		}
 		else {
-			choisirCarte(maManche, leTalon, laPioche);
+			mainJoueur.add(laPioche.piocherCarte());
+			System.out.println("Vous avez pioché la carte " + laPioche.piocherCarte() +" .");	
+			
 		}
 		
 	}
 	
-	public void jouerCarte(Manche maManche, Talon leTalon, Pioche laPioche) {
-		ArrayList<Carte> cartesJouables = new ArrayList<Carte>();
-		choisirCarte(maManche, leTalon, laPioche);
+	public void jouerCarte(Talon leTalon, Pioche laPioche) {
+		choisirCarte(leTalon, laPioche);
 		if (carteCompatible(leTalon,carteJouee) == true) {
 			this.mainJoueur.remove(carteJouee);
 			leTalon.ajouterCarte(carteJouee);
 			leTalon.afficherCarteDessus();
 		}
 		else {
-			laPioche.piocherCarte();
-			mainJoueur.add(cartePioche);
-			System.out.println("Vous avez pioché la carte " + laPioche.piocherCarte() +" .");	
+			System.out.println("Tu ne peux pas jouer cette carte !");
+			choisirCarte(leTalon,laPioche);
 		}
 	}	
 }

@@ -42,7 +42,7 @@ public class Manche {
 		System.out.println(joueurEnCours.getNom() + " doit jouer\n");
 		if (joueurEnCours instanceof JoueurPhysique) {
 			((JoueurPhysique)joueurEnCours).afficherMainJoueur();
-			((JoueurPhysique)joueurEnCours).jouerCarte(this, leTalon, laPioche);
+			((JoueurPhysique)joueurEnCours).jouerCarte(leTalon, laPioche);
 			
 		}
 		else if (joueurEnCours instanceof Ordinateur) {

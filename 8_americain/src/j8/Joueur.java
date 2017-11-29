@@ -11,7 +11,6 @@ public class Joueur {
 	private int point;
 	private int numero;
 	protected static int indiceJoueur=0;
-	protected Carte cartePioche;
 	
 	
 	public String toString() {
