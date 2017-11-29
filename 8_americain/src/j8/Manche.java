@@ -31,7 +31,6 @@ public class Manche {
 		leTalon.afficherCarteDessus();
 				
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(0);
-		//this.sensPossitif = true;
 		while (joueurEnCours.mainJoueur.size() != 0) {
 			jouerTourDeJeu();
 		}
@@ -50,7 +49,7 @@ public class Manche {
 		}
 		
 		if (joueurEnCours.mainJoueur.size() != 0) {
-			this.joueurSuivant();
+			joueurSuivant();
 		}
 		else {
 			this.finirManche();
@@ -67,7 +66,8 @@ public class Manche {
 	public void joueurSuivant() {
 		if (sensPositif = true) {
 			indiceJoueurEnCours++;
-			if (indiceJoueurEnCours < Partie.getPartie().getNombreOrdinateur()+1) {
+			if (indiceJoueurEnCours > Partie.getPartie().getNombreOrdinateur()+1) {
+				System.out.println(Partie.getPartie().getNombreOrdinateur()+1);
 				indiceJoueurEnCours=0;
 			}
 		

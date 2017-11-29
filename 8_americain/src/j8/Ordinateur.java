@@ -22,16 +22,16 @@ public class Ordinateur extends Joueur {
 		
 		if (difficultee == 1) {
 			int i=0;
-			carteJouee = mainJoueur.get(i);
+			carteJouee = this.mainJoueur.get(i);
 			while (!carteCompatible(leTalon,carteJouee)) {
-				while(i <= mainJoueur.size()) {
+				while(i <= this.mainJoueur.size()) {
 					i++;
 				}
 			}
-			carteJouee = mainJoueur.get(i);
+			carteJouee = this.mainJoueur.get(i);
 			if (!carteCompatible(leTalon,carteJouee)) {
-				laPioche.piocherCarte();
-				mainJoueur.add(cartePioche);
+				Carte cartePioche = laPioche.piocherCarte();
+				this.mainJoueur.add(cartePioche);
 				System.out.println(this.nom + " pioche une carte.");
 			}
 			else {
