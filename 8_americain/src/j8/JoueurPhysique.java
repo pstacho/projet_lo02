@@ -1,4 +1,5 @@
 package j8;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -21,7 +22,16 @@ public class JoueurPhysique extends Joueur {
 		}
 	}	
 	
-	public void choisirCarte(Manche maManche, Talon leTalon) {
+	public void choisirCarte(Manche maManche, Talon leTalon, Pioche laPioche) {
+		
+		//revoir ce bloc
+		
+		/*for (int i=0 ; i <= mainJoueur.size(); i++ ) {
+			if (carteCompatible(leTalon, mainJoueur.get(i)) == true) {
+				cartesJouable.add(mainJoueur.get(i));
+			}
+		}*/ 
+		
 		System.out.println("Saisissez la carte a jouer\n");
 		leTalon.afficherCarteDessus();
 		int carteChoisie = sc.nextInt(); //le numero affiché par le afficher mainjoueur
@@ -30,22 +40,23 @@ public class JoueurPhysique extends Joueur {
 			
 		}
 		else {
-			choisirCarte(maManche, leTalon);
+			choisirCarte(maManche, leTalon, laPioche);
 		}
-		
-		// dire de piocher une carte si aucune carte compatible
 		
 	}
 	
 	public void jouerCarte(Manche maManche, Talon leTalon, Pioche laPioche) {
-		choisirCarte(maManche, leTalon);
+		ArrayList<Carte> cartesJouables = new ArrayList<Carte>();
+		choisirCarte(maManche, leTalon, laPioche);
 		if (carteCompatible(leTalon,carteJouee) == true) {
 			this.mainJoueur.remove(carteJouee);
 			leTalon.ajouterCarte(carteJouee);
 			leTalon.afficherCarteDessus();
 		}
-	}
-	
-	
-	
+		else {
+			laPioche.piocherCarte();
+			mainJoueur.add(cartePioche);
+			System.out.println("Vous avez pioché la carte " + laPioche.piocherCarte() +" .");	
+		}
+	}	
 }

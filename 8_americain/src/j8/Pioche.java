@@ -43,12 +43,12 @@ public class Pioche {
 	// Distribue les cartes aux joueurs
 	public void distribuer() {
 	
-		for(int i = 0; i <8 ; i++) {
+		for(int i = 0; i < Partie.getPartie().getNombreCarteJoueur() ; i++) {
 			for(int j=0; j < (Partie.getPartie().getNombreOrdinateur()+1); j++) {
 		
-			Partie.getPartie().listeJoueur.get(j).mainJoueur.add(this.jeuDeCartes.get(0));
-			System.out.println(Partie.getPartie().listeJoueur.get(j).mainJoueur);
-			jeuDeCartes.remove(0);
+				Partie.getPartie().listeJoueur.get(j).mainJoueur.add(this.jeuDeCartes.get(0));
+				System.out.println(Partie.getPartie().listeJoueur.get(j).mainJoueur);
+				jeuDeCartes.remove(0);
 			}
 		}
 	}
