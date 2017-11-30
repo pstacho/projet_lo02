@@ -18,7 +18,7 @@ public class Ordinateur extends Joueur {
 		difficultee=sc.nextInt();
 	}
 
-	public void jouerCarte(Manche maManche, Talon leTalon, Pioche laPioche) {
+	public void jouerCarte(/*Manche maManche,*/ Talon leTalon, Pioche laPioche) {
 		
 		if (difficultee == 1) {
 			int i=0;

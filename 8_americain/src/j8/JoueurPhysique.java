@@ -24,7 +24,14 @@ public class JoueurPhysique extends Joueur {
 	
 	public void choisirCarte(Talon leTalon, Pioche laPioche) {
 	
-		
+		if (leTalon.getCarteDessus()==null) {
+			System.out.println("Saisissez la carte a jouer");
+			int carteChoisie = sc.nextInt(); //le numero affiché par le afficher mainjoueur
+			if (carteChoisie>=1 && carteChoisie <= mainJoueur.size()) {
+				carteJouee=mainJoueur.get(carteChoisie-1); //on affecte le numero de la carte la carte correspondante.
+			}
+		}
+		else {
 		System.out.println("Saisissez la carte a jouer ou appuyer sur 0 pour piocher\n");
 		leTalon.afficherCarteDessus();
 		int carteChoisie = sc.nextInt(); //le numero affiché par le afficher mainjoueur
@@ -41,6 +48,7 @@ public class JoueurPhysique extends Joueur {
 			this.mainJoueur.add(cartePioche);
 			System.out.println("Vous avez pioché la carte " + laPioche.piocherCarte() +" .");	
 			
+		}
 		}
 		
 	}

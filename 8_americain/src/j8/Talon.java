@@ -8,7 +8,7 @@ public class Talon {
 	private LinkedList<Carte> cartesTalon;
 
 	public Talon(Pioche pioche) {
-		carteDessus = pioche.piocherCarte();
+		carteDessus = null;
 		cartesTalon = new LinkedList<Carte>();
 		cartesTalon.add(carteDessus);
 	}

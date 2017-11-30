@@ -28,7 +28,7 @@ public class Manche {
 		laPioche.distribuer();
 		
 		leTalon = new Talon(laPioche);
-		leTalon.afficherCarteDessus();
+		//leTalon.afficherCarteDessus();
 				
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(0);
 		while (joueurEnCours.mainJoueur.size() != 0) {
@@ -45,7 +45,7 @@ public class Manche {
 			
 		}
 		else if (joueurEnCours instanceof Ordinateur) {
-			((Ordinateur)joueurEnCours).jouerCarte(this,leTalon,laPioche);
+			((Ordinateur)joueurEnCours).jouerCarte(leTalon, laPioche);
 		}
 		
 		if (joueurEnCours.mainJoueur.size() != 0) {
