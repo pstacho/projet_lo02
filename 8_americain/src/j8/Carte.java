@@ -5,9 +5,18 @@ public class Carte {
 	private String valeur;
 	private String couleur;
 	private int point;
+	private String effet=null;
 	
 	
 	
+	public String getEffet() {
+		return effet;
+	}
+
+	public void setEffet(String effet) {
+		this.effet = effet;
+	}
+
 	public Carte(String val, String color) {
 		this.valeur = val;
 		this.couleur = color;
