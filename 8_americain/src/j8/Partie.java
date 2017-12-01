@@ -36,10 +36,15 @@ public class Partie {
 		System.out.println("Saisissez le nombre d'ordinateurs (différent de 0)");
 		nombreOrdinateur = sc.nextInt();
 
-		for (int i = 0; i < nombreOrdinateur; i++) {
-			Ordinateur ordi = new Ordinateur();
+		for (int i = 1; i <= nombreOrdinateur; i++) {
+			System.out.println("Choisisez la difficulté du BOT"+ (i) + "(de 1 à 3)");
+			int difficulty = sc.nextInt();
+			Ordinateur ordi = new Ordinateur(i, difficulty);
 			listeJoueur.add(ordi);
 		}
+		
+		
+		
 		System.out.println(listeJoueur);
 
 		// Test qui détermine le nombre da carte par joueur en fonction du nombre de
@@ -53,10 +58,13 @@ public class Partie {
 		}
 
 		System.out.println("\nChoissisez le mode de Comptage :");
-		System.out.println("Tapez 1 pour le compte positif");
-		System.out.println("Tapez 2 pour le compte négatif");
-
+		System.out.println("1 pour le compte positif");
+		System.out.println("2 pour le compte négatif");
 		modeComptage = sc.nextInt();
+		while (modeComptage !=0 && modeComptage !=1) {
+			System.out.println("Tu as selectionné un mode qui n'existe pas !\n Réassaie une nouvelle fois.");
+			modeComptage = sc.nextInt();
+		}
 
 	}
 

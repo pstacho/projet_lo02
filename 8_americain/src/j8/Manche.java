@@ -1,5 +1,7 @@
 package j8;
 
+import java.util.Iterator;
+
 public class Manche {
 
 	private Joueur joueurEnCours;
@@ -44,28 +46,31 @@ public class Manche {
 		
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(0);
 		while (joueurEnCours.mainJoueur.size() != 0) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			jouerTourDeJeu();
 		}
+		finirManche();
 
 	}
 
 	public void jouerTourDeJeu() {
-		System.out.println(joueurEnCours.getNom() + " doit jouer\n");
+		
 		if (joueurEnCours instanceof JoueurPhysique) {
+			System.out.println(joueurEnCours.getNom() + ", c'est à toi de jouer.\r");
 			((JoueurPhysique) joueurEnCours).afficherMainJoueur();
 			((JoueurPhysique) joueurEnCours).jouerCarte(leTalon, laPioche);
 
-		} else if (joueurEnCours instanceof Ordinateur) {
-			((Ordinateur) joueurEnCours).jouerCarte(this, leTalon, laPioche);
+		} 
+		else {
+			System.out.println(joueurEnCours.getNom() + " joue son tour.");
+			((Ordinateur) joueurEnCours).jouerCarteOrdi(leTalon, laPioche);
 		}
-
-		if (joueurEnCours.mainJoueur.size() != 0) {
-			joueurSuivant();
-		} else {
-			this.finirManche();
-		}
-		System.out.println(joueurEnCours);
-
+		joueurSuivant();
 	}
 
 	private void finirManche() {
@@ -75,9 +80,10 @@ public class Manche {
 
 	public void joueurSuivant() {
 		if (sensPositif = true) {
-			indiceJoueurEnCours++;
+			indiceJoueurEnCours ++;
+			/*Iterator<Joueur> itJ = Partie.getPartie().listeJoueur.iterator(); 
+			if (itJ.hasNext()) {*/
 			if (indiceJoueurEnCours > Partie.getPartie().getNombreOrdinateur() + 1) {
-				System.out.println(Partie.getPartie().getNombreOrdinateur() + 1);
 				indiceJoueurEnCours = 0;
 			}
 
