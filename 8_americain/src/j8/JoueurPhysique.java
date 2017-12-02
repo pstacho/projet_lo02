@@ -17,8 +17,16 @@ public class JoueurPhysique extends Joueur {
 	}
 
 	public void afficherMainJoueur() {
+		
 		for (int i = 0; i < this.mainJoueur.size(); i++) {
-			System.out.println((i + 1) + " : " + mainJoueur.get(i));
+			
+			if (this.mainJoueur.get(i).getEffet().equals("null")) {
+				System.out.println((i + 1) + " : " + mainJoueur.get(i));
+			}
+			else {
+				System.out.println((i + 1) + " : " + mainJoueur.get(i) +"   effet: " + this.mainJoueur.get(i).getEffet());
+			}
+			
 		}
 	}
 

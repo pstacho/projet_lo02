@@ -5,7 +5,7 @@ public class Carte {
 	private String valeur;
 	private String couleur;
 	private int point;
-	private String effet=null;
+	private String effet="null";
 	
 	
 	
@@ -47,7 +47,7 @@ public class Carte {
 		this.point = point;
 	}
 	public String toString() {
-		return couleur + " de " + valeur;
+		return valeur + " de " + couleur;
 	}
 
 }

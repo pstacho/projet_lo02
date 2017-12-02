@@ -39,17 +39,17 @@ public class Variante {
 		System.out.println(varianteEnCours); // test
 
 		if (varianteEnCours.equals("Minimale")) { // == ne marche pas toujours avec des strings c'est chelou.
-			changerEffet(laPioche, "Huit", "changerCouleurJoker");
-			changerEffet(laPioche, "Dix", "obligeaRejouer");
+			changerEffet(laPioche, "Huit", "permet de changer de couleur, se pose sur n'importe quelle carte");
+			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			System.out.println("coucou");
 
 		} else if (varianteEnCours.equals("de Monclar")) {
-			changerEffet(laPioche, "Dix", "obligeaRejouer");
-			changerEffet(laPioche, "Sept", "passerTour");
-			changerEffet(laPioche, "Valet", "changerSens");
-			changerEffet(laPioche, "Neuf", "fairePiocher");
-			changerEffet(laPioche, "As", "fairePiocherMonclar");
-			changerEffet(laPioche, "Huit", "changerCouleurMonclar"); // J'ai fait que 2 variables mais ca va vite, il
+			changerEffet(laPioche, "Dix", "oblige a rejouer");
+			changerEffet(laPioche, "Sept", " le joueur suivant passe son tour");
+			changerEffet(laPioche, "Valet", "change le sens du jeu");
+			changerEffet(laPioche, "Neuf", "fait piocher une carte au joueur suivant sans recours");
+			changerEffet(laPioche, "As", "fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As");
+			changerEffet(laPioche, "Huit", "permet de changer de couleur et arrête les attaques"); // J'ai fait que 2 variables mais ca va vite, il
 																	// suffit d'utiliser changerEffet
 		}
 	}

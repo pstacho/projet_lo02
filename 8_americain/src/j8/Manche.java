@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class Manche {
 
 	private Joueur joueurEnCours;
-	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
+	private int indiceJoueurEnCours; // je test avec le premier joueur
 	private boolean sensPositif;
 	private int numeroManche = 0;
 	private Talon leTalon;
@@ -31,11 +31,11 @@ public class Manche {
 		
 		maVariante.afficherChoixVariantes();
 		maVariante.ChoisirVariante(laPioche);	// ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca change en jeux mais c'est possible en theorie
-		System.out.println(laPioche.jeuDeCartes.get(2).getCouleur()); //test
 		
-		for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
-			System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
-		} // test
+		
+		//for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
+		//	System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
+		//} // test
 
 		
 		laPioche.distribuer();
@@ -43,8 +43,9 @@ public class Manche {
 		leTalon = new Talon(laPioche);
 		leTalon.afficherCarteDessus();
 
-		
-		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(0);
+		indiceJoueurEnCours = (int)(Math.random() * (Partie.getPartie().getNombreOrdinateur() - 0));
+		// on initialise indiceJoueurEnCours a un nombre aléatoire compris entre 0 et le nombre de joueur afin de determiener aléatoirement le joeur qui commence
+		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(indiceJoueurEnCours);
 		while (joueurEnCours.mainJoueur.size() != 0) {
 			try {
 				Thread.sleep(1000);
@@ -83,7 +84,7 @@ public class Manche {
 			indiceJoueurEnCours ++;
 			/*Iterator<Joueur> itJ = Partie.getPartie().listeJoueur.iterator(); 
 			if (itJ.hasNext()) {*/
-			if (indiceJoueurEnCours > Partie.getPartie().getNombreOrdinateur() + 1) {
+			if (indiceJoueurEnCours >= Partie.getPartie().getNombreOrdinateur() + 1) {
 				indiceJoueurEnCours = 0;
 			}
 
@@ -95,7 +96,8 @@ public class Manche {
 			}
 
 		}
+		System.out.println("indice joueur: "+indiceJoueurEnCours);
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(indiceJoueurEnCours);
-		System.out.println(indiceJoueurEnCours);
+		
 	}
 }
