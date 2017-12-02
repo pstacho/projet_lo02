@@ -106,4 +106,20 @@ public class Partie {
 		this.nombreCarteJoueur = nombreCarteJoueur;
 	}
 
+	public int getModeComptage() {
+		return modeComptage;
+	}
+
+	public void setModeComptage(int modeComptage) {
+		this.modeComptage = modeComptage;
+	}
+
+	public static Partie getInstancePartie() {
+		return instancePartie;
+	}
+
+	public static void setInstancePartie(Partie instancePartie) {
+		Partie.instancePartie = instancePartie;
+	}
+
 }

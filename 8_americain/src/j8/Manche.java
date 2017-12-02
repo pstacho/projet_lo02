@@ -103,11 +103,6 @@ public class Manche {
 		joueurSuivant();
 	}
 
-	private void finirManche() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void joueurSuivant() {
 		if (joueurRejouer == false) {
 			if (sensPositif = true) {
@@ -131,6 +126,16 @@ public class Manche {
 		}
 
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(indiceJoueurEnCours);
+
+	}
+	private void finirManche() {
+		// TODO Auto-generated method stub
+		if (Partie.getPartie().getModeComptage() == 1) {
+			System.out.println(joueurEnCours + " a gagné la manche n°" + numeroManche);
+			for (int i = 0; i<Partie.getPartie().getListeJoueur().size(); i++) {
+				Partie.getPartie().getListeJoueur().get(i).compterPoints();
+			}
+		}
 
 	}
 }

@@ -8,7 +8,7 @@ public class Joueur {
 	protected ArrayList<Carte> mainJoueur;
 	protected String nom;
 	// private int nbCartes;
-	private int point;
+	private int score;
 	private int numero;
 	protected static int indiceJoueur = 0;
 
@@ -20,7 +20,7 @@ public class Joueur {
 	public Joueur() {
 		indiceJoueur++;
 		this.numero = indiceJoueur;
-		point = 0;
+		score = 0;
 		mainJoueur = new ArrayList<Carte>();
 	}
 
@@ -32,6 +32,16 @@ public class Joueur {
 		} else {
 			return false;
 		}
+	}
+	
+	
+	public void compterPoints() {
+		for (int i = 0; i <= mainJoueur.size(); i++) {
+			if(mainJoueur.get(i).getEffet().equals("null")) {
+				 
+		
+			}
+		}		
 	}
 
 	public ArrayList<Carte> getMainJoueur() {
