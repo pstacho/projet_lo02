@@ -12,8 +12,6 @@ public class Variante {
 
 	public Variante() {
 
-		
-		String varianteEnCours = null;
 		String[] nomVariante = new String[] { "Minimale", "de Monclar", "1", "carte et maou", "des Ulis", "4", "5", "6",
 				"7 (32 cartes)", "Courte Amicale", "man et resta", "Jules", "Paradox Hech", "de l'us17",
 				"par stratégie", "Rosa l'injuste" };
@@ -35,13 +33,10 @@ public class Variante {
 		sc = new Scanner(System.in);
 		int indiceVarianteEnCours = (sc.nextInt() - 1);
 		varianteEnCours = listeVariantes.get(indiceVarianteEnCours);
-		System.out.println(indiceVarianteEnCours); // test
-		System.out.println(varianteEnCours); // test
 
-		if (varianteEnCours.equals("Minimale")) { // == ne marche pas toujours avec des strings c'est chelou.
+		if (varianteEnCours.equals("Minimale")) {
 			changerEffet(laPioche, "Huit", "permet de changer de couleur, se pose sur n'importe quelle carte");
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
-			System.out.println("coucou");
 
 		} else if (varianteEnCours.equals("de Monclar")) {
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
@@ -53,12 +48,12 @@ public class Variante {
 																	// suffit d'utiliser changerEffet
 		}
 	}
+	
 
 	public void changerEffet(Pioche laPioche, String valeur, String effet) { // on verifie la valeur de toute les Cartes du jeu
 		for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // Cela permet de changer de variante en cours de	Jeu			
-			if (laPioche.jeuDeCartes.get(i).getValeur().equals(valeur)) { 	//j'ai perdu 1h parce que l'égalité marchait pas ici
-				laPioche.jeuDeCartes.get(i).setEffet(effet);	// parce que les valeurs des cartes sont en lettre et pas en chiffre... DIX != 10
-				System.out.println("si y'a 8 fois ca pour minimal c'est bon");
+			if (laPioche.jeuDeCartes.get(i).getValeur().equals(valeur)) { 
+				laPioche.jeuDeCartes.get(i).setEffet(effet);	
 			}
 		}
 	}

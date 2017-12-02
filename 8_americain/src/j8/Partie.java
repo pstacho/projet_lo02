@@ -45,7 +45,7 @@ public class Partie {
 		
 		
 		
-		System.out.println(listeJoueur);
+		// System.out.println(listeJoueur);
 
 		// Test qui détermine le nombre da carte par joueur en fonction du nombre de
 		// joueur
