@@ -37,6 +37,7 @@ public class JoueurPhysique extends Joueur {
 		int carteChoisie = sc.nextInt(); // le numero affiché par le afficher mainjoueur
 		if (carteChoisie >= 1 && carteChoisie <= mainJoueur.size()) {
 			carteJouee = mainJoueur.get(carteChoisie - 1); // on affecte le numero de la carte la carte correspondante.
+			//monEffet.checkEffet(maManche,carteJouee);
 			if (carteCompatible(leTalon, carteJouee) == true) {
 				this.mainJoueur.remove(carteJouee);
 				leTalon.ajouterCarte(carteJouee);
@@ -48,7 +49,7 @@ public class JoueurPhysique extends Joueur {
 			}
 		} else if (carteChoisie > mainJoueur.size()) {
 			System.out.println("Tu n'as pas autant de cartes ! Choisi une autre carte");
-			jouerCarte(leTalon, laPioche);
+			jouerCarte (leTalon, laPioche);
 			
 		} else {
 			cartePiochee = laPioche.piocherCarte();

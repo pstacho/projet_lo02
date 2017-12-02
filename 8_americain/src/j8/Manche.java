@@ -51,7 +51,8 @@ public class Manche {
 	}
 
 	public Manche() {
-
+		
+		Effet monEffet = new Effet();
 		numeroManche++;
 		sensPositif = true;
 
@@ -123,16 +124,19 @@ public class Manche {
 				}
 
 			}
+		} else {
+			joueurRejouer = false;
 		}
 
 		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(indiceJoueurEnCours);
 
 	}
+
 	private void finirManche() {
 		// TODO Auto-generated method stub
 		if (Partie.getPartie().getModeComptage() == 1) {
 			System.out.println(joueurEnCours + " a gagné la manche n°" + numeroManche);
-			for (int i = 0; i<Partie.getPartie().getListeJoueur().size(); i++) {
+			for (int i = 0; i < Partie.getPartie().getListeJoueur().size(); i++) {
 				Partie.getPartie().getListeJoueur().get(i).compterPoints();
 			}
 		}
