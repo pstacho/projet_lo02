@@ -21,6 +21,6 @@ public abstract class StrategieOrdinateur {
 	}
 	
 	public static int choisirCarteDifficile() {
-		
+		return 2;
 	}
 }

@@ -40,6 +40,7 @@ public class JoueurPhysique extends Joueur {
 			carteJouee = mainJoueur.get(carteChoisie - 1); // on affecte le numero de la carte la carte correspondante.
 			//monEffet.checkEffet(maManche,carteJouee);
 			if (carteCompatible(leTalon, carteJouee) == true) {
+				System.out.println("Vous jouez la carte " + carteJouee + " .");
 				this.mainJoueur.remove(carteJouee);
 				leTalon.ajouterCarte(carteJouee);
 				leTalon.afficherCarteDessus();

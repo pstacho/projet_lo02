@@ -67,27 +67,28 @@ public class Pioche {
 	public void attribuerPointCarte() {
 		Iterator<Carte> it = jeuDeCartes.iterator();
 		while (it.hasNext()) {
-			if (it.next().getEffet().equals("null")) {
-				if (it.next().getValeur() == "Neuf"){
-					it.next().setPoint(9);
+			Carte carteEnCours = it.next();
+			if (carteEnCours.getEffet().equals("null")) {
+				if (carteEnCours.getValeur() == "Neuf"){
+					carteEnCours.setPoint(9);
 				}
-				else if (it.next().getValeur() == "Six") {
-					it.next().setPoint(6);
+				else if (carteEnCours.getValeur() == "Six") {
+					carteEnCours.setPoint(6);
 				}
-				else if (it.next().getValeur() == "Cinq") {
-					it.next().setPoint(5);
+				else if (carteEnCours.getValeur() == "Cinq") {
+					carteEnCours.setPoint(5);
 				}
-				else if (it.next().getValeur() == "Quatre") {
-					it.next().setPoint(4);
+				else if (carteEnCours.getValeur() == "Quatre") {
+					carteEnCours.setPoint(4);
 				}
-				else if (it.next().getValeur() == "Trois") {
-					it.next().setPoint(3);
+				else if (carteEnCours.getValeur() == "Trois") {
+					carteEnCours.setPoint(3);
 				}
-			}else if (! it.next().getEffet().equals("null")){
-				if (it.next().getValeur() == "As" || it.next().getValeur() == "8" ) {
-					it.next().setPoint(50);
+			}else if (! carteEnCours.getEffet().equals("null")){
+				if (carteEnCours.getValeur() == "As" || carteEnCours.getValeur() == "8" ) {
+					carteEnCours.setPoint(50);
 				}
-				else {it.next().setPoint(20);}
+				else {carteEnCours.setPoint(20);}
 			}
 		}
 	}

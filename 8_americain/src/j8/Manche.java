@@ -66,6 +66,12 @@ public class Manche {
 		// for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
 		// System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
 		// } // test
+		
+		laPioche.attribuerPointCarte();
+		Iterator<Carte> it = laPioche.jeuDeCartes.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next().getPoint());
+		}
 
 		laPioche.distribuer();
 
@@ -107,10 +113,6 @@ public class Manche {
 		if (joueurRejouer == false) {
 			if (sensPositif = true) {
 				indiceJoueurEnCours++;
-				/*
-				 * Iterator<Joueur> itJ = Partie.getPartie().listeJoueur.iterator(); if
-				 * (itJ.hasNext()) {
-				 */
 				if (indiceJoueurEnCours >= Partie.getPartie().getNombreOrdinateur() + 1) {
 					indiceJoueurEnCours = 0;
 				}
