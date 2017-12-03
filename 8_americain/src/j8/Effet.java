@@ -2,21 +2,16 @@ package j8;
 
 import java.util.Scanner;
 
-public class Effet {
-	
-	public Effet () {
-	}
+public abstract class Effet {
 
-	private Scanner sc = new Scanner(System.in);
+	private static Scanner sc;
 
-	public void checkEffet(Manche maManche, Carte carteJouee) {
-		if (!carteJouee.getEffet().equals("null")) {
-			if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
-
+	public static void checkEffet(Manche maManche, Carte carteJouee) {
+		
+		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
 				ChangerCouleur(carteJouee);
 				Joker(carteJouee);
-			}
-
+				
 		} else if (carteJouee.getEffet().equals("oblige a rejouer")) {
 			joueurRejouer(maManche);
 
@@ -26,7 +21,8 @@ public class Effet {
 		}
 	}
 
-	public String ChangerCouleur(Carte carteJouee) {
+	public static String ChangerCouleur(Carte carteJouee) {
+		sc = new Scanner(System.in);
 		String vraiCouleur = carteJouee.getCouleur();
 		System.out.println("Choissisez la nouvelle couleur de la carte");
 		System.out.println("\n 1: Pique");
@@ -38,18 +34,18 @@ public class Effet {
 		return vraiCouleur;
 	}
 
-	public String Joker(Carte carteJouee) {
+	public static String Joker(Carte carteJouee) {
 		String vraiCouleur = carteJouee.getCouleur();
 		carteJouee.setCouleur("Joker");
 		return vraiCouleur;
 	}
 
-	public void joueurRejouer(Manche maManche) {
+	public static void joueurRejouer(Manche maManche) {
 		System.out.println("Vous devez rejouer");
 		maManche.setJoueurRejouer(true);
 	}
 
-	public void changerSens(Manche maManche) {
+	public static void changerSens(Manche maManche) {
 		System.out.println("Le sens de jeu change");
 		maManche.setSensPositif(!maManche.isSensPositif());
 	}

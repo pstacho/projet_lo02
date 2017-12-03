@@ -25,7 +25,7 @@ public class Pioche {
 		}
 		
 
-		Collections.shuffle(jeuDeCartes);
+		melanger();
 		/*
 		 * int k=0; for(int i = 0; i < jeuDeCartes.size(); i++) {
 		 * System.out.println(jeuDeCartes.get(i)); k++; } System.out.println(k);

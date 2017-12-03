@@ -22,11 +22,14 @@ public class Ordinateur extends Joueur {
 			
 	}
 
-	public void jouerCarteOrdi(Talon leTalon, Pioche laPioche) {
-		boolean trouverCarte = false;
+	public void jouerCarteOrdi(Manche maManche,Talon leTalon, Pioche laPioche) {
+		//boolean trouverCarte = false;
 		
+		int numCarteJouee;
 		if (difficultee == 1) {
-			Iterator<Carte> it = this.mainJoueur.iterator();
+			
+			numCarteJouee = StrategieOrdinateur.chosirCarteNormale(this, maManche);
+			/*Iterator<Carte> it = this.mainJoueur.iterator();
 			int indexCarteJouee = -1;
 			while (!trouverCarte && it.hasNext()) {
 					indexCarteJouee++;
@@ -34,17 +37,34 @@ public class Ordinateur extends Joueur {
 					if (carteCompatible(leTalon, mainJoueur.get(indexCarteJouee))) {
 						trouverCarte = true;
 				}
-			}
-			carteJouee = this.mainJoueur.get(indexCarteJouee);
-			if (!carteCompatible(leTalon, carteJouee)) {
-				Carte cartePioche = laPioche.piocherCarte();
-				this.mainJoueur.add(cartePioche);
-				System.out.println(this.nom + " pioche une carte.");
-			} else {
-				System.out.println(this.nom + " a joué la carte " + carteJouee.toString() + " .");
-				leTalon.ajouterCarte(carteJouee);
-				this.mainJoueur.remove(carteJouee);
-			}
+			}*/
+		}else { numCarteJouee = 0; } // méthode jouer si difficultée difficile
+		
+		carteJouee = this.mainJoueur.get(numCarteJouee);
+		if (!carteCompatible(leTalon, carteJouee)) {
+			Carte cartePioche = laPioche.piocherCarte();
+			this.mainJoueur.add(cartePioche);
+			System.out.println(this.nom + " pioche une carte.");
+		} else {
+			System.out.println(this.nom + " a joué la carte " + carteJouee.toString() + " .");
+			leTalon.ajouterCarte(carteJouee);
+			this.mainJoueur.remove(carteJouee);
 		}
+	}
+
+	public int getDifficultee() {
+		return difficultee;
+	}
+
+	public void setDifficultee(int difficultee) {
+		this.difficultee = difficultee;
+	}
+
+	public Carte getCarteJouee() {
+		return carteJouee;
+	}
+
+	public void setCarteJouee(Carte carteJouee) {
+		this.carteJouee = carteJouee;
 	}
 }

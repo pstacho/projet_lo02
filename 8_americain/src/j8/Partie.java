@@ -42,10 +42,6 @@ public class Partie {
 			Ordinateur ordi = new Ordinateur(i, difficulty);
 			listeJoueur.add(ordi);
 		}
-		
-		
-		
-		// System.out.println(listeJoueur);
 
 		// Test qui détermine le nombre da carte par joueur en fonction du nombre de
 		// joueur

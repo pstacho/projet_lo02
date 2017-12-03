@@ -7,8 +7,8 @@ public class Manche {
 	private Joueur joueurEnCours;
 	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
 	private int numeroManche = 0;
-	private Talon leTalon;
 	private Pioche laPioche;
+	private Talon leTalon;
 
 	// effets
 
@@ -52,13 +52,12 @@ public class Manche {
 
 	public Manche() {
 		
-		Effet monEffet = new Effet();
 		numeroManche++;
 		sensPositif = true;
 
 		System.out.println("Début de la manche n° " + numeroManche);
 		Variante maVariante = new Variante();
-		Pioche laPioche = new Pioche();
+		laPioche = new Pioche();
 
 		maVariante.afficherChoixVariantes();
 		maVariante.ChoisirVariante(laPioche); // ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca
@@ -95,11 +94,11 @@ public class Manche {
 		if (joueurEnCours instanceof JoueurPhysique) {
 			System.out.println(joueurEnCours.getNom() + ", c'est à toi de jouer.\r");
 			((JoueurPhysique) joueurEnCours).afficherMainJoueur();
-			((JoueurPhysique) joueurEnCours).jouerCarte(leTalon, laPioche);
+			((JoueurPhysique) joueurEnCours).jouerCarte(laPioche, leTalon);
 
 		} else {
 			System.out.println(joueurEnCours.getNom() + " joue son tour.");
-			((Ordinateur) joueurEnCours).jouerCarteOrdi(leTalon, laPioche);
+			((Ordinateur) joueurEnCours).jouerCarteOrdi(this,leTalon, laPioche);
 		}
 		joueurSuivant();
 	}
@@ -143,5 +142,21 @@ public class Manche {
 		System.out.println("Voulez-vous faire une autre manche ?");
 		Manche maManche = new Manche();
 
+	}
+
+	public Pioche getLaPioche() {
+		return laPioche;
+	}
+
+	public void setLaPioche(Pioche laPioche) {
+		this.laPioche = laPioche;
+	}
+
+	public Talon getLeTalon() {
+		return leTalon;
+	}
+
+	public void setLeTalon(Talon leTalon) {
+		this.leTalon = leTalon;
 	}
 }

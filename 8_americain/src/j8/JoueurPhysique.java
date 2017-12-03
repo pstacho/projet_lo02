@@ -8,6 +8,7 @@ public class JoueurPhysique extends Joueur {
 	Scanner sc = new Scanner(System.in);
 	private Carte carteJouee;
 	private Carte cartePiochee;
+	
 	public JoueurPhysique() {
 
 		super();
@@ -30,7 +31,7 @@ public class JoueurPhysique extends Joueur {
 		}
 	}
 
-	public void jouerCarte(Talon leTalon, Pioche laPioche) {
+	public void jouerCarte(Pioche laPioche, Talon leTalon) {
 
 		System.out.println("Saisissez la carte a jouer ou appuyer sur 0 pour piocher\n");
 		leTalon.afficherCarteDessus();
@@ -45,16 +46,16 @@ public class JoueurPhysique extends Joueur {
 			}
 			else {
 				System.out.println("Tu ne peux pas jouer cette carte !");
-				jouerCarte(leTalon, laPioche);
+				jouerCarte(laPioche,leTalon);
 			}
 		} else if (carteChoisie > mainJoueur.size()) {
 			System.out.println("Tu n'as pas autant de cartes ! Choisi une autre carte");
-			jouerCarte (leTalon, laPioche);
+			jouerCarte (laPioche,leTalon);
 			
-		} else {
+		} else if (carteChoisie == 0){
 			cartePiochee = laPioche.piocherCarte();
 			mainJoueur.add(cartePiochee);
-			//System.out.println("Vous avez pioché la carte " + laPioche.piocherCarte() + " .");
+			System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
 
 		}
 
