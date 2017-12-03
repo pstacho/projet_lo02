@@ -140,6 +140,8 @@ public class Manche {
 				Partie.getPartie().getListeJoueur().get(i).compterPoints();
 			}
 		}
+		System.out.println("Voulez-vous faire une autre manche ?");
+		Manche maManche = new Manche();
 
 	}
 }

@@ -37,11 +37,9 @@ public class Joueur {
 	
 	public void compterPoints() {
 		for (int i = 0; i <= mainJoueur.size(); i++) {
-			if(mainJoueur.get(i).getEffet().equals("null")) {
-				 
-		
-			}
-		}		
+			this.score = this.score + mainJoueur.get(i).getPoint();
+		}
+		System.out.println(this.nom + " a " + this.score + " points.");
 	}
 
 	public ArrayList<Carte> getMainJoueur() {
