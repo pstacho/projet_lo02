@@ -16,10 +16,11 @@ public class Pioche {
 		String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
 		String[] valeur = new String[] { "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
 				"Valet", "Dame", "Roi", "As" };
+		int [] point = new int[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
 		for (int i = 0; i < couleur.length; i++) {
 			for (int j = 0; j < valeur.length; j++) {
-				Carte carte = new Carte(valeur[j], couleur[i]);
+				Carte carte = new Carte(valeur[j], couleur[i], point[j]);
 				this.jeuDeCartes.add(carte);
 			}
 		}
@@ -68,58 +69,14 @@ public class Pioche {
 		Iterator<Carte> it = jeuDeCartes.iterator();
 		while (it.hasNext()) {
 			Carte carteEnCours = it.next();
-			if (carteEnCours.getEffet().equals("null")) {
-				if (carteEnCours.getValeur() == "Neuf"){
-					carteEnCours.setPoint(9);
-				}
-				else if (carteEnCours.getValeur() == "Six") {
-					carteEnCours.setPoint(6);
-				}
-				else if (carteEnCours.getValeur() == "Cinq") {
-					carteEnCours.setPoint(5);
-				}
-				else if (carteEnCours.getValeur() == "Quatre") {
-					carteEnCours.setPoint(4);
-				}
-				else if (carteEnCours.getValeur() == "Trois") {
-					carteEnCours.setPoint(3);
-				}
-			}else if (! carteEnCours.getEffet().equals("null")){
+			if (! carteEnCours.getEffet().equals("null")) {
 				if (carteEnCours.getValeur() == "As" || carteEnCours.getValeur() == "8" ) {
 					carteEnCours.setPoint(50);
 				}
-				else {carteEnCours.setPoint(20);}
+				else {
+					carteEnCours.setPoint(20);
+				}
 			}
 		}
 	}
-	public void attribuerPointCarte2() {
-		for (int i = 0; i < jeuDeCartes.size(); i++) {
-			Carte carte = jeuDeCartes.get(i);
-			if (carte.getEffet().equals("null")) {
-				if (carte.getValeur() == "Neuf"){
-					carte.setPoint(9);
-				}
-				else if (carte.getValeur() == "Six") {
-					carte.setPoint(6);
-				}
-				else if (carte.getValeur() == "Cinq") {
-					carte.setPoint(5);
-				}
-				else if (carte.getValeur() == "Quatre") {
-					carte.setPoint(4);
-				}
-				else if (carte.getValeur() == "Trois") {
-					carte.setPoint(3);
-				}
-			}else if (! carte.getEffet().equals("null")){
-				if (carte.getValeur() == "As" || carte.getValeur() == "8" ) {
-					carte.setPoint(50);
-				}
-				else {carte.setPoint(20);}
-			}
-			
-		}
-		
-	}
-	
 }

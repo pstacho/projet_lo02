@@ -17,9 +17,10 @@ public class Carte {
 		this.effet = effet;
 	}
 
-	public Carte(String val, String color) {
+	public Carte(String val, String color, int point) {
 		this.valeur = val;
 		this.couleur = color;
+		this.point = point;
 		// pour les points faire les variantes d'abords
 	}
 

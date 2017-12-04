@@ -2,6 +2,7 @@ package j8;
 
 import java.util.Iterator;
 
+
 public class Manche {
 
 	private Joueur joueurEnCours;
@@ -63,9 +64,9 @@ public class Manche {
 		maVariante.ChoisirVariante(laPioche); // ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca
 												// change en jeux mais c'est possible en theorie
 
-		// for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
-		// System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
-		// } // test
+		//for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
+		//System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
+		//} // test
 		
 		laPioche.attribuerPointCarte();
 		Iterator<Carte> it = laPioche.jeuDeCartes.iterator();
@@ -141,7 +142,7 @@ public class Manche {
 				Partie.getPartie().getListeJoueur().get(i).compterPoints();
 			}
 		}
-		System.out.println("Voulez-vous faire une autre manche ?");
+		System.out.println("Voulez-vous faire une autre manche ? ( 1 si oui | 0 si non )");
 		Manche maManche = new Manche();
 
 	}
