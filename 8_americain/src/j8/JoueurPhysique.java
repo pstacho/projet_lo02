@@ -31,27 +31,32 @@ public class JoueurPhysique extends Joueur {
 		}
 	}
 
-	public void jouerCarte(Pioche laPioche, Talon leTalon) {
+	public void jouerCarte(Manche maManche, Pioche laPioche, Talon leTalon) {
 
 		System.out.println("Saisissez la carte a jouer ou appuyer sur 0 pour piocher\n");
 		leTalon.afficherCarteDessus();
 		int carteChoisie = sc.nextInt(); // le numero affiché par le afficher mainjoueur
 		if (carteChoisie >= 1 && carteChoisie <= mainJoueur.size()) {
 			carteJouee = mainJoueur.get(carteChoisie - 1); // on affecte le numero de la carte la carte correspondante.
-			//monEffet.checkEffet(maManche,carteJouee);
+			
+			Effet.checkEffetAvant(maManche, carteJouee);
+			
 			if (carteCompatible(leTalon, carteJouee) == true) {
 				System.out.println("Vous jouez la carte " + carteJouee + " .");
+				
+				Effet.checkEffetApres(maManche, laPioche, carteJouee);
+				
 				this.mainJoueur.remove(carteJouee);
 				leTalon.ajouterCarte(carteJouee);
 				leTalon.afficherCarteDessus();
 			}
 			else {
 				System.out.println("Tu ne peux pas jouer cette carte !");
-				jouerCarte(laPioche,leTalon);
+				jouerCarte(maManche, laPioche,leTalon);
 			}
 		} else if (carteChoisie > mainJoueur.size()) {
 			System.out.println("Tu n'as pas autant de cartes ! Choisi une autre carte");
-			jouerCarte (laPioche,leTalon);
+			jouerCarte (maManche, laPioche,leTalon);
 			
 		} else if (carteChoisie == 0){
 			cartePiochee = laPioche.piocherCarte();

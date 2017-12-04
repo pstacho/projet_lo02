@@ -41,12 +41,18 @@ public class Ordinateur extends Joueur {
 		}else { numCarteJouee = 0; } // méthode jouer si difficultée difficile
 		
 		carteJouee = this.mainJoueur.get(numCarteJouee);
+		
+		Effet.checkEffetAvant(maManche, carteJouee);
+		
 		if (!carteCompatible(leTalon, carteJouee)) {
 			Carte cartePioche = laPioche.piocherCarte();
 			this.mainJoueur.add(cartePioche);
 			System.out.println(this.nom + " pioche une carte.");
 		} else {
 			System.out.println(this.nom + " a joué la carte " + carteJouee.toString() + " .");
+			
+			Effet.checkEffetApres(maManche, laPioche, carteJouee);
+			
 			leTalon.ajouterCarte(carteJouee);
 			this.mainJoueur.remove(carteJouee);
 		}

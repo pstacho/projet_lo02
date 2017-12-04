@@ -40,7 +40,7 @@ public class Variante {
 
 		} else if (varianteEnCours.equals("de Monclar")) {
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
-			changerEffet(laPioche, "Sept", " le joueur suivant passe son tour");
+			changerEffet(laPioche, "Sept", "le joueur suivant passe son tour");
 			changerEffet(laPioche, "Valet", "change le sens du jeu");
 			changerEffet(laPioche, "Neuf", "fait piocher une carte au joueur suivant sans recours");
 			changerEffet(laPioche, "As", "fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As");

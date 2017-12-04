@@ -7,15 +7,22 @@ public class Manche {
 
 	private Joueur joueurEnCours;
 	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
+	public int getIndiceJoueurEnCours() {
+		return indiceJoueurEnCours;
+	}
+
+	public void setIndiceJoueurEnCours(int indiceJoueurEnCours) {
+		this.indiceJoueurEnCours = indiceJoueurEnCours;
+	}
+
 	private int numeroManche = 0;
 	private Pioche laPioche;
 	private Talon leTalon;
 
 	// effets
 
-	private boolean sensPositif = true;
+	private boolean sensPositif;
 	private boolean joueurRejouer = false;
-
 	private boolean passerProchainTour = false;
 	private boolean jeuParValeurDesactive = false;
 	private boolean jeuParCouleurDesactive = false;
@@ -54,8 +61,8 @@ public class Manche {
 	public Manche() {
 		
 		numeroManche++;
-		sensPositif = true;
-
+		sensPositif=true;
+		
 		System.out.println("Début de la manche n° " + numeroManche);
 		Variante maVariante = new Variante();
 		laPioche = new Pioche();
@@ -101,7 +108,7 @@ public class Manche {
 		if (joueurEnCours instanceof JoueurPhysique) {
 			System.out.println(joueurEnCours.getNom() + ", c'est à toi de jouer.\r");
 			((JoueurPhysique) joueurEnCours).afficherMainJoueur();
-			((JoueurPhysique) joueurEnCours).jouerCarte(laPioche, leTalon);
+			((JoueurPhysique) joueurEnCours).jouerCarte(this, laPioche,leTalon);
 
 		} else {
 			System.out.println(joueurEnCours.getNom() + " joue son tour.");
@@ -112,16 +119,20 @@ public class Manche {
 
 	public void joueurSuivant() {
 		if (joueurRejouer == false) {
-			if (sensPositif = true) {
+			if (sensPositif == true) {
 				indiceJoueurEnCours++;
+				System.out.println("on va dans le sens positif");
 				if (indiceJoueurEnCours >= Partie.getPartie().getNombreOrdinateur() + 1) {
 					indiceJoueurEnCours = 0;
+					
 				}
 
 			} else {
 				indiceJoueurEnCours--;// pour les variantes changement de sens
+				System.out.println("on va dans le sens negatif");
 				if (indiceJoueurEnCours < 0) {
-					indiceJoueurEnCours = Partie.getPartie().getNombreOrdinateur() + 1;
+					indiceJoueurEnCours = Partie.getPartie().getNombreOrdinateur();
+					System.out.println("l'indice est: "+indiceJoueurEnCours);
 
 				}
 
