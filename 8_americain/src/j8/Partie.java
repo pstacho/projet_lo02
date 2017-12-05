@@ -26,7 +26,7 @@ public class Partie {
 		this.listeJoueur = listeJoueur;
 	}
 
-	private Partie() {
+	private Partie() throws InvalidDifficulteeOrdi {
 
 		sc = new Scanner(System.in);
 		JoueurPhysique moi = new JoueurPhysique();
@@ -37,8 +37,12 @@ public class Partie {
 		nombreOrdinateur = sc.nextInt();
 
 		for (int i = 1; i <= nombreOrdinateur; i++) {
-			System.out.println("Choisisez la difficulté du BOT"+ (i) + "(de 1 à 3)");
+			System.out.println("Choisisez la difficulté du BOT"+ (i) + "\n1 : Normal\n2 : Difficile");
 			int difficulty = sc.nextInt();
+			if (difficulty != 1 || difficulty !=2) {
+				InvalidDifficulteeOrdi ido = new InvalidDifficulteeOrdi("Cette difficultée n'existe pas !");
+				throw ido;
+			}
 			Ordinateur ordi = new Ordinateur(i, difficulty);
 			listeJoueur.add(ordi);
 		}
@@ -77,7 +81,12 @@ public class Partie {
 	public static Partie getPartie() {
 
 		if (Partie.instancePartie == null) {
-			Partie.instancePartie = new Partie();
+			try {
+				Partie.instancePartie = new Partie();
+			} catch (InvalidDifficulteeOrdi e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return Partie.instancePartie;
 	}
