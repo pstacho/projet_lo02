@@ -27,7 +27,7 @@ public class Joueur {
 
 	// Vérifie si la carte choisi par le joueur peut être poser sur le talon
 	public boolean carteCompatible(Talon leTalon, Carte carte) {
-		if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur() || carte.getCouleur().equals("Joker") )
+		if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur() || carte.isJoker() == true)
 				|| carte.getValeur() == leTalon.getCarteDessus().getValeur()) {
 			return true;
 		} else {

@@ -6,11 +6,20 @@ public class Carte {
 	private String couleur;
 	private int point;
 	private String effet="null";
+	private boolean Joker=false;
 	
 	
 	
 	public String getEffet() {
 		return effet;
+	}
+
+	public boolean isJoker() {
+		return Joker;
+	}
+
+	public void setJoker(boolean joker) {
+		Joker = joker;
 	}
 
 	public void setEffet(String effet) {

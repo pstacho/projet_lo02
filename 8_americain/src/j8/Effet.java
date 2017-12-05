@@ -6,18 +6,11 @@ public abstract class Effet {
 
 	private static Scanner sc;
 
-	public static void checkEffetAvant(Manche maManche, Carte carteJouee) {
-
-		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
-			Joker(carteJouee);
-
-		}
-	}
-
 	public static void checkEffetApres(Manche maManche, Pioche laPioche, Carte carteJouee) {
 
 		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
-			ChangerCouleur(carteJouee);
+			Joker(carteJouee);
+			ChangerCouleur(maManche, carteJouee);
 		} else if (carteJouee.getEffet().equals("oblige a rejouer")) {
 
 			joueurRejouer(maManche);
@@ -26,7 +19,7 @@ public abstract class Effet {
 			changerSens(maManche);
 
 		} else if (carteJouee.getEffet().equals("permet de changer de couleur et arrête les attaques")) {
-			ChangerCouleur(carteJouee);
+			ChangerCouleur(maManche, carteJouee);
 		} else if (carteJouee.getEffet().equals("le joueur suivant passe son tour")) {
 			joueurPasseSonTour(maManche);
 		} else if (carteJouee.getEffet().equals("fait piocher une carte au joueur suivant sans recours")) {
@@ -37,25 +30,35 @@ public abstract class Effet {
 
 	}
 
-	public static String ChangerCouleur(Carte carteJouee) {
+	public static String ChangerCouleur(Manche maManche, Carte carteJouee) {
 		sc = new Scanner(System.in);
 		String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
 		String vraiCouleur = carteJouee.getCouleur();
+		
+		if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+			
 		System.out.println("Choissisez la nouvelle couleur de la carte");
 
 		for (int i = 0; i < couleur.length; i++) {
 			System.out.println((i + 1) + " : " + couleur[i]);
+			
 		}
 		int numCouleurProvisoire = sc.nextInt();
 		String couleurProvisoire = couleur[numCouleurProvisoire - 1];
 		carteJouee.setCouleur(couleurProvisoire);
+		}
+		else if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+			int numCouleurProvisoire = (int)(Math.random()*(3-0));	
+			String couleurProvisoire = couleur[numCouleurProvisoire];
+			System.out.println("la nouvelle couleur de la carte est: "+couleurProvisoire);
+			carteJouee.setCouleur(couleurProvisoire);
+		}
+		
 		return vraiCouleur;
 	}
 
-	public static String Joker(Carte carteJouee) {
-		String vraiCouleur = carteJouee.getCouleur();
-		carteJouee.setCouleur("Joker");
-		return vraiCouleur;
+	public static void Joker (Carte carteJouee) {
+		carteJouee.setJoker(true);
 	}
 
 	public static void joueurRejouer(Manche maManche) {
@@ -78,7 +81,7 @@ public abstract class Effet {
 			maManche.joueurSuivant();
 			System.out.println(maManche.getJoueurEnCours().nom + " doit piocher " + nombreCarteAPiocher + " carte(s)");
 			Carte cartePiochee = laPioche.piocherCarte();
-			Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours() + 1).mainJoueur.add(cartePiochee);
+			Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()).mainJoueur.add(cartePiochee);
 			if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
 			}

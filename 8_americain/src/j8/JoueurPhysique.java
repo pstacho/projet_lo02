@@ -39,8 +39,6 @@ public class JoueurPhysique extends Joueur {
 		if (carteChoisie >= 1 && carteChoisie <= mainJoueur.size()) {
 			carteJouee = mainJoueur.get(carteChoisie - 1); // on affecte le numero de la carte la carte correspondante.
 			
-			Effet.checkEffetAvant(maManche, carteJouee);
-			
 			if (carteCompatible(leTalon, carteJouee) == true) {
 				System.out.println("Vous jouez la carte " + carteJouee + " .");
 				
