@@ -39,7 +39,7 @@ public class Partie {
 		for (int i = 1; i <= nombreOrdinateur; i++) {
 			System.out.println("Choisisez la difficulté du BOT"+ (i) + "\n1 : Normal\n2 : Difficile");
 			int difficulty = sc.nextInt();
-			if (difficulty != 1 || difficulty !=2) {
+			if (difficulty != 1 && difficulty !=2) {
 				InvalidDifficulteeOrdi ido = new InvalidDifficulteeOrdi("Cette difficultée n'existe pas !");
 				throw ido;
 			}
