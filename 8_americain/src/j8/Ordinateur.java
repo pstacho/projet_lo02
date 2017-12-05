@@ -8,6 +8,7 @@ public class Ordinateur extends Joueur {
 	private Scanner sc;
 	private int difficultee;
 	private Carte carteJouee;
+	private Strategie strategie;
 
 	public Ordinateur(int indexBot, int difficultee) {
 
@@ -18,15 +19,20 @@ public class Ordinateur extends Joueur {
 		
 		this.nom = "BOT" + indexBot;
 		this.difficultee = difficultee;
-		
+		if (difficultee == 1) {
+			strategie = (Strategie) new StrategieNormal();
+		}
 			
 	}
 
 	public void jouerCarteOrdi(Manche maManche,Talon leTalon, Pioche laPioche) {
+		
+		
+		strategie.jouerCarte(this, leTalon, laPioche, maManche);
 		//boolean trouverCarte = false;
 		
 		
-		int numCarteJouee;
+		/*int numCarteJouee;
 		if (difficultee == 1) {
 			
 			numCarteJouee = StrategieOrdinateur.chosirCarteNormale(this, maManche);
@@ -56,7 +62,7 @@ public class Ordinateur extends Joueur {
 		Iterator<Carte> it = mainJoueur.iterator();// test pour voir la main du bot
 		while ( it.hasNext()) {
 			System.out.println(it.next());
-		}
+		}*/
 		
 	}
 
