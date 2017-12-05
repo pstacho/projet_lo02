@@ -25,37 +25,39 @@ public class Ordinateur extends Joueur {
 	public void jouerCarteOrdi(Manche maManche,Talon leTalon, Pioche laPioche) {
 		//boolean trouverCarte = false;
 		
+		
 		int numCarteJouee;
 		if (difficultee == 1) {
 			
 			numCarteJouee = StrategieOrdinateur.chosirCarteNormale(this, maManche);
-			/*Iterator<Carte> it = this.mainJoueur.iterator();
-			int indexCarteJouee = -1;
-			while (!trouverCarte && it.hasNext()) {
-					indexCarteJouee++;
-					mainJoueur.get(indexCarteJouee);
-					if (carteCompatible(leTalon, mainJoueur.get(indexCarteJouee))) {
-						trouverCarte = true;
-				}
-			}*/
-		}else { numCarteJouee = 0; } // méthode jouer si difficultée difficile
 		
-		carteJouee = this.mainJoueur.get(numCarteJouee);
+		}else {
 		
-		Effet.checkEffetAvant(maManche, carteJouee);
+			numCarteJouee = 5; 
+			// méthode jouer si difficultée difficile
 		
-		if (!carteCompatible(leTalon, carteJouee)) {
+		}
+		
+		
+		if (numCarteJouee == -1) {
+			
 			Carte cartePioche = laPioche.piocherCarte();
 			this.mainJoueur.add(cartePioche);
 			System.out.println(this.nom + " pioche une carte.");
+			
 		} else {
-			System.out.println(this.nom + " a joué la carte " + carteJouee.toString() + " .");
 			
+			carteJouee = mainJoueur.get(numCarteJouee);
 			Effet.checkEffetApres(maManche, laPioche, carteJouee);
-			
+			System.out.println(this.nom + " a joué la carte " + carteJouee.toString() + " .");
 			leTalon.ajouterCarte(carteJouee);
 			this.mainJoueur.remove(carteJouee);
 		}
+		Iterator<Carte> it = mainJoueur.iterator();// test pour voir la main du bot
+		while ( it.hasNext()) {
+			System.out.println(it.next());
+		}
+		
 	}
 
 	public int getDifficultee() {

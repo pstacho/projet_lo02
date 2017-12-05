@@ -148,7 +148,7 @@ public class Manche {
 	private void finirManche() {
 		// TODO Auto-generated method stub
 		if (Partie.getPartie().getModeComptage() == 1) {
-			System.out.println(joueurEnCours + " a gagné la manche n°" + numeroManche);
+			System.out.println(joueurEnCours.nom + " a gagné la manche n°" + numeroManche);
 			for (int i = 0; i < Partie.getPartie().getListeJoueur().size(); i++) {
 				Partie.getPartie().getListeJoueur().get(i).compterPoints();
 			}

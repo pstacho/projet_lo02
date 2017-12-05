@@ -1,6 +1,7 @@
 package j8;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Joueur {
@@ -34,13 +35,14 @@ public class Joueur {
 		}
 	}
 	
-	
 	public void compterPoints() {
-		for (int i = 0; i <= mainJoueur.size(); i++) {
-			this.score = this.score + mainJoueur.get(i).getPoint();
+		Iterator<Carte> it = mainJoueur.iterator();
+		while (it.hasNext()) {
+			this.score = this.score + it.next().getPoint();
 		}
 		System.out.println(this.nom + " a " + this.score + " points.");
 	}
+	
 
 	public ArrayList<Carte> getMainJoueur() {
 		return mainJoueur;

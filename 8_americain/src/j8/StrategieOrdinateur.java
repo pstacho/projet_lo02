@@ -8,18 +8,24 @@ public abstract class StrategieOrdinateur {
 		
 		boolean trouverCarte = false;
 		
-		Iterator<Carte> it = ordinateur.mainJoueur.iterator();
+		Iterator<Carte >it = ordinateur.mainJoueur.iterator();
 		int indexCarteJouee = -1;
 		while (!trouverCarte && it.hasNext()) {
 				indexCarteJouee++;
+				Effet.checkEffetAvant(maManche, ordinateur.getMainJoueur().get(indexCarteJouee));
 				if (ordinateur.carteCompatible(maManche.getLeTalon(), ordinateur.mainJoueur.get(indexCarteJouee))) {
 						trouverCarte = true;
 				}	
 		}
+		
+		if (trouverCarte == false) {
+			indexCarteJouee = -1; // ne pas mettre 0
+		}
 		return indexCarteJouee;
 	}
 	
-	public static int choisirCarteDifficile() {
+	public static int choisirCarteDifficile(Ordinateur ordinateur) {
+		Iterator<Carte> it = ordinateur.mainJoueur.iterator();
 		return 2;
 	}
 }
