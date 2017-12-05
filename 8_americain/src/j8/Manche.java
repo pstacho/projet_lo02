@@ -23,6 +23,16 @@ public class Manche {
 
 	private boolean sensPositif;
 	private boolean joueurRejouer = false;
+	private int CarteAPiocherAs=0;
+	
+	public int getCarteAPiocherAs() {
+		return CarteAPiocherAs;
+	}
+
+	public void setCarteAPiocherAs(int carteAPiocherAs) {
+		CarteAPiocherAs = carteAPiocherAs;
+	}
+
 	private boolean passerProchainTour = false;
 	private boolean jeuParValeurDesactive = false;
 	private boolean jeuParCouleurDesactive = false;
@@ -121,7 +131,6 @@ public class Manche {
 		if (joueurRejouer == false) {
 			if (sensPositif == true) {
 				indiceJoueurEnCours++;
-				System.out.println("on va dans le sens positif");
 				if (indiceJoueurEnCours >= Partie.getPartie().getNombreOrdinateur() + 1) {
 					indiceJoueurEnCours = 0;
 					
@@ -129,7 +138,6 @@ public class Manche {
 
 			} else {
 				indiceJoueurEnCours--;// pour les variantes changement de sens
-				System.out.println("on va dans le sens negatif");
 				if (indiceJoueurEnCours < 0) {
 					indiceJoueurEnCours = Partie.getPartie().getNombreOrdinateur();
 					System.out.println("l'indice est: "+indiceJoueurEnCours);

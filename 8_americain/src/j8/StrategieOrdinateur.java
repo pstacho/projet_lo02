@@ -13,7 +13,7 @@ public abstract class StrategieOrdinateur {
 		while (!trouverCarte && it.hasNext()) {
 				indexCarteJouee++;
 				
-				if (ordinateur.carteCompatible(maManche.getLeTalon(), ordinateur.mainJoueur.get(indexCarteJouee))) {
+				if (ordinateur.carteCompatible(maManche, maManche.getLeTalon(), ordinateur.mainJoueur.get(indexCarteJouee))) {
 						trouverCarte = true;
 				}	
 		}

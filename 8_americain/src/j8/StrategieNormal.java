@@ -15,7 +15,7 @@ public class StrategieNormal implements Strategie{
 		while (!trouverCarte && it.hasNext()) {
 				it.next();
 				indexCarteJouee++;
-				if (ordi.carteCompatible(leTalon, ordi.mainJoueur.get(indexCarteJouee))) {
+				if (ordi.carteCompatible(maManche, leTalon, ordi.mainJoueur.get(indexCarteJouee))) {
 						trouverCarte = true;
 				}	
 		}
@@ -27,8 +27,8 @@ public class StrategieNormal implements Strategie{
 		}
 		else {
 			Carte carteJouee = ordi.getMainJoueur().get(indexCarteJouee);
-			Effet.checkEffetApres(maManche, laPioche, carteJouee);
 			System.out.println(ordi.nom + " a joué la carte " + carteJouee.toString() + " .");
+			Effet.checkEffetApres(maManche, laPioche, carteJouee);
 			leTalon.ajouterCarte(carteJouee);
 			ordi.getMainJoueur().remove(carteJouee);
 		}

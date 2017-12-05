@@ -26,15 +26,24 @@ public class Joueur {
 	}
 
 	// Vérifie si la carte choisi par le joueur peut être poser sur le talon
-	public boolean carteCompatible(Talon leTalon, Carte carte) {
+	public boolean carteCompatible(Manche maManche, Talon leTalon, Carte carte) {
+
 		if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur() || carte.isJoker() == true)
 				|| carte.getValeur() == leTalon.getCarteDessus().getValeur()) {
-			return true;
+			if (maManche.getCarteAPiocherAs() == 0) {
+				return true;
+			} else if (maManche.getCarteAPiocherAs() != 0
+					&&( carte.getEffet().equals("permet de changer de couleur et arrête les attaques")
+					|| carte.getValeur().equals("As"))) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}
 	}
-	
+
 	public void compterPoints() {
 		Iterator<Carte> it = mainJoueur.iterator();
 		while (it.hasNext()) {
@@ -42,7 +51,6 @@ public class Joueur {
 		}
 		System.out.println(this.nom + " a " + this.score + " points.");
 	}
-	
 
 	public ArrayList<Carte> getMainJoueur() {
 		return mainJoueur;
