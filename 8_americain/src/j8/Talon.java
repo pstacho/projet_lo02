@@ -1,5 +1,6 @@
 package j8;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Talon {
@@ -8,7 +9,7 @@ public class Talon {
 	private LinkedList<Carte> cartesTalon;
 
 	public Talon(Pioche pioche) {
-		carteDessus = pioche.piocherCarte();
+		carteDessus = pioche.piocherCarte(this);
 		cartesTalon = new LinkedList<Carte>();
 		cartesTalon.add(carteDessus);
 	}
@@ -31,5 +32,13 @@ public class Talon {
 		cartesTalon.add(carteJouee);
 		setCarteDessus(carteJouee);
 
+	}
+	
+	public void remettreCartePioche(Pioche pioche) {
+		Iterator<Carte> itCartesTalon = cartesTalon.iterator();
+		while (itCartesTalon.hasNext()) {
+			pioche.jeuDeCartes.addFirst(itCartesTalon.next());
+		}
+		cartesTalon.clear();
 	}
 }

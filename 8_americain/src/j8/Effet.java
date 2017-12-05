@@ -79,7 +79,7 @@ public abstract class Effet {
 		maManche.joueurSuivant();
 		System.out.println(maManche.getJoueurEnCours().nom + " doit piocher " + nombreCarteAPiocher + " carte(s)");
 		for (int i = 0; i < nombreCarteAPiocher; i++) {
-			Carte cartePiochee = laPioche.piocherCarte();
+			Carte cartePiochee = laPioche.piocherCarte(maManche.getLeTalon());
 			maManche.getJoueurEnCours().mainJoueur.add(cartePiochee);
 			if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");

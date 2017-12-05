@@ -59,10 +59,18 @@ public class Pioche {
 	}
 
 	// Permet de piocher la première carte de la Pioche
-	public Carte piocherCarte() {
-		Carte cartePioche = jeuDeCartes.getFirst();
-		jeuDeCartes.removeFirst();
-		return cartePioche;
+	public Carte piocherCarte(Talon leTalon) {
+		if (!jeuDeCartes.isEmpty()) {
+			Carte cartePioche = jeuDeCartes.getFirst();
+			jeuDeCartes.removeFirst();
+			return cartePioche;
+		}
+		else {
+			leTalon.remettreCartePioche(this);
+			Carte cartePioche = jeuDeCartes.getFirst();
+			jeuDeCartes.removeFirst();
+			return cartePioche;
+		}
 	}
 	
 	public void attribuerPointCarte() {

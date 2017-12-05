@@ -86,15 +86,19 @@ public class Manche {
 		//} // test
 		
 		laPioche.attribuerPointCarte();
-		Iterator<Carte> it = laPioche.jeuDeCartes.iterator();
+		
+	//test pour voir l'attribution des points aux cartes selon la variante
+		/*Iterator<Carte> it = laPioche.jeuDeCartes.iterator();
 		while (it.hasNext()) {
 			System.out.println(it.next().getPoint());
-		}
+		}*/
 
-		laPioche.distribuer();
+		laPioche.distribuer(); //distribution des cartes aux joueurs
 
-		leTalon = new Talon(laPioche);
+		leTalon = new Talon(laPioche); // Création du talon
 		leTalon.afficherCarteDessus();
+		
+		// Determine un joueurs qui commence au hasard
 
 		indiceJoueurEnCours = (int) (Math.random() * (Partie.getPartie().getNombreOrdinateur() - 0));
 		// on initialise indiceJoueurEnCours a un nombre aléatoire compris entre 0 et le

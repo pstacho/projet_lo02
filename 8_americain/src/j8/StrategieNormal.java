@@ -21,7 +21,7 @@ public class StrategieNormal implements Strategie{
 		}
 		
 		if (indexCarteJouee == -1) {
-		Carte cartePioche = laPioche.piocherCarte();
+		Carte cartePioche = laPioche.piocherCarte(leTalon);
 		ordi.mainJoueur.add(cartePioche);
 		System.out.println(ordi.nom + " pioche une carte.");
 		}

@@ -57,7 +57,7 @@ public class JoueurPhysique extends Joueur {
 			jouerCarte (maManche, laPioche,leTalon);
 			
 		} else if (carteChoisie == 0){
-			cartePiochee = laPioche.piocherCarte();
+			cartePiochee = laPioche.piocherCarte(leTalon);
 			mainJoueur.add(cartePiochee);
 			System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
 

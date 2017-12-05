@@ -53,7 +53,11 @@ public class Partie {
 			nombreCarteJoueur = 6;
 		}
 
-		System.out.println("\nChoissisez le mode de Comptage :");
+		modeComptage = 1;
+		
+	// A implémenter lorque le comptage positif sera prêt
+		
+		/*System.out.println("\nChoissisez le mode de Comptage :");
 		System.out.println("1 pour le compte positif");
 		System.out.println("2 pour le compte négatif");
 		modeComptage = sc.nextInt();
@@ -61,6 +65,7 @@ public class Partie {
 			System.out.println("Tu as selectionné un mode qui n'existe pas !\n Réassaie une nouvelle fois.");
 			modeComptage = sc.nextInt();
 		}
+		*/
 
 	}
 
