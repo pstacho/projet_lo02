@@ -17,7 +17,7 @@ public class StrategieDifficile implements Strategie {
 		}
 		
 		if (! carteJouable.isEmpty()) {
-			Carte carteJouee = carteJouable.get(Math.random())
+	//		Carte carteJouee = carteJouable.get(Math.random());
 		}
 		
 	}
