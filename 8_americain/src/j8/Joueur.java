@@ -26,31 +26,35 @@ public class Joueur {
 	}
 
 	// Vérifie si la carte choisi par le joueur peut être poser sur le talon
-	/*
-	 * public boolean carteCompatible(Manche maManche, Talon leTalon, Carte carte) {
-	 * 
-	 * if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur() ||
-	 * carte.isJoker() == true) || carte.getValeur() ==
-	 * leTalon.getCarteDessus().getValeur()) { if (maManche.getCarteAPiocherAs() >
-	 * 0) { if (carte.getEffet().
-	 * equals("permet de changer de couleur et arrête les attaques") ||
-	 * carte.getEffet()
-	 * .equals("fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As"
-	 * )) { return true; } else { return false; } } else { return false; } } else {
-	 * return false; }
-	 * 
-	 * }
-	 */
 
 	public boolean carteCompatible(Manche maManche, Talon leTalon, Carte carte) {
 
 		if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur() || carte.isJoker() == true)
 				|| carte.getValeur() == leTalon.getCarteDessus().getValeur()) {
-			return true;
+			if (maManche.getCarteAPiocherAs() > 0) {
+				if (carte.getEffet().equals("permet de changer de couleur et arrête les attaques") || carte.getEffet()
+						.equals("fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As")) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
 		} else {
 			return false;
 		}
+
 	}
+
+	/*
+	 * public boolean carteCompatible(Talon leTalon, Carte carte) {
+	 * 
+	 * if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur()) ||
+	 * (carte.isJoker() == true) || carte.getValeur() ==
+	 * leTalon.getCarteDessus().getValeur()) { return true; } else { return false; }
+	 * }
+	 */
 
 	public void compterPoints() {
 		Iterator<Carte> it = mainJoueur.iterator();

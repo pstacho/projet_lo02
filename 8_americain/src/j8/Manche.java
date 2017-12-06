@@ -1,12 +1,14 @@
 package j8;
 
 import java.util.Iterator;
-
+import java.util.Scanner;
 
 public class Manche {
 
+	private Scanner sc = new Scanner(System.in);
 	private Joueur joueurEnCours;
 	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
+	private boolean PossibleDeDireCarte = true;
 	public int getIndiceJoueurEnCours() {
 		return indiceJoueurEnCours;
 	}
@@ -23,8 +25,8 @@ public class Manche {
 
 	private boolean sensPositif;
 	private boolean joueurRejouer = false;
-	private int CarteAPiocherAs=0;
-	
+	private int CarteAPiocherAs = 0;
+
 	public int getCarteAPiocherAs() {
 		return CarteAPiocherAs;
 	}
@@ -69,10 +71,10 @@ public class Manche {
 	}
 
 	public Manche() {
-		
+
 		numeroManche++;
-		sensPositif=true;
-		
+		sensPositif = true;
+
 		System.out.println("Début de la manche n° " + numeroManche);
 		Variante maVariante = new Variante();
 		laPioche = new Pioche();
@@ -81,23 +83,23 @@ public class Manche {
 		maVariante.ChoisirVariante(laPioche); // ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca
 												// change en jeux mais c'est possible en theorie
 
-		//for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
-		//System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
-		//} // test
-		
-		laPioche.attribuerPointCarte();
-		
-	//test pour voir l'attribution des points aux cartes selon la variante
-		/*Iterator<Carte> it = laPioche.jeuDeCartes.iterator();
-		while (it.hasNext()) {
-			System.out.println(it.next().getPoint());
-		}*/
+		// for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
+		// System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
+		// } // test
 
-		laPioche.distribuer(); //distribution des cartes aux joueurs
+		laPioche.attribuerPointCarte();
+
+		// test pour voir l'attribution des points aux cartes selon la variante
+		/*
+		 * Iterator<Carte> it = laPioche.jeuDeCartes.iterator(); while (it.hasNext()) {
+		 * System.out.println(it.next().getPoint()); }
+		 */
+
+		laPioche.distribuer(); // distribution des cartes aux joueurs
 
 		leTalon = new Talon(laPioche); // Création du talon
 		leTalon.afficherCarteDessus();
-		
+
 		// Determine un joueurs qui commence au hasard
 
 		indiceJoueurEnCours = (int) (Math.random() * (Partie.getPartie().getNombreOrdinateur() - 0));
@@ -122,12 +124,13 @@ public class Manche {
 		if (joueurEnCours instanceof JoueurPhysique) {
 			System.out.println(joueurEnCours.getNom() + ", c'est à toi de jouer.\r");
 			((JoueurPhysique) joueurEnCours).afficherMainJoueur();
-			((JoueurPhysique) joueurEnCours).jouerCarte(this, laPioche,leTalon);
+			((JoueurPhysique) joueurEnCours).jouerCarte(this, laPioche, leTalon);
 
 		} else {
 			System.out.println(joueurEnCours.getNom() + " joue son tour.");
-			((Ordinateur) joueurEnCours).jouerCarteOrdi(this,leTalon, laPioche);
+			((Ordinateur) joueurEnCours).jouerCarteOrdi(this, leTalon, laPioche);
 		}
+		checkdireCarte(leTalon);
 		joueurSuivant();
 	}
 
@@ -137,14 +140,13 @@ public class Manche {
 				indiceJoueurEnCours++;
 				if (indiceJoueurEnCours >= Partie.getPartie().getNombreOrdinateur() + 1) {
 					indiceJoueurEnCours = 0;
-					
+
 				}
 
 			} else {
 				indiceJoueurEnCours--;// pour les variantes changement de sens
 				if (indiceJoueurEnCours < 0) {
 					indiceJoueurEnCours = Partie.getPartie().getNombreOrdinateur();
-					System.out.println("l'indice est: "+indiceJoueurEnCours);
 
 				}
 
@@ -157,6 +159,58 @@ public class Manche {
 
 	}
 
+	public void checkdireCarte(Talon leTalon) {
+		if (joueurEnCours.mainJoueur.size() == 1) {
+			if (joueurEnCours instanceof JoueurPhysique) {
+				System.out.println("ecrirez 'carte'");
+				String Carte = sc.nextLine();
+				if (Carte.equals("carte")) {
+					System.out.println("vous avez dit carte, vous ne piocher pas de carte");
+				}
+				else {
+					Carte cartePiochee = laPioche.piocherCarte(leTalon);
+					joueurEnCours.mainJoueur.add(cartePiochee);
+					System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " , car vous n'avez pas dit carte.");
+				}
+				
+			} else if (joueurEnCours instanceof Ordinateur) {
+				int indiceDireCarte = (int) (Math.random() * (5 - 0));
+				if (indiceDireCarte != 0) {
+					System.out.println(joueurEnCours.nom + " dit carte, il ne doit pas piocher");
+				}
+				else {
+					Carte cartePiochee = laPioche.piocherCarte(leTalon);
+					joueurEnCours.mainJoueur.add(cartePiochee);
+					System.out.println(joueurEnCours.nom + " pioche une carte car il n'a pas dit carte");
+				}
+			}
+		}
+	}
+/*
+	public void contreCarte() {
+		if (joueurEnCours.mainJoueur.size() == 1) {
+			if (joueurEnCours instanceof JoueurPhysique) {
+				System.out.println("vous avez 5 secondes pour ecrire 'carte'");
+				String Carte = sc.nextLine();
+				if (Carte.equals("carte")) {
+					System.out.println("vous avez dit carte, vous ne piocher pas de carte");
+				}
+				else {
+					Carte cartePiochee = laPioche.piocherCarte(leTalon);
+					joueurEnCours.mainJoueur.add(cartePiochee);
+				}
+				
+			} else if (joueurEnCours instanceof Ordinateur) {
+				int indiceDireCarte = (int) (Math.random() * (1 - 0));
+				if (indiceDireCarte == 1) {
+					System.out.println(Partie.getPartie().listeJoueur
+							.get((int)Math.random() * (Partie.getPartie().getNombreOrdinateur() + 1 - 1))
+							+ "Dit carte, il ne doit pas piocher");
+				}
+			}
+		}
+	}
+*/
 	private void finirManche() {
 		// TODO Auto-generated method stub
 		if (Partie.getPartie().getModeComptage() == 1) {

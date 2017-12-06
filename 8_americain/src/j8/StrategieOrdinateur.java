@@ -14,8 +14,9 @@ public abstract class StrategieOrdinateur {
 				indexCarteJouee++;
 				
 				if (ordinateur.carteCompatible(maManche, maManche.getLeTalon(), ordinateur.mainJoueur.get(indexCarteJouee))) {
-						trouverCarte = true;
-				}	
+					trouverCarte = true;
+					
+				}
 		}
 		
 		if (trouverCarte == false) {

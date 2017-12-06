@@ -17,13 +17,21 @@ public class StrategieNormal implements Strategie{
 				indexCarteJouee++;
 				if (ordi.carteCompatible(maManche, leTalon, ordi.mainJoueur.get(indexCarteJouee))) {
 						trouverCarte = true;
-				}	
+				}
 		}
 		
-		if (indexCarteJouee == -1) {
-		Carte cartePioche = laPioche.piocherCarte(leTalon);
-		ordi.mainJoueur.add(cartePioche);
-		System.out.println(ordi.nom + " pioche une carte.");
+		if (!trouverCarte) {
+			if (maManche.getCarteAPiocherAs() > 0) {
+				Effet.piocherAS(maManche,laPioche);
+			} else {
+				Carte cartePioche = laPioche.piocherCarte(leTalon);
+				ordi.mainJoueur.add(cartePioche);
+				System.out.println(ordi.nom + " pioche une carte.");
+			}
+			
+			
+			
+		
 		}
 		else {
 			Carte carteJouee = ordi.getMainJoueur().get(indexCarteJouee);

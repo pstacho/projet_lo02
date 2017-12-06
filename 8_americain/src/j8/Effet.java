@@ -17,6 +17,7 @@ public abstract class Effet {
 			changerSens(maManche);
 		} else if (carteJouee.getEffet().equals("permet de changer de couleur et arrête les attaques")) {
 			ChangerCouleur(maManche, carteJouee);
+			gererAttaque(maManche, laPioche, carteJouee, 3);
 
 		} else if (carteJouee.getEffet().equals("le joueur suivant passe son tour")) {
 			joueurPasseSonTour(maManche);
@@ -100,19 +101,32 @@ public abstract class Effet {
 	}
 
 	public static void gererAttaque(Manche maManche, Pioche laPioche, Carte carteJouee, int nombreCarteAPiocher) {
-		if (carteJouee.getValeur().equals("As")) {
+		if (carteJouee.getEffet().equals("fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As")) {
 			fairePiocherCartesAvecRecours(maManche, laPioche, nombreCarteAPiocher);
 		} else if (carteJouee.getEffet().equals("permet de changer de couleur et arrête les attaques")) {
 			bloquerAttaque(maManche);
 
-		} else {
-			fairePiocherCartes(maManche, laPioche, maManche.getCarteAPiocherAs());
-		}
+		} 
 	}
 
 	public static void bloquerAttaque(Manche maManche) {
-		maManche.setCarteAPiocherAs(0);
-		System.out.println(maManche.getJoueurEnCours().nom);
+		
+		if (maManche.getCarteAPiocherAs()>0) {
+			maManche.setCarteAPiocherAs(0);
+			System.out.println(maManche.getJoueurEnCours().nom+ " bloque l'attaque!");
+		}
+		
 	}
-
+	public static void piocherAS(Manche maManche, Pioche laPioche) {
+		
+		System.out.println(maManche.getJoueurEnCours().nom + " doit piocher " + maManche.getCarteAPiocherAs() + " carte(s)");
+		for (int i = 0; i < maManche.getCarteAPiocherAs(); i++) {
+			Carte cartePiochee = laPioche.piocherCarte(maManche.getLeTalon());
+			maManche.getJoueurEnCours().mainJoueur.add(cartePiochee);
+			if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
+			}
+	}
+		maManche.setCarteAPiocherAs(0);
+}
 }
