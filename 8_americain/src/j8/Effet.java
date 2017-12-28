@@ -32,6 +32,7 @@ public abstract class Effet {
 
 	public static String ChangerCouleur(Manche maManche, Carte carteJouee) {
 		sc = new Scanner(System.in);
+		carteJouee.setJoker(true);
 		String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
 		String vraiCouleur = carteJouee.getCouleur();
 
@@ -47,7 +48,7 @@ public abstract class Effet {
 			String couleurProvisoire = couleur[numCouleurProvisoire - 1];
 			carteJouee.setCouleur(couleurProvisoire);
 		} else if (Partie.getPartie().getListeJoueur()
-				.get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+				.get(maManche.getIndiceJoueurEnCours()) instanceof Ordinateur) {
 			int numCouleurProvisoire = (int) (Math.random() * (3 - 0));
 			String couleurProvisoire = couleur[numCouleurProvisoire];
 			System.out.println("la nouvelle couleur de la carte est: " + couleurProvisoire);
