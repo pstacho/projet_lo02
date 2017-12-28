@@ -32,8 +32,8 @@ public class Joueur {
 		if ((carte.getCouleur() == leTalon.getCarteDessus().getCouleur() || carte.isJoker() == true)
 				|| carte.getValeur() == leTalon.getCarteDessus().getValeur()) {
 			if (maManche.getCarteAPiocherAs() > 0) {
-				if (carte.getEffet().equals("permet de changer de couleur et arrête les attaques") || carte.getEffet()
-						.equals("fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As")) {
+				if (carte.getEffet().equals("permet de changer de couleur et arrête les attaques") || carte.getValeur()
+						.equals("As")) {
 					return true;
 				} else {
 					return false;

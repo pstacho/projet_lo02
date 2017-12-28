@@ -129,6 +129,7 @@ public class Manche {
 		} else {
 			System.out.println(joueurEnCours.getNom() + " joue son tour.");
 			((Ordinateur) joueurEnCours).jouerCarteOrdi(this, leTalon, laPioche);
+			System.out.println(joueurEnCours.nom + " a " + joueurEnCours.mainJoueur.size() + " carte(s) en main\r\n");
 		}
 		checkdireCarte(leTalon);
 		joueurSuivant();
