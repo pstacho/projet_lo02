@@ -11,8 +11,10 @@ public class Pioche {
 
 	// Création du jeu de cartes
 	public Pioche(int nombreDeCartes) {
-		// TODO Auto-generated constructor stub
-System.out.println("fzeofeijbiljbieljieffuebfeifehbi  "+nombreDeCartes);
+	
+		
+System.out.println("On joue avec "+nombreDeCartes + " cartes");
+
 		if (nombreDeCartes == 52) {
 			String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
 			String[] valeur = new String[] { "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",

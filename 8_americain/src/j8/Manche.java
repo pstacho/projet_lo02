@@ -89,18 +89,10 @@ public class Manche {
 		
 
 		maVariante.afficherChoixVariantes();
-		maVariante.ChoisirVariante(this); // ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca
+		maVariante.ChoisirVariante(this); 
 		laPioche = new Pioche(nombreDeCartes);
 		maVariante.appliquerVariante(laPioche);		
-		// change en jeux mais c'est possible en theorie
-		
-		
-		System.out.println("cartecool "+ laPioche.jeuDeCartes.size());
-		
-		
-		// for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
-		// System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
-		// } // test
+	
 
 		laPioche.attribuerPointCarte();
 
@@ -125,7 +117,7 @@ public class Manche {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			jouerTourDeJeu();
