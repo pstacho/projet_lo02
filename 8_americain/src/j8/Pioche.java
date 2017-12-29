@@ -10,27 +10,42 @@ public class Pioche {
 	protected LinkedList<Carte> jeuDeCartes = new LinkedList<Carte>();
 
 	// Création du jeu de cartes
-	public Pioche() {
+	public Pioche(int nombreDeCartes) {
 		// TODO Auto-generated constructor stub
+System.out.println("fzeofeijbiljbieljieffuebfeifehbi  "+nombreDeCartes);
+		if (nombreDeCartes == 52) {
+			String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
+			String[] valeur = new String[] { "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
+					"Valet", "Dame", "Roi", "As" };
+			int[] point = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
 
-		String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
-		String[] valeur = new String[] { "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
-				"Valet", "Dame", "Roi", "As" };
-		int [] point = new int[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-
-		for (int i = 0; i < couleur.length; i++) {
-			for (int j = 0; j < valeur.length; j++) {
-				Carte carte = new Carte(valeur[j], couleur[i], point[j]);
-				this.jeuDeCartes.add(carte);
+			for (int i = 0; i < couleur.length; i++) {
+				for (int j = 0; j < valeur.length; j++) {
+					Carte carte = new Carte(valeur[j], couleur[i], point[j]);
+					this.jeuDeCartes.add(carte);
+				}
 			}
 		}
-		
+		else {
+			String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
+			String[] valeur = new String[] { "Sept", "Huit", "Neuf", "Dix", "Valet", "Dame", "Roi", "As" };
+			int[] point = new int[] { 7, 8, 9, 10, 11, 12, 13, 14 };
 
-		melanger();
-		/*
-		 * int k=0; for(int i = 0; i < jeuDeCartes.size(); i++) {
-		 * System.out.println(jeuDeCartes.get(i)); k++; } System.out.println(k);
-		 */
+			for (int i = 0; i < couleur.length; i++) {
+				for (int j = 0; j < valeur.length; j++) {
+					Carte carte = new Carte(valeur[j], couleur[i], point[j]);
+					this.jeuDeCartes.add(carte);
+				}
+			}
+		}
+
+
+	melanger();
+
+	/*
+	 * int k=0; for(int i = 0; i < jeuDeCartes.size(); i++) {
+	 * System.out.println(jeuDeCartes.get(i)); k++; } System.out.println(k);
+	 */
 	}
 
 	public LinkedList<Carte> getJeuDeCartes() {
@@ -64,24 +79,22 @@ public class Pioche {
 			Carte cartePioche = jeuDeCartes.getFirst();
 			jeuDeCartes.removeFirst();
 			return cartePioche;
-		}
-		else {
+		} else {
 			leTalon.remettreCartePioche(this);
 			Carte cartePioche = jeuDeCartes.getFirst();
 			jeuDeCartes.removeFirst();
 			return cartePioche;
 		}
 	}
-	
+
 	public void attribuerPointCarte() {
 		Iterator<Carte> it = jeuDeCartes.iterator();
 		while (it.hasNext()) {
 			Carte carteEnCours = it.next();
-			if (! carteEnCours.getEffet().equals("null")) {
-				if (carteEnCours.getValeur() == "As" || carteEnCours.getValeur() == "8" ) {
+			if (!carteEnCours.getEffet().equals("null")) {
+				if (carteEnCours.getValeur() == "As" || carteEnCours.getValeur() == "8") {
 					carteEnCours.setPoint(50);
-				}
-				else {
+				} else {
 					carteEnCours.setPoint(20);
 				}
 			}

@@ -41,6 +41,15 @@ public class Manche {
 	private int cartesAPiocher = 0;
 	private int cartesAPiocherSansRecours = 0;
 	private int cartesAPiocherDansJeu = 0;
+	private int nombreDeCartes;
+
+	public int getNombreDeCartes() {
+		return nombreDeCartes;
+	}
+
+	public void setNombreDeCartes(int nombreDeCartes) {
+		this.nombreDeCartes = nombreDeCartes;
+	}
 
 	public Joueur getJoueurEnCours() {
 		return joueurEnCours;
@@ -77,12 +86,18 @@ public class Manche {
 
 		System.out.println("Début de la manche n° " + numeroManche);
 		Variante maVariante = new Variante();
-		laPioche = new Pioche();
+		
 
 		maVariante.afficherChoixVariantes();
-		maVariante.ChoisirVariante(laPioche); // ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca
-												// change en jeux mais c'est possible en theorie
-
+		maVariante.ChoisirVariante(this); // ca doit etre placé avant distruibuer, j'ai pas en fait pour que ca
+		laPioche = new Pioche(nombreDeCartes);
+		maVariante.appliquerVariante(laPioche);		
+		// change en jeux mais c'est possible en theorie
+		
+		
+		System.out.println("cartecool "+ laPioche.jeuDeCartes.size());
+		
+		
 		// for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) { // test
 		// System.out.println(laPioche.jeuDeCartes.get(i).getEffet()); // test
 		// } // test

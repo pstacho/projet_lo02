@@ -38,10 +38,11 @@ public class JoueurPhysique extends Joueur {
 		int carteChoisie = sc.nextInt(); // le numero affiché par le afficher mainjoueur
 		if (carteChoisie >= 1 && carteChoisie <= mainJoueur.size()) {
 			carteJouee = mainJoueur.get(carteChoisie - 1); // on affecte le numero de la carte la carte correspondante.
-			Effet.checkEffetApres(maManche, laPioche, carteJouee);
+			
+			Effet.checkEffetAvant(maManche, laPioche, carteJouee);
 			if (carteCompatible(maManche, leTalon, carteJouee) == true) {
 				System.out.println("Vous jouez la carte " + carteJouee + " .");
-
+				Effet.checkEffetApres(maManche, laPioche, carteJouee);
 				
 
 				this.mainJoueur.remove(carteJouee);

@@ -6,6 +6,15 @@ public abstract class Effet {
 
 	private static Scanner sc;
 
+	public static void checkEffetAvant(Manche maManche, Pioche laPioche, Carte carteJouee) {
+		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
+			carteJouee.setJoker(true);
+
+		} else if (carteJouee.getEffet().equals("permet de changer de couleur et arrête les attaques")) {
+			carteJouee.setJoker(true);
+		}
+	}
+
 	public static void checkEffetApres(Manche maManche, Pioche laPioche, Carte carteJouee) {
 
 		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
@@ -33,11 +42,10 @@ public abstract class Effet {
 		} else if (carteJouee.getEffet().equals(
 				"fait piocher 2 cartes au joueur suivant, à moins de poser un autre As qui s'ajoute pour le joueur suivant")) {
 			fairePiocherCartesAs(maManche, laPioche, 2);
-		}else if (carteJouee.getEffet().equals(
-				"fait piocher 3 cartes au joueur suivant sans aucun recours")) {
+		} else if (carteJouee.getEffet().equals("fait piocher 3 cartes au joueur suivant sans aucun recours")) {
 			fairePiocherCartes(maManche, laPioche, 3);
 		}
-		
+
 	}
 
 	public static String ChangerCouleur(Manche maManche, Carte carteJouee) {
@@ -67,18 +75,23 @@ public abstract class Effet {
 		return vraiCouleur;
 	}
 
-	/*public static void Joker(Carte carteJouee) {
-		carteJouee.setJoker(true);
-	}
-*/
+	/*
+	 * public static void Joker(Carte carteJouee) { carteJouee.setJoker(true); }
+	 */
 	public static void joueurRejouer(Manche maManche) {
 		System.out.println(maManche.getJoueurEnCours().nom + " doit rejouer");
 		maManche.setJoueurRejouer(true);
 	}
 
 	public static void changerSens(Manche maManche) {
-		System.out.println("Le sens de jeu change");
-		maManche.setSensPositif(!maManche.isSensPositif());
+		if (Partie.getPartie().getListeJoueur().size()>2) {
+			System.out.println("Le sens de jeu change");
+			maManche.setSensPositif(!maManche.isSensPositif());
+		}
+		else {
+			System.out.println("il n'y a que 2 joueur, changer le sens fait rejouer");
+			joueurRejouer(maManche);
+		}
 	}
 
 	public static void joueurPasseSonTour(Manche maManche) {
