@@ -35,8 +35,16 @@ public class Talon {
 	}
 	
 	public void remettreCartePioche(Pioche pioche) {
+		
+		
 		Iterator<Carte> itCartesTalon = cartesTalon.iterator();
 		while (itCartesTalon.hasNext()) {
+			
+			//dans le cas des effets qui permettent de changer la couleur d'une carte, on remet sa vraie couleur a la carte
+			if(cartesTalon.getFirst().isJoker()==true) {
+				cartesTalon.getFirst().setCouleur(cartesTalon.getFirst().getVraiCouleur());
+			}
+			
 			pioche.jeuDeCartes.addFirst(itCartesTalon.next());
 		}
 		cartesTalon.clear();

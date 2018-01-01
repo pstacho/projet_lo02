@@ -47,11 +47,12 @@ public abstract class Effet {
 
 	}
 
-	public static String ChangerCouleur(Manche maManche, Carte carteJouee) {
+	public static void ChangerCouleur(Manche maManche, Carte carteJouee) {
 		sc = new Scanner(System.in);
 		carteJouee.setJoker(true);
 		String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
-		String vraiCouleur = carteJouee.getCouleur();
+		carteJouee.setVraiCouleur(carteJouee.getCouleur());
+		
 
 		if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 
@@ -70,8 +71,6 @@ public abstract class Effet {
 			System.out.println("la nouvelle couleur de la carte est: " + couleurProvisoire);
 			carteJouee.setCouleur(couleurProvisoire);
 		}
-
-		return vraiCouleur;
 	}
 
 	/*

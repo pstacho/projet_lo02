@@ -7,9 +7,18 @@ public class Carte {
 	private int point;
 	private String effet="null";
 	private boolean Joker=false;
+	private String vraiCouleur;
 	
 	
 	
+	public String getVraiCouleur() {
+		return vraiCouleur;
+	}
+
+	public void setVraiCouleur(String vraiCouleur) {
+		this.vraiCouleur = vraiCouleur;
+	}
+
 	public String getEffet() {
 		return effet;
 	}
