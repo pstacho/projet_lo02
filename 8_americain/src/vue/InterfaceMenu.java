@@ -21,7 +21,11 @@ public class InterfaceMenu {
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	int screenHeight = screenSize.height;
 	int screenWidth = screenSize.width;
+	
+	
 	private JFrame frame;
+	
+
 
 	/**
 	 * Launch the application.
@@ -80,7 +84,7 @@ public class InterfaceMenu {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-			//	new InterfaceRéglages(frame);
+				new InterfaceReglages(frame);
 			}
 		});
 	}
