@@ -85,11 +85,11 @@ public class Manche {
 		sensPositif = true;
 
 		System.out.println("Début de la manche n° " + numeroManche);
-		Variante maVariante = new Variante();
+	//	Variante maVariante = new Variante();
 		
 
-		maVariante.afficherChoixVariantes();
-		maVariante.ChoisirVariante(this); 
+	//	maVariante.afficherChoixVariantes();
+	//	maVariante.ChoisirVariante(this); 
 		laPioche = new Pioche(nombreDeCartes);
 		maVariante.appliquerVariante(laPioche);		
 	
@@ -112,7 +112,7 @@ public class Manche {
 		indiceJoueurEnCours = (int) (Math.random() * (Partie.getPartie().getNombreOrdinateur() - 0));
 		// on initialise indiceJoueurEnCours a un nombre aléatoire compris entre 0 et le
 		// nombre de joueur afin de determiener aléatoirement le joeur qui commence
-		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(indiceJoueurEnCours);
+		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
 		while (joueurEnCours.mainJoueur.size() != 0) {
 			try {
 				Thread.sleep(1000);
@@ -163,7 +163,7 @@ public class Manche {
 			joueurRejouer = false;
 		}
 
-		this.joueurEnCours = Partie.getPartie().getListeJoueur().get(indiceJoueurEnCours);
+		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
 
 	}
 
@@ -223,8 +223,8 @@ public class Manche {
 		// TODO Auto-generated method stub
 		if (Partie.getPartie().getModeComptage() == 1) {
 			System.out.println(joueurEnCours.nom + " a gagné la manche n°" + numeroManche);
-			for (int i = 0; i < Partie.getPartie().getListeJoueur().size(); i++) {
-				Partie.getPartie().getListeJoueur().get(i).compterPoints();
+			for (int i = 0; i < Partie.getPartie().getListeJoueurs().size(); i++) {
+				Partie.getPartie().getListeJoueurs().get(i).compterPoints();
 			}
 		}
 		System.out.println("Voulez-vous faire une autre manche ? ( 1 si oui | 0 si non )");
@@ -239,6 +239,7 @@ public class Manche {
 	public void setLaPioche(Pioche laPioche) {
 		this.laPioche = laPioche;
 	}
+	
 
 	public Talon getLeTalon() {
 		return leTalon;

@@ -54,7 +54,7 @@ public abstract class Effet {
 		carteJouee.setVraiCouleur(carteJouee.getCouleur());
 		
 
-		if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+		if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 
 			System.out.println("Choissisez la nouvelle couleur de la carte");
 
@@ -65,7 +65,7 @@ public abstract class Effet {
 			int numCouleurProvisoire = sc.nextInt();
 			String couleurProvisoire = couleur[numCouleurProvisoire - 1];
 			carteJouee.setCouleur(couleurProvisoire);
-		} else if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof Ordinateur) {
+		} else if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof Ordinateur) {
 			int numCouleurProvisoire = (int) (Math.random() * (3 - 0));
 			String couleurProvisoire = couleur[numCouleurProvisoire];
 			System.out.println("la nouvelle couleur de la carte est: " + couleurProvisoire);
@@ -82,7 +82,7 @@ public abstract class Effet {
 	}
 
 	public static void changerSens(Manche maManche) {
-		if (Partie.getPartie().getListeJoueur().size()>2) {
+		if (Partie.getPartie().getListeJoueurs().size()>2) {
 			System.out.println("Le sens de jeu change");
 			maManche.setSensPositif(!maManche.isSensPositif());
 		}
@@ -103,7 +103,7 @@ public abstract class Effet {
 		for (int i = 0; i < nombreCarteAPiocher; i++) {
 			Carte cartePiochee = laPioche.piocherCarte(maManche.getLeTalon());
 			maManche.getJoueurEnCours().mainJoueur.add(cartePiochee);
-			if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+			if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
 			}
 			maManche.setJoueurRejouer(true); // on a sauter un tour artificiellement donc on reprend l'ordre normal
@@ -136,7 +136,7 @@ public abstract class Effet {
 		for (int i = 0; i < maManche.getCarteAPiocherAs(); i++) {
 			Carte cartePiochee = laPioche.piocherCarte(maManche.getLeTalon());
 			maManche.getJoueurEnCours().mainJoueur.add(cartePiochee);
-			if (Partie.getPartie().getListeJoueur().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
+			if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
 			}
 		}

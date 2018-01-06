@@ -1,6 +1,9 @@
 package modèle;
 
 import java.util.Scanner;
+
+import modèle.Joueur;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,24 +17,23 @@ public class Partie {
 	private String variante;
 	private String nomGagnant;
 	private int modeComptage;
-	private Scanner sc;
-	protected LinkedList<Joueur> listeJoueur = new LinkedList<Joueur>();
-	private static Partie instancePartie;
+	protected LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();
 
-	public LinkedList<Joueur> getListeJoueur() {
-		return listeJoueur;
+	public LinkedList<Joueur> getListeJoueurs() {
+		return listeJoueurs;
 	}
 
-	public void setListeJoueur(LinkedList<Joueur> listeJoueur) {
-		this.listeJoueur = listeJoueur;
+	public void setListeJoueurs(LinkedList<Joueur> listeJoueurs) {
+		this.listeJoueurs = listeJoueurs;
 	}
-
+	/*
 	private Partie() throws InvalidDifficulteeOrdi {
 
+		
+		
 		sc = new Scanner(System.in);
 		JoueurPhysique moi = new JoueurPhysique();
-
-		listeJoueur.add(moi);
+		listeJoueurs.add(moi);
 
 		System.out.println("Saisissez le nombre d'ordinateurs (différent de 0)");
 		nombreOrdinateur = sc.nextInt();
@@ -44,7 +46,7 @@ public class Partie {
 				throw ido;
 			}
 			Ordinateur ordi = new Ordinateur(i, difficulty);
-			listeJoueur.add(ordi);
+			listeJoueurs.add(ordi);
 		}
 
 		// Test qui détermine le nombre da carte par joueur en fonction du nombre de
@@ -69,15 +71,20 @@ public class Partie {
 			System.out.println("Tu as selectionné un mode qui n'existe pas !\n Réassaie une nouvelle fois.");
 			modeComptage = sc.nextInt();
 		}
-		*/
+		
 
 	}
 
+	
+	*/
+	
+	
 	/**
 	 * Singleton *
 	 * 
 	 * @return Partie instance unique de la classe Partie
 	 */
+	/*
 	public static Partie getPartie() {
 
 		if (Partie.instancePartie == null) {
@@ -90,9 +97,21 @@ public class Partie {
 		}
 		return Partie.instancePartie;
 	}
+	
+	*/
+	private Partie() {
+	}
+	
+	
+	public static Partie getPartie() {
+		return maPartie;
+	}
 
-	public void lancerJeu() {
+	private static Partie maPartie = new Partie();
+	
+	public Manche lancerJeu() {
 		Manche maManche = new Manche();
+		return maManche;
 
 	}
 
@@ -100,13 +119,6 @@ public class Partie {
 		return nombreOrdinateur;
 	}
 
-	public void setNombreOrdinateur(int nombreOrdinateur) {
-		this.nombreOrdinateur = nombreOrdinateur;
-	}
-
-	public void mettrePause() {
-
-	}
 
 	public int getNombreCarteJoueur() {
 		return nombreCarteJoueur;
@@ -120,16 +132,14 @@ public class Partie {
 		return modeComptage;
 	}
 
-	public void setModeComptage(int modeComptage) {
+	public void updatePartie(int modeComptage, LinkedList<Joueur> listeJoueurs) {
+		System.out.println("mode comptage" + modeComptage);
+		this.listeJoueurs = listeJoueurs;
+		this.nombreOrdinateur = listeJoueurs.size();
 		this.modeComptage = modeComptage;
+		System.out.println("Mode comptage:" + this.modeComptage);
+		System.out.println("nb joueurs fdp" + listeJoueurs);
 	}
-
-	public static Partie getInstancePartie() {
-		return instancePartie;
-	}
-
-	public static void setInstancePartie(Partie instancePartie) {
-		Partie.instancePartie = instancePartie;
-	}
+	
 
 }

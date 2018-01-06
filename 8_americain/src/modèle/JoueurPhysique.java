@@ -9,12 +9,11 @@ public class JoueurPhysique extends Joueur {
 	private Carte carteJouee;
 	private Carte cartePiochee;
 
-	public JoueurPhysique() {
+	public JoueurPhysique(String nomJoueur) {
 
 		super();
-		System.out.println("Saisissez votre nom");
-		nom = sc.nextLine();
-
+		nom = nomJoueur;
+		System.out.println(this.nom);
 	}
 
 	public void afficherMainJoueur() {
