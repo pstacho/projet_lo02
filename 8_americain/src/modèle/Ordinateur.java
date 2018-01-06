@@ -22,6 +22,9 @@ public class Ordinateur extends Joueur {
 		if (difficultee == 1) {
 			strategie = (Strategie) new StrategieNormal();
 		}
+		else {
+			strategie = (Strategie) new StrategieDifficile();
+		}
 			
 	}
 
