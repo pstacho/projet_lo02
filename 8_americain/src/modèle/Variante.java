@@ -11,15 +11,17 @@ public class Variante {
 	protected ArrayList<String> listeVariantes = new ArrayList<String>();
 
 	public Variante() {
+		
+		this.varianteEnCours = Partie.getPartie().getVariante();
 		// variantes trop chiantes : "1", des Ulis", "4", "6", normalement la variante 7
 		// et ca aussi : /*"Jules", "Paradox Hech", "de l'us17", "par stratégie", "Rosa
 		// l'injuste" */
-		String[] nomVariante = new String[] { "Minimale", "de Monclar", "carte et maou", "man et resta", "5",
+		/*String[] nomVariante = new String[] { "Minimale", "de Monclar", "carte et maou", "man et resta", "5",
 				"Courte Amicale (32 cartes)", "7 (32 cartes)" };
 		for (int i = 0; i < nomVariante.length; i++) {
 			String variante = new String(nomVariante[i]);
 			this.listeVariantes.add(variante);
-		}
+		}*/
 	}
 	/*
 	 * public void afficherChoixVariantes() {

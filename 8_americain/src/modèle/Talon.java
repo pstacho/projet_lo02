@@ -2,8 +2,10 @@ package modèle;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Observable;
 
-public class Talon {
+@SuppressWarnings("deprecation")
+public class Talon extends Observable{
 
 	private Carte carteDessus;
 	private LinkedList<Carte> cartesTalon;

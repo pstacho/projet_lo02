@@ -2,9 +2,11 @@ package modèle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
 import java.util.Scanner;
 
-public class Joueur {
+@SuppressWarnings("deprecation")
+public class Joueur extends Observable{
 
 	protected ArrayList<Carte> mainJoueur;
 	protected String nom;

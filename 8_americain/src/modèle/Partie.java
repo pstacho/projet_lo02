@@ -100,6 +100,7 @@ public class Partie {
 	
 	*/
 	private Partie() {
+		variante = "Minimale";
 	}
 	
 	
@@ -137,8 +138,18 @@ public class Partie {
 		this.listeJoueurs = listeJoueurs;
 		this.nombreOrdinateur = listeJoueurs.size();
 		this.modeComptage = modeComptage;
+		this.variante = variante;
+		System.out.println("Variante : " + this.variante);
 		System.out.println("Mode comptage:" + this.modeComptage);
 		System.out.println("nb joueurs fdp" + listeJoueurs);
+	}
+
+	public String getVariante() {
+		return variante;
+	}
+
+	public void setVariante(String variante) {
+		this.variante = variante;
 	}
 	
 

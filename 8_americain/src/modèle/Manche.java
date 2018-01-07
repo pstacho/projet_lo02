@@ -1,9 +1,11 @@
 package modèle;
 
 import java.util.Iterator;
+import java.util.Observable;
 import java.util.Scanner;
 
-public class Manche {
+@SuppressWarnings("deprecation")
+public class Manche extends Observable {
 
 	private Scanner sc = new Scanner(System.in);
 	private Joueur joueurEnCours;
@@ -85,7 +87,7 @@ public class Manche {
 		sensPositif = true;
 
 		System.out.println("Début de la manche n° " + numeroManche);
-	//	Variante maVariante = new Variante();
+		Variante maVariante = new Variante();
 		
 
 	//	maVariante.afficherChoixVariantes();

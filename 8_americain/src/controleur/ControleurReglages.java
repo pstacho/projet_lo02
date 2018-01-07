@@ -20,6 +20,7 @@ import modèle.Manche;
 import modèle.JoueurPhysique;
 import modèle.Partie;
 import modèle.Variante;
+import vue.InterfaceManche;
 
 public class ControleurReglages {
 
@@ -45,6 +46,7 @@ public class ControleurReglages {
 				System.out.println("blablacool");
 				LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();
 				int modeComptage;
+				String variante;
 				if (negatif.isSelected()) {
 					modeComptage = 1;
 				} else {
@@ -64,10 +66,11 @@ public class ControleurReglages {
 
 				listeJoueurs.add(new JoueurPhysique(textField.getText()));
 				maPartie.updatePartie(modeComptage, listeJoueurs);
-				Manche maManche = maPartie.lancerJeu();
+				//Manche maManche = maPartie.lancerJeu();
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				// new InterfaceManche(frame, maManche);
+				new InterfaceManche();
+				System.out.println("la manche est créée");
 			}
 		});
 
