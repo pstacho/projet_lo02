@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Scanner;
 
-@SuppressWarnings("deprecation")
 public class Joueur extends Observable{
 
 	protected ArrayList<Carte> mainJoueur;

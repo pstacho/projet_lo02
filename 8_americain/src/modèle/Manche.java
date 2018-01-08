@@ -7,7 +7,6 @@ import java.util.Scanner;
 @SuppressWarnings("deprecation")
 public class Manche extends Observable {
 
-	private Scanner sc = new Scanner(System.in);
 	private Joueur joueurEnCours;
 	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
 	private boolean PossibleDeDireCarte = true;
@@ -44,6 +43,8 @@ public class Manche extends Observable {
 	private int cartesAPiocherSansRecours = 0;
 	private int cartesAPiocherDansJeu = 0;
 	private int nombreDeCartes;
+	
+	
 
 	public int getNombreDeCartes() {
 		return nombreDeCartes;
@@ -81,17 +82,26 @@ public class Manche extends Observable {
 		this.joueurRejouer = joueurRejouer;
 	}
 
+	public Variante creerVariante() {
+		Variante maVariante = new Variante();
+		maVariante.setVariante(Partie.getPartie().getVariante(), this);
+		return maVariante;
+	}
+	
+	
 	public Manche() {
 
 		numeroManche++;
 		sensPositif = true;
 
 		System.out.println("Début de la manche n° " + numeroManche);
-		Variante maVariante = new Variante();
+	//	Variante maVariante = new Variante();
 		
 
 	//	maVariante.afficherChoixVariantes();
 	//	maVariante.ChoisirVariante(this); 
+		Variante maVariante = creerVariante();
+		System.out.println(nombreDeCartes);
 		laPioche = new Pioche(nombreDeCartes);
 		maVariante.appliquerVariante(laPioche);		
 	
@@ -103,7 +113,7 @@ public class Manche extends Observable {
 		 * Iterator<Carte> it = laPioche.jeuDeCartes.iterator(); while (it.hasNext()) {
 		 * System.out.println(it.next().getPoint()); }
 		 */
-
+		Partie.getPartie().setNombreCarteJoueur();
 		laPioche.distribuer(); // distribution des cartes aux joueurs
 
 		leTalon = new Talon(laPioche); // Création du talon
@@ -140,7 +150,7 @@ public class Manche extends Observable {
 			((Ordinateur) joueurEnCours).jouerCarteOrdi(this, leTalon, laPioche);
 			System.out.println(joueurEnCours.nom + " a " + joueurEnCours.mainJoueur.size() + " carte(s) en main\r\n");
 		}
-		checkdireCarte(leTalon);
+	//	checkdireCarte(leTalon);
 		joueurSuivant();
 	}
 
@@ -168,7 +178,7 @@ public class Manche extends Observable {
 		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
 
 	}
-
+/*
 	public void checkdireCarte(Talon leTalon) {
 		if (joueurEnCours.mainJoueur.size() == 1) {
 			if (joueurEnCours instanceof JoueurPhysique) {
@@ -230,7 +240,7 @@ public class Manche extends Observable {
 			}
 		}
 		System.out.println("Voulez-vous faire une autre manche ? ( 1 si oui | 0 si non )");
-		Manche maManche = new Manche();
+		//Manche maManche = new Manche();
 
 	}
 

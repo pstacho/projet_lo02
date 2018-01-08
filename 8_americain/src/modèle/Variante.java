@@ -11,17 +11,17 @@ public class Variante {
 	protected ArrayList<String> listeVariantes = new ArrayList<String>();
 
 	public Variante() {
-		
+
 		this.varianteEnCours = Partie.getPartie().getVariante();
 		// variantes trop chiantes : "1", des Ulis", "4", "6", normalement la variante 7
 		// et ca aussi : /*"Jules", "Paradox Hech", "de l'us17", "par stratégie", "Rosa
 		// l'injuste" */
-		/*String[] nomVariante = new String[] { "Minimale", "de Monclar", "carte et maou", "man et resta", "5",
-				"Courte Amicale (32 cartes)", "7 (32 cartes)" };
-		for (int i = 0; i < nomVariante.length; i++) {
-			String variante = new String(nomVariante[i]);
-			this.listeVariantes.add(variante);
-		}*/
+		/*
+		 * String[] nomVariante = new String[] { "Minimale", "de Monclar",
+		 * "carte et maou", "man et resta", "5", "Courte Amicale (32 cartes)",
+		 * "7 (32 cartes)" }; for (int i = 0; i < nomVariante.length; i++) { String
+		 * variante = new String(nomVariante[i]); this.listeVariantes.add(variante); }
+		 */
 	}
 	/*
 	 * public void afficherChoixVariantes() {
@@ -34,27 +34,30 @@ public class Variante {
 	 * public void ChoisirVariante(Manche maManche) { sc = new Scanner(System.in);
 	 * int indiceVarianteEnCours = (sc.nextInt() - 1); varianteEnCours =
 	 * listeVariantes.get(indiceVarianteEnCours);
-	 * 
-	 * if (varianteEnCours.equals("7 (32 cartes)") ||
-	 * varianteEnCours.equals("Courte Amicale (32 cartes)")) {
-	 * maManche.setNombreDeCartes(32); } else { maManche.setNombreDeCartes(52); } }
 	 */
 
 	// nouvelle version:
 
-	public void setVariante(String VarianteEnCours) {
-		System.out.println(VarianteEnCours);
-		varianteEnCours = VarianteEnCours;
-		
+	public void setVariante(String VarianteEnCours, Manche maManche) {
+
+		if (varianteEnCours.equals("variante6") || varianteEnCours.equals("variante7")) {
+			maManche.setNombreDeCartes(32);
+		} else {
+			maManche.setNombreDeCartes(52);
+		}
+
+	System.out.println(VarianteEnCours);varianteEnCours=VarianteEnCours;
+
 	}
 
 	public void appliquerVariante(Pioche laPioche) {
 
-		if (varianteEnCours.equals("Variante Minimale")) {
+		if (varianteEnCours.equals("variante1")) { // variante Minimale
 			changerEffet(laPioche, "Huit", "permet de changer de couleur, se pose sur n'importe quelle carte");
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
+			System.out.println("fezubioefiofdsonjfsfsonpiopjsdfiodjfssionfdnofonivfonopfkfo");
 
-		} else if (varianteEnCours.equals("Variante de Monclar")) {
+		} else if (varianteEnCours.equals("variante2")) { // variante Monclar
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			changerEffet(laPioche, "Sept", "le joueur suivant passe son tour");
 			changerEffet(laPioche, "Valet", "change le sens du jeu");
@@ -62,19 +65,19 @@ public class Variante {
 			changerEffet(laPioche, "As", "fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As");
 			changerEffet(laPioche, "Huit", "permet de changer de couleur et arrête les attaques");
 
-		} else if (varianteEnCours.equals("Variante carte et maou")) {
+		} else if (varianteEnCours.equals("variante3")) { // variante carte et maou
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			changerEffet(laPioche, "Huit", "le joueur suivant passe son tour");
 			changerEffet(laPioche, "Sept", "fait piocher 2 cartes au joueur suivant");
 			changerEffet(laPioche, "Valet", "permet de changer de couleur, se pose sur n'importe quelle carte");
 
-		} else if (varianteEnCours.equals("Variante 5")) {
+		} else if (varianteEnCours.equals("variante4")) { // variante 5
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			changerEffet(laPioche, "Sept", "change le sens du jeu");
 			changerEffet(laPioche, "As", "fait piocher 2 cartes au joueur suivant, à moins de poser un 8 ou un As");
 			changerEffet(laPioche, "Huit", "permet de changer de couleur et arrête les attaques");
 
-		} else if (varianteEnCours.equals("Variante 7 (32 cartes)")) {
+		} else if (varianteEnCours.equals("variante7")) { // variante 7
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			changerEffet(laPioche, "Sept", "le joueur suivant passe son tour");
 			changerEffet(laPioche, "Valet", "change le sens du jeu");
@@ -83,14 +86,14 @@ public class Variante {
 			changerEffet(laPioche, "Huit", "permet de changer de couleur, se pose sur n'importe quelle carte");
 			changerEffetPlus(laPioche, "Dame", "Trèfle", "fait piocher 3 cartes au joueur suivant sans aucun recours");
 
-		} else if (varianteEnCours.equals("Variante Courte Amicale (32 cartes)")) {
+		} else if (varianteEnCours.equals("variante6")) { // courte Amicale
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			changerEffet(laPioche, "Dame", "le joueur suivant passe son tour");
 			changerEffet(laPioche, "Valet", "change le sens du jeu");
 			changerEffet(laPioche, "As", "fait piocher 2 cartes au joueur suivant, à moins de poser un 8 ou un As");
 			changerEffet(laPioche, "Huit", "permet de changer de couleur et arrête les attaques"); // J'ai fait que 2
 
-		} else if (varianteEnCours.equals("Variante de man et resta")) {
+		} else if (varianteEnCours.equals("variante5")) { // variante man et resa
 			changerEffet(laPioche, "Dix", "oblige a rejouer");
 			changerEffet(laPioche, "Sept", "le joueur suivant passe son tour");
 			changerEffet(laPioche, "Valet", "change le sens du jeu");

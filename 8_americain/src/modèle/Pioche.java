@@ -43,11 +43,17 @@ System.out.println("On joue avec "+nombreDeCartes + " cartes");
 
 
 	melanger();
+	System.out.println(jeuDeCartes);
 
 	/*
 	 * int k=0; for(int i = 0; i < jeuDeCartes.size(); i++) {
 	 * System.out.println(jeuDeCartes.get(i)); k++; } System.out.println(k);
 	 */
+	}
+
+	@Override
+	public String toString() {
+		return "Pioche [jeuDeCartes=" + jeuDeCartes + "]";
 	}
 
 	public LinkedList<Carte> getJeuDeCartes() {
@@ -65,7 +71,7 @@ System.out.println("On joue avec "+nombreDeCartes + " cartes");
 
 	// Distribue les cartes aux joueurs
 	public void distribuer() {
-
+System.out.println("on distribue");
 		for (int i = 0; i < Partie.getPartie().getNombreCarteJoueur(); i++) {
 			for (int j = 0; j < (Partie.getPartie().getNombreOrdinateur() + 1); j++) {
 

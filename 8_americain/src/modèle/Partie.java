@@ -51,13 +51,7 @@ public class Partie {
 
 		// Test qui détermine le nombre da carte par joueur en fonction du nombre de
 		// joueur
-		if (nombreOrdinateur == 1) {
-			nombreCarteJoueur = 10;
-		} else if (nombreOrdinateur == 2) {
-			nombreCarteJoueur = 8;
-		} else {
-			nombreCarteJoueur = 6;
-		}
+		
 
 		modeComptage = 1;
 		
@@ -100,7 +94,7 @@ public class Partie {
 	
 	*/
 	private Partie() {
-		variante = "Minimale";
+System.out.println("testcool");
 	}
 	
 	
@@ -111,10 +105,12 @@ public class Partie {
 	private static Partie maPartie = new Partie();
 	
 	public Manche lancerJeu() {
+		
 		Manche maManche = new Manche();
 		return maManche;
-
 	}
+
+	
 
 	public int getNombreOrdinateur() {
 		return nombreOrdinateur;
@@ -125,7 +121,15 @@ public class Partie {
 		return nombreCarteJoueur;
 	}
 
-	public void setNombreCarteJoueur(int nombreCarteJoueur) {
+	public void setNombreCarteJoueur() {
+		System.out.println("il y a" + nombreOrdinateur +"ordis");
+		if (nombreOrdinateur == 1) {
+			nombreCarteJoueur = 10;
+		} else if (nombreOrdinateur == 2) {
+			nombreCarteJoueur = 8;
+		} else {
+			nombreCarteJoueur = 6;
+		}
 		this.nombreCarteJoueur = nombreCarteJoueur;
 	}
 
@@ -133,10 +137,9 @@ public class Partie {
 		return modeComptage;
 	}
 
-	public void updatePartie(int modeComptage, LinkedList<Joueur> listeJoueurs) {
-		System.out.println("mode comptage" + modeComptage);
+	public void updatePartie(int modeComptage, LinkedList<Joueur> listeJoueurs, String variante) {
 		this.listeJoueurs = listeJoueurs;
-		this.nombreOrdinateur = listeJoueurs.size();
+		this.nombreOrdinateur = listeJoueurs.size()-1;
 		this.modeComptage = modeComptage;
 		this.variante = variante;
 		System.out.println("Variante : " + this.variante);
@@ -148,9 +151,6 @@ public class Partie {
 		return variante;
 	}
 
-	public void setVariante(String variante) {
-		this.variante = variante;
-	}
 	
 
 }
