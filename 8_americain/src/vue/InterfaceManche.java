@@ -22,9 +22,9 @@ public class InterfaceManche implements Observer{
 	private JoueurPhysique joueur;
 	private Talon laTalon;
 	private JButton[] cartesJ;
-	private JLabel carteV,tourDe;// a quoi ça sert ?
+	private JLabel carteV,tourDe;
 	private ControleurManche controleur;
-	private JLabel[] bots;// a quoi ça sert ?
+	private JLabel[] bots;
 
 	/**
 	 * Launch the application.
