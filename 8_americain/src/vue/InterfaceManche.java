@@ -45,9 +45,9 @@ public class InterfaceManche implements Observer{
 	/**
 	 * Create the application.
 	 */
-	public InterfaceManche() {
-		Partie.getPartie().lancerJeu();
-		initialize();
+	//public InterfaceManche() {
+		//Partie.getPartie().lancerJeu();
+		//initialize();
 		
 		
 	}

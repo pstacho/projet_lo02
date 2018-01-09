@@ -30,8 +30,9 @@ public class Ordinateur extends Joueur {
 
 	public void jouerCarteOrdi(Manche maManche,Talon leTalon, Pioche laPioche) {
 		
-		
+		System.out.println(this.nom + "a actuellement " + this.mainJoueur.size() + " cartes.");
 		strategie.jouerCarte(this, leTalon, laPioche, maManche);
+		System.out.println(this.nom + "a encore " + this.mainJoueur.size() + " cartes.");
 		//boolean trouverCarte = false;
 		
 		

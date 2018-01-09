@@ -21,6 +21,7 @@ import modèle.JoueurPhysique;
 import modèle.Partie;
 import modèle.Variante;
 import vue.InterfaceManche;
+import vue.VueTapisJeu;
 
 public class ControleurReglages {
 	
@@ -170,8 +171,10 @@ public class ControleurReglages {
 				listeJoueurs.add(new JoueurPhysique(textFields.get("textField0").getText()));
 				maPartie.updatePartie(modeComptage, listeJoueurs, variante);
 				frame.getContentPane().removeAll();
+				System.out.println("camarche ou pas ?");
 				frame.repaint();
-				new InterfaceManche();
+				VueTapisJeu jeu = new VueTapisJeu(frame);
+
 			}
 		});
 
