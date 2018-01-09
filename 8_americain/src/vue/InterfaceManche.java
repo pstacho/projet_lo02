@@ -45,9 +45,9 @@ public class InterfaceManche implements Observer{
 	/**
 	 * Create the application.
 	 */
-	//public InterfaceManche() {
-		//Partie.getPartie().lancerJeu();
-		//initialize();
+	public InterfaceManche() {
+		Partie.getPartie().lancerJeu();
+		initialize();
 		
 		
 	}
@@ -112,4 +112,5 @@ public class InterfaceManche implements Observer{
 		JButton carte = new JButton(new ImageIcon("Valet_Pique.png"));
 		test.frame.getContentPane().add(carte, BorderLayout.CENTER);
 	}
+	
 }

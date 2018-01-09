@@ -93,6 +93,7 @@ System.out.println("on distribue");
 			jeuDeCartes.removeFirst();
 			return cartePioche;
 		}
+
 	}
 
 	public void attribuerPointCarte() {

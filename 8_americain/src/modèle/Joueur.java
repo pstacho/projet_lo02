@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Scanner;
 
-public class Joueur extends Observable{
+public class Joueur extends Observable {
 
 	protected ArrayList<Carte> mainJoueur;
 	protected String nom;
@@ -80,5 +80,11 @@ public class Joueur extends Observable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	public void changed()
+	{
+		this.setChanged();
+	}
+	
+	
 
 }

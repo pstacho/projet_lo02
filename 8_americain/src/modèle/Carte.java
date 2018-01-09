@@ -8,7 +8,7 @@ public class Carte {
 	private String effet="null";
 	private boolean Joker=false;
 	private String vraiCouleur;
-	
+	private boolean CarteVisible;
 	
 	
 	public String getVraiCouleur() {

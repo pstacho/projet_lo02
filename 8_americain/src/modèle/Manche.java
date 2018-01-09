@@ -4,8 +4,20 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Scanner;
 
+import vue.VueTapisJeu;
+
+import controleur.ControleurManche;
+
 @SuppressWarnings("deprecation")
-public class Manche extends Observable {
+public class Manche extends Observable implements Runnable {
+
+	public int getNumeroManche() {
+		return numeroManche;
+	}
+
+	public void setNumeroManche(int numeroManche) {
+		this.numeroManche = numeroManche;
+	}
 
 	private Joueur joueurEnCours;
 	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
@@ -89,17 +101,25 @@ public class Manche extends Observable {
 	}
 	
 	
-	public Manche() {
+	public void lancerManche() {
+	
+		
+		//leTalon.afficherCarteDessus();
 
-		numeroManche++;
+		// Determine un joueurs qui commence au hasard
+
+		indiceJoueurEnCours = (int) (Math.random() * (Partie.getPartie().getNombreOrdinateur() - 0));
+		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
+		Thread thread = new Thread(this);
+		thread.start();
+		finirManche();
+	}
+	
+	public Manche() {
+		
 		sensPositif = true;
 
 		System.out.println("Début de la manche n° " + numeroManche);
-	//	Variante maVariante = new Variante();
-		
-
-	//	maVariante.afficherChoixVariantes();
-	//	maVariante.ChoisirVariante(this); 
 		Variante maVariante = creerVariante();
 		System.out.println(nombreDeCartes);
 		laPioche = new Pioche(nombreDeCartes);
@@ -107,43 +127,39 @@ public class Manche extends Observable {
 	
 
 		laPioche.attribuerPointCarte();
+		Partie.getPartie().setNombreCarteJoueur();
+		laPioche.distribuer(); // distribution des cartes aux joueurs
+
+		leTalon = new Talon(laPioche); // Création du talon
+		numeroManche++;
+		
+		
+	//	Variante maVariante = new Variante();
+		
+
+	//	maVariante.afficherChoixVariantes();
+	//	maVariante.ChoisirVariante(this); 
+		
 
 		// test pour voir l'attribution des points aux cartes selon la variante
 		/*
 		 * Iterator<Carte> it = laPioche.jeuDeCartes.iterator(); while (it.hasNext()) {
 		 * System.out.println(it.next().getPoint()); }
 		 */
-		Partie.getPartie().setNombreCarteJoueur();
-		laPioche.distribuer(); // distribution des cartes aux joueurs
-
-		leTalon = new Talon(laPioche); // Création du talon
-		leTalon.afficherCarteDessus();
-
-		// Determine un joueurs qui commence au hasard
-
-		indiceJoueurEnCours = (int) (Math.random() * (Partie.getPartie().getNombreOrdinateur() - 0));
+		
 		// on initialise indiceJoueurEnCours a un nombre aléatoire compris entre 0 et le
 		// nombre de joueur afin de determiener aléatoirement le joeur qui commence
-		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
-		while (joueurEnCours.mainJoueur.size() != 0) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}
-			jouerTourDeJeu();
-		}
-		finirManche();
+		
 
 	}
 
 	public void jouerTourDeJeu() {
 
 		if (joueurEnCours instanceof JoueurPhysique) {
-			System.out.println(joueurEnCours.getNom() + ", c'est à toi de jouer.\r");
-			((JoueurPhysique) joueurEnCours).afficherMainJoueur();
-			((JoueurPhysique) joueurEnCours).jouerCarte(this, laPioche, leTalon);
+		//	System.out.println(joueurEnCours.getNom() + ", c'est à toi de jouer.\r");
+		//	((JoueurPhysique) joueurEnCours).afficherMainJoueur();
+		//	((JoueurPhysique) joueurEnCours).jouerCarte(this, laPioche, leTalon);
+			((JoueurPhysique) joueurEnCours).jouerCarte(this);
 
 		} else {
 			System.out.println(joueurEnCours.getNom() + " joue son tour.");
@@ -152,6 +168,8 @@ public class Manche extends Observable {
 		}
 	//	checkdireCarte(leTalon);
 		joueurSuivant();
+		setChanged();
+		notifyObservers();
 	}
 
 	public void joueurSuivant() {
@@ -259,5 +277,25 @@ public class Manche extends Observable {
 
 	public void setLeTalon(Talon leTalon) {
 		this.leTalon = leTalon;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		while (joueurEnCours.getMainJoueur().size() != 0) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
+			jouerTourDeJeu();
+		//	if (joueurEnCours instanceof JoueurPhysique) {
+		//		new ControleurManche(laManche);	
+		//	}
+	
+	
+		}
 	}
 }

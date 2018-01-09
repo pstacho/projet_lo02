@@ -18,6 +18,7 @@ public class Partie {
 	private String nomGagnant;
 	private int modeComptage;
 	protected LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();
+	private Manche Manche;
 
 	public LinkedList<Joueur> getListeJoueurs() {
 		return listeJoueurs;
@@ -107,10 +108,19 @@ System.out.println("testcool");
 	public Manche lancerJeu() {
 		
 		Manche maManche = new Manche();
+		Manche=maManche;
 		return maManche;
 	}
 
 	
+
+	public Manche getManche() {
+		return Manche;
+	}
+
+	public void setLaManche(Manche laManche) {
+		this.Manche = Manche;
+	}
 
 	public int getNombreOrdinateur() {
 		return nombreOrdinateur;

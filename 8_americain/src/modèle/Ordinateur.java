@@ -67,6 +67,8 @@ public class Ordinateur extends Joueur {
 		while ( it.hasNext()) {
 			System.out.println(it.next());
 		}*/
+		this.setChanged();
+		this.notifyObservers();
 		
 	}
 
