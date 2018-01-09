@@ -18,7 +18,6 @@ public class ControleurCarte {
 		bouttonProchaineCarte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(laManche.getJoueurEnCours() instanceof JoueurPhysique && laManche.getJoueurEnCours().carteCompatible(laManche, laManche.getLeTalon(), carteAControler)) {
-					int indexCarteChoisie =laManche.getJoueurEnCours().getMainJoueur().indexOf(carteAControler);
 					((JoueurPhysique)laManche.getJoueurEnCours()).jouerTourG(carteAControler);
 					
 				}

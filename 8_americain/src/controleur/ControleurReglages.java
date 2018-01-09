@@ -149,7 +149,7 @@ public class ControleurReglages {
 				} else {
 					modeComptage = 0;
 				}
-
+				listeJoueurs.add(new JoueurPhysique(textFields.get("textField0").getText()));
 				for (int i = 1; i <= 6; i++) {
 					if (ordis.get("ordi" + (i)).isSelected()) {
 						if (difficults.get("ordi" + (i) + "n").isSelected()) {
@@ -168,7 +168,7 @@ public class ControleurReglages {
 					}
 				}
 
-				listeJoueurs.add(new JoueurPhysique(textFields.get("textField0").getText()));
+				
 				maPartie.updatePartie(modeComptage, listeJoueurs, variante);
 				frame.getContentPane().removeAll();
 				frame.repaint();

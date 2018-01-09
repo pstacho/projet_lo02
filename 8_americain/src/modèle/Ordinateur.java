@@ -32,6 +32,9 @@ public class Ordinateur extends Joueur {
 		
 		System.out.println(this.nom + "a actuellement " + this.mainJoueur.size() + " cartes.");
 		strategie.jouerCarte(this, leTalon, laPioche, maManche);
+		if(this.mainJoueur.size()==1) {
+			new DireContreCarte(this);
+		}
 		System.out.println(this.nom + "a encore " + this.mainJoueur.size() + " cartes.");
 		//boolean trouverCarte = false;
 		
@@ -78,6 +81,14 @@ public class Ordinateur extends Joueur {
 
 	public void setDifficultee(int difficultee) {
 		this.difficultee = difficultee;
+	}
+
+	public Strategie getStrategie() {
+		return strategie;
+	}
+
+	public void setStrategie(Strategie strategie) {
+		this.strategie = strategie;
 	}
 
 	public Carte getCarteJouee() {

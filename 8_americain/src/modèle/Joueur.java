@@ -12,6 +12,8 @@ public class Joueur extends Observable {
 	// private int nbCartes;
 	private int score;
 	private int numero;
+	protected boolean carte;
+	protected boolean contrecarte;
 	protected static int indiceJoueur = 0;
 
 	public String toString() {
@@ -84,7 +86,28 @@ public class Joueur extends Observable {
 	{
 		this.setChanged();
 	}
-	
-	
 
-}
+	public boolean isCarte() {
+		return carte;
+	}
+
+	public void setCarte(boolean carte) {
+		this.carte = carte;
+	}
+
+	public boolean isContrecarte() {
+		return contrecarte;
+	}
+
+	public void setContrecarte(boolean contrecarte) {
+		
+		this.contrecarte = contrecarte;	
+		this.mainJoueur.add(Partie.getPartie().getManche().getLaPioche().piocherCarte(Partie.getPartie().getManche().getLeTalon()));
+		this.setChanged();
+		this.notifyObservers();
+			
+	}
+	}
+	
+	
+	

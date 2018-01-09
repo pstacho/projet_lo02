@@ -3,6 +3,7 @@ package modèle;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 import modèle.Carte;
 import modèle.Partie;
 
@@ -74,14 +75,16 @@ public class JoueurPhysique extends Joueur {
 	 * }
 	 */
 	public void jouerCarte(Manche maManche) {
+		this.carte=false;
+		this.contrecarte=false;
 		while (attenteVue == true) {
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("EnAttenteChoix");
+			//System.out.println("EnAttenteChoix");
 		}
 		setChanged();
 		notifyObservers("a joué");
@@ -110,40 +113,21 @@ public class JoueurPhysique extends Joueur {
 
 	public void poserCarteGraphique(Carte carteAPoser) {
 
-		// if
-		// (Partie.getPartie().getManche().getVarianteManche().estPossibleDeJouer(this.cartes))
-		// {
-
+	
 		Partie.getPartie().getManche().getLeTalon().setCarteDessus(carteAPoser); //
-		// Partie.getPartie().getManche().getTalon().getCarteDessus().setSymbole(cartePose.getSymbole());
-		// Partie.getPartie().getManche().getTalon().getCarteDessus().setValeur(cartePose.getValeur());
+	
 		System.out.println("Vous jouez " + carteAPoser);
 		this.mainJoueur.remove(carteAPoser);
-		/*
-		 * if (cartePose.getValeur().equals("1")) { Variante.nombreAs++; } else if
-		 * (cartePose.getValeur().equals("8")) { Variante.nombreAs = 0; }
-		 * 
-		 * if (this.cartes.size() == 1) { this.direCarteGraphique();
-		 */
+		
+		
+		
+			if(	this.getMainJoueur().size() == 1) {
+				DireCarte ditCarte =new DireCarte(this);
+			}
+		
 
 		// On notifie l'interface que la carte a ete retiree de la main du joueur
 
-		/*
-		 * String effet = cartePose.getEffet(); if (!effet.equals("Aucun") &&
-		 * !effet.equals("Defausser tous les mï¿½mes symboles") &&
-		 * !this.EffetVariante.equals("JouerMemeCouleur") &&
-		 * !effet.equals("Changer Famille + Piocher 5 cartes")&&
-		 * !effet.equals("Changer Famille")) { cartePose.appliquerEffet(); } else if
-		 * (effet.equals("Changer Famille") ||
-		 * effet.equals("Changer Famille + Piocher 5 cartes")) { if
-		 * (effet.equals("Changer Famille + Piocher 5 cartes")) { Effet piocher5 = new
-		 * Piocher5Cartes(); piocher5.effet(); } this.EffetVariante = "Changer Famille";
-		 * this.setChanged(); this.notifyObservers("Changer Famille");
-		 * 
-		 * } else if (effet.equals("Defausser tous les memes symboles")) {
-		 * this.EffetVariante = "JouerMemeCouleur"; this.setChanged();
-		 * this.notifyObservers("doit se defausser de tous les memes symboles"); }
-		 */
 
 		this.setChanged();
 		this.notifyObservers("a joué");
