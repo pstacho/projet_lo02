@@ -1,12 +1,11 @@
 package modèle;
 
-import java.util.Iterator;
+
 import java.util.Observable;
 import java.util.Scanner;
 
 import vue.VueTapisJeu;
 
-import controleur.ControleurManche;
 
 @SuppressWarnings("deprecation")
 public class Manche extends Observable implements Runnable {
@@ -112,7 +111,7 @@ public class Manche extends Observable implements Runnable {
 		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
 		Thread thread = new Thread(this);
 		thread.start();
-		finirManche();
+		
 	}
 	
 	public Manche() {
@@ -167,7 +166,7 @@ public class Manche extends Observable implements Runnable {
 			System.out.println(joueurEnCours.nom + " a " + joueurEnCours.mainJoueur.size() + " carte(s) en main\r\n");
 		}
 	//	checkdireCarte(leTalon);
-		joueurSuivant();
+	
 		setChanged();
 		notifyObservers();
 	}
@@ -196,68 +195,17 @@ public class Manche extends Observable implements Runnable {
 		this.joueurEnCours = Partie.getPartie().getListeJoueurs().get(indiceJoueurEnCours);
 
 	}
-/*
-	public void checkdireCarte(Talon leTalon) {
-		if (joueurEnCours.mainJoueur.size() == 1) {
-			if (joueurEnCours instanceof JoueurPhysique) {
-				System.out.println("ecrirez 'carte'");
-				String Carte = sc.nextLine();
-				if (Carte.equals("carte")) {
-					System.out.println("vous avez dit carte, vous ne piocher pas de carte");
-				}
-				else {
-					Carte cartePiochee = laPioche.piocherCarte(leTalon);
-					joueurEnCours.mainJoueur.add(cartePiochee);
-					System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " , car vous n'avez pas dit carte.");
-				}
-				
-			} else if (joueurEnCours instanceof Ordinateur) {
-				int indiceDireCarte = (int) (Math.random() * (5 - 0));
-				if (indiceDireCarte != 0) {
-					System.out.println(joueurEnCours.nom + " dit carte, il ne doit pas piocher");
-				}
-				else {
-					Carte cartePiochee = laPioche.piocherCarte(leTalon);
-					joueurEnCours.mainJoueur.add(cartePiochee);
-					System.out.println(joueurEnCours.nom + " pioche une carte car il n'a pas dit carte");
-				}
-			}
-		}
-	}
-/*
-	public void contreCarte() {
-		if (joueurEnCours.mainJoueur.size() == 1) {
-			if (joueurEnCours instanceof JoueurPhysique) {
-				System.out.println("vous avez 5 secondes pour ecrire 'carte'");
-				String Carte = sc.nextLine();
-				if (Carte.equals("carte")) {
-					System.out.println("vous avez dit carte, vous ne piocher pas de carte");
-				}
-				else {
-					Carte cartePiochee = laPioche.piocherCarte(leTalon);
-					joueurEnCours.mainJoueur.add(cartePiochee);
-				}
-				
-			} else if (joueurEnCours instanceof Ordinateur) {
-				int indiceDireCarte = (int) (Math.random() * (1 - 0));
-				if (indiceDireCarte == 1) {
-					System.out.println(Partie.getPartie().listeJoueur
-							.get((int)Math.random() * (Partie.getPartie().getNombreOrdinateur() + 1 - 1))
-							+ "Dit carte, il ne doit pas piocher");
-				}
-			}
-		}
-	}
-*/
+
 	private void finirManche() {
 		// TODO Auto-generated method stub
-		if (Partie.getPartie().getModeComptage() == 1) {
 			System.out.println(joueurEnCours.nom + " a gagné la manche n°" + numeroManche);
 			for (int i = 0; i < Partie.getPartie().getListeJoueurs().size(); i++) {
 				Partie.getPartie().getListeJoueurs().get(i).compterPoints();
-			}
 		}
 		System.out.println("Voulez-vous faire une autre manche ? ( 1 si oui | 0 si non )");
+		
+		this.setChanged();
+		this.notifyObservers("fin");
 		//Manche maManche = new Manche();
 
 	}
@@ -283,6 +231,7 @@ public class Manche extends Observable implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		
+		
 		while (joueurEnCours.getMainJoueur().size() != 0) {
 			try {
 				Thread.sleep(1000);
@@ -291,11 +240,13 @@ public class Manche extends Observable implements Runnable {
 				e.printStackTrace();
 			}
 			jouerTourDeJeu();
+			joueurSuivant();
 		//	if (joueurEnCours instanceof JoueurPhysique) {
 		//		new ControleurManche(laManche);	
 		//	}
 	
 	
 		}
+		finirManche();
 	}
 }

@@ -113,7 +113,7 @@ public class JoueurPhysique extends Joueur {
 
 	public void poserCarteGraphique(Carte carteAPoser) {
 
-	
+		Effet.checkEffetApres(Partie.getPartie().getManche(), Partie.getPartie().getManche().getLaPioche(), carteAPoser);
 		Partie.getPartie().getManche().getLeTalon().setCarteDessus(carteAPoser); //
 	
 		System.out.println("Vous jouez " + carteAPoser);

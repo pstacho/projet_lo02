@@ -1,6 +1,5 @@
 package vue;
 
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -12,12 +11,10 @@ import java.awt.EventQueue;
 
 import javax.swing.*;
 
-
 import controleur.ControleurBoutonContreCarte;
 import controleur.ControleurBoutonPiocher;
 import controleur.ControleurButtonCarte;
 import controleur.ControleurCarte;
-import controleur.ControleurManche;
 import modèle.Joueur;
 import modèle.Ordinateur;
 import modèle.JoueurPhysique;
@@ -33,47 +30,40 @@ import java.awt.Color;
 public class VueTapisJeu implements Observer {
 	private ArrayList<VueOrdinateur> vueOrdi;
 	private JFrame frame;
-	private JLabel talon ;
+	private JLabel talon;
 	private Manche laManche;
-	private JoueurPhysique moi;
-	private JButton[] cartesJoueur;
-	private ControleurManche controleur;
-	private JLabel[] ordis;
+
 	private JPanel panelMain;
-	private  JPanel piocheTalon;
-	private JLabel lblVert;
-	
+	private JPanel piocheTalon;
+	private JTextField effet;
 
 	/**
 	 * Create the application.
 	 */
 	public VueTapisJeu(JFrame frame, Manche maManche) {
-		
+
 		this.frame = frame;
-		laManche=maManche;
+		laManche = maManche;
 		maManche.addObserver(this);
 		System.out.println("jdelajflkejlfa");
 		initialize();
-		
-		for (int i=0; i<=Partie.getPartie().getNombreOrdinateur(); i++) {
+
+		for (int i = 0; i <= Partie.getPartie().getNombreOrdinateur(); i++) {
 			Partie.getPartie().getListeJoueurs().get(i).addObserver(this);
 		}
 
 		maManche.lancerManche();
-	
-		
+
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		// frame = new JFrame();
-		frame.setTitle("8 américain");
-		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
 		frame.setBounds(0, 0, 1600, 600);
+		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
 		frame.getContentPane().setLayout(new BorderLayout());
 		panelMain = new JPanel();
@@ -81,27 +71,32 @@ public class VueTapisJeu implements Observer {
 		GridLayout grid = new GridLayout();
 		panelMain.setLayout(grid);
 
-		//JLabel label = new JLabel(new ImageIcon("images/autres/vert.png"));
-		//label.setBounds(0, 0, 1920, 1080);
-		//frame.getContentPane().add(label);
-		
 		piocheTalon = new JPanel();
+
 		JButton pioche = new JButton();
 		new ControleurBoutonPiocher(pioche, laManche);
 		ImageIcon dosCarte = new ImageIcon("images/cartes/dos_carte.png");
 		pioche.setIcon(dosCarte);
 
 		piocheTalon.add(pioche);
+		effet = new JTextField("");
+		//effet.setEditable(false);
+		effet.setBounds(700, 300, 400, 30);
+		frame.getContentPane().add(effet);
+		
 		talon = new JLabel();
 		ImageIcon carteTalon = new ImageIcon("images/cartes/" + laManche.getLeTalon().getCarteDessus().getValeur() + "_"
 				+ laManche.getLeTalon().getCarteDessus().getCouleur() + ".png");
 		talon.setIcon(carteTalon);
 		piocheTalon.add(talon);
 		frame.getContentPane().add(piocheTalon, BorderLayout.CENTER);
+
 		
-		//lblVert = new JLabel(new ImageIcon("images/autres/vert.png"));
-		//lblVert.setBounds(0, 0, 1920, 1080);
-		//frame.getContentPane().add(lblVert);
+		//frame.getContentPane().add(effet, BorderLayout.SOUTH);
+		
+		// lblVert = new JLabel(new ImageIcon("images/autres/vert.png"));
+		// lblVert.setBounds(0, 0, 1920, 1080);
+		// frame.getContentPane().add(lblVert);
 
 		ArrayList<Carte> cartesJoueurPhysique = Partie.getPartie().getListeJoueurs().get(0).getMainJoueur();
 
@@ -114,7 +109,7 @@ public class VueTapisJeu implements Observer {
 					"images/cartes/" + prochaineCarte.getValeur() + "_" + prochaineCarte.getCouleur() + ".png");
 			bouttonProchaineCarte.setIcon(imageCarte);
 			bouttonProchaineCarte.setMaximumSize(new Dimension(110, 270));
-			new ControleurCarte(laManche, prochaineCarte, bouttonProchaineCarte);
+			new ControleurCarte(laManche, prochaineCarte, bouttonProchaineCarte, effet);
 			panelMain.add(bouttonProchaineCarte);
 		}
 
@@ -142,54 +137,16 @@ public class VueTapisJeu implements Observer {
 		panelbtnaction.add(btnContreCarte);
 		new ControleurBoutonContreCarte(btnContreCarte);
 		frame.getContentPane().add(panelbtnaction, BorderLayout.WEST);
-		/*
-		 * JLabel lblJoueurAdverse = new JLabel("Joueur Adverse");
-		 * lblJoueurAdverse.setBackground(Color.RED);
-		 * lblJoueurAdverse.setForeground(Color.BLACK); lblJoueurAdverse.setFont(new
-		 * Font("Tahoma", Font.PLAIN, 20));
-		 * frame.getContentPane().add(lblJoueurAdverse);
-		 */
-		
-		
-	
-		
-	
-		
-		
-		
-		//this.frame.setVisible(true);
-		
-	}
 
-	public void afficherCartes() {
-		// moi.trierCartes();
-		cartesJoueur = new JButton[moi.getMainJoueur().size()];
-		for (int i = 0; i < moi.getMainJoueur().size(); i++) {
-			JButton carte = new JButton(new ImageIcon("images/cartes/" + moi.getMainJoueur().get(i).getValeur() + "_"
-					+ moi.getMainJoueur().get(i).getCouleur() + ".png"));
-			carte.setBounds(85 * i, 400, 85, 125);
-			cartesJoueur[i] = carte;
-			this.frame.getContentPane().add(cartesJoueur[i]);
-		}
-	}
 
-	/*
-	 * public void affichageIAs() { for (int i = 0; i <
-	 * (Partie.getInstance().getLesJoueurs().size()-1); i++) { JLabel ia = new
-	 * JLabel(Partie.getInstance().getLesJoueurs().get(i).getNom() + ": " +
-	 * Partie.getInstance().getLesJoueurs().get(i).getSesCartes().size() +
-	 * " carte(s)"); ia.setFont(new Font("Tahoma", Font.BOLD, 12));
-	 * ia.setBounds(125*i + i, 10, 125, 25); ias[i] = ia;
-	 * this.frame.getContentPane().add(ias[i]); } }
-	 */
+	}
 
 	@Override
 	public void update(Observable o, Object arg1) {
 
 		if (o instanceof Joueur) {
-			ImageIcon imageCarte = new ImageIcon(
-					"images/cartes/" + laManche.getLeTalon().getCarteDessus().getValeur() + "_"
-							+ laManche.getLeTalon().getCarteDessus().getCouleur() + ".png");
+			ImageIcon imageCarte = new ImageIcon("images/cartes/" + laManche.getLeTalon().getCarteDessus().getValeur()
+					+ "_" + laManche.getLeTalon().getCarteDessus().getCouleur() + ".png");
 			this.talon.setIcon(imageCarte);
 			if (o instanceof Ordinateur) {
 				int index = Partie.getPartie().getListeJoueurs().indexOf(o);
@@ -197,7 +154,7 @@ public class VueTapisJeu implements Observer {
 				frame.repaint();
 				frame.revalidate();
 			} else if (o instanceof JoueurPhysique) {
-				
+
 				if (o instanceof JoueurPhysique) {
 					if (arg1 != null) {
 						if (arg1.equals("a joué")) {
@@ -217,7 +174,7 @@ public class VueTapisJeu implements Observer {
 										+ "_" + prochaineCarte.getCouleur() + ".png");
 								bouttonProchaineCarte.setIcon(imageCarte2);
 								bouttonProchaineCarte.setMaximumSize(new Dimension(110, 270));
-								new ControleurCarte(laManche, prochaineCarte, bouttonProchaineCarte);
+								new ControleurCarte(laManche, prochaineCarte, bouttonProchaineCarte, effet);
 								panelMain.add(bouttonProchaineCarte);
 								frame.repaint();
 								frame.revalidate();
@@ -226,7 +183,15 @@ public class VueTapisJeu implements Observer {
 					}
 				}
 
+			}
+
+		} else if (o instanceof Manche) {
+			if (arg1 != null) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				new VueNouvelleManche(frame, laManche);
+			}
+
 		}
 	}
-	}}
-
+}

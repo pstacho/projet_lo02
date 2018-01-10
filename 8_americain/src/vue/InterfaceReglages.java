@@ -360,27 +360,7 @@ public class InterfaceReglages {
 		textField.setColumns(10);
 		textFields.put("textField0", textField);
 
-	/*	list = new JList<Object>();
-
-		list.setFont(new Font("Dialog", Font.PLAIN, 16));
-		list.setBounds(584, 303, 264, 161);
-		list.setModel(new AbstractListModel<Object>() {
-			String[] values = new String[] { "Variante Minimale", "Variante de Monclar", "Variante carte et maou",
-					"Variante de man et resta", "Variante 5", "Variante Courte Amicale (32 cartes)",
-					"Variante 7 (32 cartes)" };
-
-			public int getSize() {
-				return values.length;
-			}
-
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setSelectedIndex(0);
-		frame.getContentPane().add(list);
-		
-		*/
+	
 
 		JLabel lblVariante = new JLabel("Variante");
 		lblVariante.setFont(new Font("Tahoma", Font.PLAIN, 18));

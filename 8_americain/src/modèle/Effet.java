@@ -50,7 +50,7 @@ public abstract class Effet {
 	public static void ChangerCouleur(Manche maManche, Carte carteJouee) {
 		sc = new Scanner(System.in);
 		carteJouee.setJoker(true);
-		String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
+		String[] couleur = new String[] { "Pique", "Trefle", "Coeur", "Carreau" };
 		carteJouee.setVraiCouleur(carteJouee.getCouleur());
 		
 
