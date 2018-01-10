@@ -20,7 +20,6 @@ import modèle.Manche;
 import modèle.JoueurPhysique;
 import modèle.Partie;
 import modèle.Variante;
-import vue.InterfaceManche;
 import vue.VueTapisJeu;
 
 public class ControleurReglages {

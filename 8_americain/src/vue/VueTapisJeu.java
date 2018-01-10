@@ -12,7 +12,6 @@ import java.awt.EventQueue;
 
 import javax.swing.*;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import controleur.ControleurBoutonContreCarte;
 import controleur.ControleurBoutonPiocher;
@@ -42,6 +41,7 @@ public class VueTapisJeu implements Observer {
 	private JLabel[] ordis;
 	private JPanel panelMain;
 	private  JPanel piocheTalon;
+	private JLabel lblVert;
 	
 
 	/**
@@ -73,7 +73,7 @@ public class VueTapisJeu implements Observer {
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 10));
 		frame.setBounds(0, 0, 1600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container reservoir = frame.getContentPane();
+
 
 		frame.getContentPane().setLayout(new BorderLayout());
 		panelMain = new JPanel();
@@ -81,6 +81,10 @@ public class VueTapisJeu implements Observer {
 		GridLayout grid = new GridLayout();
 		panelMain.setLayout(grid);
 
+		//JLabel label = new JLabel(new ImageIcon("images/autres/vert.png"));
+		//label.setBounds(0, 0, 1920, 1080);
+		//frame.getContentPane().add(label);
+		
 		piocheTalon = new JPanel();
 		JButton pioche = new JButton();
 		new ControleurBoutonPiocher(pioche, laManche);
@@ -94,6 +98,10 @@ public class VueTapisJeu implements Observer {
 		talon.setIcon(carteTalon);
 		piocheTalon.add(talon);
 		frame.getContentPane().add(piocheTalon, BorderLayout.CENTER);
+		
+		//lblVert = new JLabel(new ImageIcon("images/autres/vert.png"));
+		//lblVert.setBounds(0, 0, 1920, 1080);
+		//frame.getContentPane().add(lblVert);
 
 		ArrayList<Carte> cartesJoueurPhysique = Partie.getPartie().getListeJoueurs().get(0).getMainJoueur();
 
@@ -143,9 +151,7 @@ public class VueTapisJeu implements Observer {
 		 */
 		
 		
-		//JLabel label = new JLabel(new ImageIcon("images/autres/vert.png"));
-		//label.setBounds(0, 0, 1920, 1080);
-		//frame.getContentPane().add(label);
+	
 		
 	
 		

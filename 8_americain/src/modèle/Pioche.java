@@ -16,7 +16,7 @@ public class Pioche {
 System.out.println("On joue avec "+nombreDeCartes + " cartes");
 
 		if (nombreDeCartes == 52) {
-			String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
+			String[] couleur = new String[] { "Pique", "Trefle", "Coeur", "Carreau" };
 			String[] valeur = new String[] { "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
 					"Valet", "Dame", "Roi", "As" };
 			int[] point = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
@@ -29,7 +29,7 @@ System.out.println("On joue avec "+nombreDeCartes + " cartes");
 			}
 		}
 		else {
-			String[] couleur = new String[] { "Pique", "Trèfle", "Coeur", "Carreau" };
+			String[] couleur = new String[] { "Pique", "Trefle", "Coeur", "Carreau" };
 			String[] valeur = new String[] { "Sept", "Huit", "Neuf", "Dix", "Valet", "Dame", "Roi", "As" };
 			int[] point = new int[] { 7, 8, 9, 10, 11, 12, 13, 14 };
 

@@ -22,7 +22,7 @@ public class VueOrdinateur extends JPanel implements Observer {
 		this.setMaximumSize(new Dimension(160, 140));
 		if (((Ordinateur) j).getStrategie() instanceof StrategieNormal) {
 			this.niveauJoueur = new JLabel("Niveau : Normal");
-		} else if (((Ordinateur) j).getStrategie() instanceof StrategieNormal) {
+		} else if (((Ordinateur) j).getStrategie() instanceof StrategieDifficile) {
 			this.niveauJoueur = new JLabel("Niveau : Difficile");
 
 		}
