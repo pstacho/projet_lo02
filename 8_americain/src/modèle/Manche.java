@@ -2,97 +2,166 @@ package modèle;
 
 
 import java.util.Observable;
-import java.util.Scanner;
-
-import vue.VueTapisJeu;
 
 
+/**
+ * @author Stacho
+ *
+ */
 @SuppressWarnings("deprecation")
 public class Manche extends Observable implements Runnable {
 
+	/**
+	 * @return
+	 */
 	public int getNumeroManche() {
 		return numeroManche;
 	}
 
+	/**
+	 * @param numeroManche
+	 */
 	public void setNumeroManche(int numeroManche) {
 		this.numeroManche = numeroManche;
 	}
 
+	/**
+	 * 
+	 */
 	private Joueur joueurEnCours;
-	private int indiceJoueurEnCours = 0; // je test avec le premier joueur
-	private boolean PossibleDeDireCarte = true;
+	/**
+	 * 
+	 */
+	private int indiceJoueurEnCours = 0;
+	/**
+	 * @return
+	 */
 	public int getIndiceJoueurEnCours() {
 		return indiceJoueurEnCours;
 	}
 
+	/**
+	 * @param indiceJoueurEnCours
+	 */
 	public void setIndiceJoueurEnCours(int indiceJoueurEnCours) {
 		this.indiceJoueurEnCours = indiceJoueurEnCours;
 	}
 
+	/**
+	 * 
+	 */
 	private int numeroManche = 0;
+	/**
+	 * 
+	 */
 	private Pioche laPioche;
+	/**
+	 * 
+	 */
 	private Talon leTalon;
 
 	// effets
 
+	/**
+	 * 
+	 */
 	private boolean sensPositif;
+	/**
+	 * 
+	 */
 	private boolean joueurRejouer = false;
+	/**
+	 * 
+	 */
 	private int CarteAPiocherAs = 0;
 
+	/**
+	 * @return
+	 */
 	public int getCarteAPiocherAs() {
 		return CarteAPiocherAs;
 	}
 
+	/**
+	 * @param carteAPiocherAs
+	 */
 	public void setCarteAPiocherAs(int carteAPiocherAs) {
 		CarteAPiocherAs = carteAPiocherAs;
 	}
 
-	private boolean passerProchainTour = false;
-	private boolean jeuParValeurDesactive = false;
-	private boolean jeuParCouleurDesactive = false;
-	private int cartesAPiocher = 0;
-	private int cartesAPiocherSansRecours = 0;
-	private int cartesAPiocherDansJeu = 0;
+	/**
+	 * 
+	 */
 	private int nombreDeCartes;
 	
 	
 
+	/**
+	 * @return
+	 */
 	public int getNombreDeCartes() {
 		return nombreDeCartes;
 	}
 
+	/**
+	 * @param nombreDeCartes
+	 */
 	public void setNombreDeCartes(int nombreDeCartes) {
 		this.nombreDeCartes = nombreDeCartes;
 	}
 
+	/**
+	 * @return
+	 */
 	public Joueur getJoueurEnCours() {
 		return joueurEnCours;
 	}
 
+	/**
+	 * @param joueurEnCours
+	 */
 	public void setJoueurEnCours(Joueur joueurEnCours) {
 		this.joueurEnCours = joueurEnCours;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isSensPositif() {
 		return sensPositif;
 	}
 
+	/**
+	 * @param sensPositif
+	 */
 	public void setSensPositif(boolean sensPositif) {
 		this.sensPositif = sensPositif;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isjoueurRejouer() {
 		return joueurRejouer;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isJoueurRejouer() {
 		return joueurRejouer;
 	}
 
+	/**
+	 * @param joueurRejouer
+	 */
 	public void setJoueurRejouer(boolean joueurRejouer) {
 		this.joueurRejouer = joueurRejouer;
 	}
 
+	/**
+	 * @return
+	 */
 	public Variante creerVariante() {
 		Variante maVariante = new Variante();
 		maVariante.setVariante(Partie.getPartie().getVariante(), this);
@@ -100,6 +169,9 @@ public class Manche extends Observable implements Runnable {
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public void lancerManche() {
 	
 		
@@ -114,6 +186,9 @@ public class Manche extends Observable implements Runnable {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public Manche() {
 		
 		sensPositif = true;
@@ -152,6 +227,9 @@ public class Manche extends Observable implements Runnable {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void jouerTourDeJeu() {
 
 		if (joueurEnCours instanceof JoueurPhysique) {
@@ -171,6 +249,9 @@ public class Manche extends Observable implements Runnable {
 		notifyObservers();
 	}
 
+	/**
+	 * 
+	 */
 	public void joueurSuivant() {
 		if (joueurRejouer == false) {
 			if (sensPositif == true) {
@@ -196,6 +277,9 @@ public class Manche extends Observable implements Runnable {
 
 	}
 
+	/**
+	 * 
+	 */
 	private void finirManche() {
 		// TODO Auto-generated method stub
 			System.out.println(joueurEnCours.nom + " a gagné la manche n°" + numeroManche);
@@ -210,23 +294,38 @@ public class Manche extends Observable implements Runnable {
 
 	}
 
+	/**
+	 * @return
+	 */
 	public Pioche getLaPioche() {
 		return laPioche;
 	}
 
+	/**
+	 * @param laPioche
+	 */
 	public void setLaPioche(Pioche laPioche) {
 		this.laPioche = laPioche;
 	}
 	
 
+	/**
+	 * @return
+	 */
 	public Talon getLeTalon() {
 		return leTalon;
 	}
 
+	/**
+	 * @param leTalon
+	 */
 	public void setLeTalon(Talon leTalon) {
 		this.leTalon = leTalon;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

@@ -5,11 +5,21 @@ import java.util.Collections;
 import java.util.Iterator;
 
 // Classe représentant le paquet de carte qui constituera la pioche
+/**
+ * @author Stacho
+ *
+ */
 public class Pioche {
 
+	/**
+	 * 
+	 */
 	protected LinkedList<Carte> jeuDeCartes = new LinkedList<Carte>();
 
 	// Création du jeu de cartes
+	/**
+	 * @param nombreDeCartes
+	 */
 	public Pioche(int nombreDeCartes) {
 	
 		
@@ -51,25 +61,40 @@ System.out.println("On joue avec "+nombreDeCartes + " cartes");
 	 */
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Pioche [jeuDeCartes=" + jeuDeCartes + "]";
 	}
 
+	/**
+	 * @return
+	 */
 	public LinkedList<Carte> getJeuDeCartes() {
 		return jeuDeCartes;
 	}
 
+	/**
+	 * @param jeuDeCartes
+	 */
 	public void setJeuDeCartes(LinkedList<Carte> jeuDeCartes) {
 		this.jeuDeCartes = jeuDeCartes;
 	}
 
 	// Mélange les cartes du jeu de cartes
+	/**
+	 * 
+	 */
 	public void melanger() {
 		Collections.shuffle(jeuDeCartes);
 	}
 
 	// Distribue les cartes aux joueurs
+	/**
+	 * 
+	 */
 	public void distribuer() {
 System.out.println("on distribue");
 		for (int i = 0; i < Partie.getPartie().getNombreCarteJoueur(); i++) {
@@ -82,6 +107,10 @@ System.out.println("on distribue");
 	}
 
 	// Permet de piocher la première carte de la Pioche
+	/**
+	 * @param leTalon
+	 * @return
+	 */
 	public Carte piocherCarte(Talon leTalon) {
 		if (!jeuDeCartes.isEmpty()) {
 			Carte cartePioche = jeuDeCartes.getFirst();
@@ -96,6 +125,9 @@ System.out.println("on distribue");
 
 	}
 
+	/**
+	 * 
+	 */
 	public void attribuerPointCarte() {
 		Iterator<Carte> it = jeuDeCartes.iterator();
 		while (it.hasNext()) {

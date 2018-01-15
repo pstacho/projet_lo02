@@ -2,10 +2,22 @@ package modèle;
 
 import java.util.Scanner;
 
+/**
+ * @author Stacho
+ *
+ */
 public abstract class Effet {
 
+	/**
+	 * 
+	 */
 	private static Scanner sc;
 
+	/**
+	 * @param maManche
+	 * @param laPioche
+	 * @param carteJouee
+	 */
 	public static void checkEffetAvant(Manche maManche, Pioche laPioche, Carte carteJouee) {
 		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
 			carteJouee.setJoker(true);
@@ -15,6 +27,11 @@ public abstract class Effet {
 		}
 	}
 
+	/**
+	 * @param maManche
+	 * @param laPioche
+	 * @param carteJouee
+	 */
 	public static void checkEffetApres(Manche maManche, Pioche laPioche, Carte carteJouee) {
 
 		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
@@ -47,12 +64,15 @@ public abstract class Effet {
 
 	}
 
+	/**
+	 * @param maManche
+	 * @param carteJouee
+	 */
 	public static void ChangerCouleur(Manche maManche, Carte carteJouee) {
 		sc = new Scanner(System.in);
 		carteJouee.setJoker(true);
 		String[] couleur = new String[] { "Pique", "Trefle", "Coeur", "Carreau" };
 		carteJouee.setVraiCouleur(carteJouee.getCouleur());
-		
 
 		if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 
@@ -76,27 +96,40 @@ public abstract class Effet {
 	/*
 	 * public static void Joker(Carte carteJouee) { carteJouee.setJoker(true); }
 	 */
+	/**
+	 * @param maManche
+	 */
 	public static void joueurRejouer(Manche maManche) {
 		System.out.println(maManche.getJoueurEnCours().nom + " doit rejouer");
 		maManche.setJoueurRejouer(true);
 	}
 
+	/**
+	 * @param maManche
+	 */
 	public static void changerSens(Manche maManche) {
-		if (Partie.getPartie().getListeJoueurs().size()>2) {
+		if (Partie.getPartie().getListeJoueurs().size() > 2) {
 			System.out.println("Le sens de jeu change");
 			maManche.setSensPositif(!maManche.isSensPositif());
-		}
-		else {
+		} else {
 			System.out.println("il n'y a que 2 joueur, changer le sens fait rejouer");
 			joueurRejouer(maManche);
 		}
 	}
 
+	/**
+	 * @param maManche
+	 */
 	public static void joueurPasseSonTour(Manche maManche) {
 		maManche.joueurSuivant();
 		System.out.println(maManche.getJoueurEnCours().nom + " passe son tour");
 	}
 
+	/**
+	 * @param maManche
+	 * @param laPioche
+	 * @param nombreCarteAPiocher
+	 */
 	public static void fairePiocherCartes(Manche maManche, Pioche laPioche, int nombreCarteAPiocher) {
 		maManche.joueurSuivant();
 		System.out.println(maManche.getJoueurEnCours().nom + " doit piocher " + nombreCarteAPiocher + " carte(s)");
@@ -111,6 +144,11 @@ public abstract class Effet {
 
 	}
 
+	/**
+	 * @param maManche
+	 * @param laPioche
+	 * @param nombreCarteAPiocher
+	 */
 	public static void fairePiocherCartesAs(Manche maManche, Pioche laPioche, int nombreCarteAPiocher) {
 
 		maManche.joueurSuivant();
@@ -120,6 +158,9 @@ public abstract class Effet {
 		maManche.setJoueurRejouer(true);
 	}
 
+	/**
+	 * @param maManche
+	 */
 	public static void bloquerAttaque(Manche maManche) {
 
 		if (maManche.getCarteAPiocherAs() > 0) {
@@ -129,6 +170,10 @@ public abstract class Effet {
 
 	}
 
+	/**
+	 * @param maManche
+	 * @param laPioche
+	 */
 	public static void piocherAS(Manche maManche, Pioche laPioche) {
 
 		System.out.println(

@@ -1,91 +1,148 @@
 package vue;
 
-//import controleur.*;
-//import main.Partie;
-
-import java.awt.EventQueue;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JTable;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-//import main.Partie;
-
-import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import controleur.ControleurReglages;
 import modèle.Partie;
-import modèle.Variante;
 
-import javax.swing.AbstractListModel;
 import javax.swing.ButtonGroup;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.JSeparator;
 
+/**
+ * @author Stacho
+ *
+ */
 public class InterfaceReglages {
 
+	/**
+	 * 
+	 */
 	private JFrame frame;
+	/**
+	 * 
+	 */
 	private JTextField textField;
+	/**
+	 * 
+	 */
 	private HashMap<String, JCheckBox> ordis;
+	/**
+	 * 
+	 */
 	private HashMap<String, JRadioButton> difficults;
+	/**
+	 * 
+	 */
 	private HashMap<String, JRadioButton> variantes;
+	/**
+	 * 
+	 */
 	private HashMap<String, JTextField> textFields;
+	/**
+	 * 
+	 */
 	private JButton Valider;
+	/**
+	 * 
+	 */
+	/**
+	 * 
+	 */
 	private JRadioButton positif, negatif;
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_5 = new ButtonGroup();
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_6 = new ButtonGroup();
-	private JList<Object> list;
-	private Partie maPartie;
-	private Variante maVariante;
+	/**
+	 * 
+	 */
 	private JTextField textField_1;
+	/**
+	 * 
+	 */
 	private JTextField textField_2;
+	/**
+	 * 
+	 */
 	private JTextField textField_3;
+	/**
+	 * 
+	 */
 	private JTextField textField_4;
+	/**
+	 * 
+	 */
 	private JTextField textField_5;
+	/**
+	 * 
+	 */
 	private JTextField textField_6;
+	/**
+	 * 
+	 */
 	private final ButtonGroup buttonGroup_7 = new ButtonGroup();
-	
 
 	/**
 	 * Create the application.
 	 */
+	/**
+	 * @param uneFrame
+	 */
 	public InterfaceReglages(JFrame uneFrame) {
 		this.frame = uneFrame;
-		this.maVariante = maVariante;
 		ordis = new HashMap<String, JCheckBox>();
 		difficults = new HashMap<String, JRadioButton>();
 		variantes = new HashMap<String, JRadioButton>();
 		textFields = new HashMap<String, JTextField>();
 		initialize();
-		new ControleurReglages(ordis, difficults, variantes, textFields, Valider, positif, negatif, Partie.getPartie(), frame);
-		
-		
+		new ControleurReglages(ordis, difficults, variantes, textFields, Valider, positif, negatif, Partie.getPartie(),
+				frame);
+
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	/**
+	 * 
+	 */
 	private void initialize() {
 		// commenter cette ligne lorsque l'on run
 		// on en a besoin pour acceder au design
-		//frame = new JFrame();
-		frame.setBounds(0, 0, 1920/2, 1080/2);
+		// frame = new JFrame();
+		frame.setBounds(0, 0, 1920 / 2, 1080 / 2);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -227,98 +284,98 @@ public class InterfaceReglages {
 		lblDifficult.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblDifficult.setBounds(270, 144, 99, 23);
 		frame.getContentPane().add(lblDifficult);
-		
+
 		JRadioButton rdbtnAucunEffet = new JRadioButton("Aucun effet");
 		buttonGroup_7.add(rdbtnAucunEffet);
 		rdbtnAucunEffet.setSelected(true);
 		rdbtnAucunEffet.setBounds(434, 121, 97, 25);
 		frame.getContentPane().add(rdbtnAucunEffet);
 		variantes.put("variante0", rdbtnAucunEffet);
-		
+
 		JRadioButton rdbtnMinimale = new JRadioButton("Minimale");
 		buttonGroup_7.add(rdbtnMinimale);
 		rdbtnMinimale.setBounds(434, 151, 79, 25);
 		frame.getContentPane().add(rdbtnMinimale);
 		variantes.put("variante1", rdbtnMinimale);
-		
+
 		JRadioButton rdbtnMonclar = new JRadioButton("Monclar");
 		buttonGroup_7.add(rdbtnMonclar);
 		rdbtnMonclar.setBounds(648, 121, 79, 25);
 		frame.getContentPane().add(rdbtnMonclar);
 		variantes.put("variante2", rdbtnMonclar);
-		
+
 		JRadioButton rdbtnCarteEtMaou = new JRadioButton("Carte et maou");
 		buttonGroup_7.add(rdbtnCarteEtMaou);
 		rdbtnCarteEtMaou.setBounds(535, 122, 118, 25);
 		frame.getContentPane().add(rdbtnCarteEtMaou);
 		variantes.put("variante3", rdbtnCarteEtMaou);
-		
+
 		JRadioButton rdbtnVariante = new JRadioButton("Variante 5");
 		buttonGroup_7.add(rdbtnVariante);
 		rdbtnVariante.setBounds(648, 151, 87, 25);
 		frame.getContentPane().add(rdbtnVariante);
 		variantes.put("variante4", rdbtnVariante);
-		
+
 		JRadioButton rdbtnManEtResta = new JRadioButton("Man et resta");
 		buttonGroup_7.add(rdbtnManEtResta);
 		rdbtnManEtResta.setBounds(535, 152, 114, 25);
 		frame.getContentPane().add(rdbtnManEtResta);
 		variantes.put("variante5", rdbtnManEtResta);
-		
+
 		JRadioButton rdbtnCourteAmicale = new JRadioButton("Courte Amicale (32 cartes)");
 		buttonGroup_7.add(rdbtnCourteAmicale);
 		rdbtnCourteAmicale.setBounds(739, 122, 183, 25);
 		frame.getContentPane().add(rdbtnCourteAmicale);
-		variantes.put("variante6",rdbtnCourteAmicale);
-		
+		variantes.put("variante6", rdbtnCourteAmicale);
+
 		JRadioButton rdbtnVariante_1 = new JRadioButton("Variante 7 (32 cartes)");
 		buttonGroup_7.add(rdbtnVariante_1);
 		rdbtnVariante_1.setBounds(739, 152, 154, 25);
 		frame.getContentPane().add(rdbtnVariante_1);
 		variantes.put("variante7", rdbtnVariante_1);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		textField_1.setBounds(452, 252, 470, 25);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		textFields.put("textField1", textField_1);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
 		textField_2.setBounds(452, 289, 470, 25);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		textFields.put("textField2", textField_2);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setEditable(false);
 		textField_3.setBounds(452, 327, 226, 25);
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		textFields.put("textField3", textField_3);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setEditable(false);
-		textField_4.setBounds(696, 327,226, 25);
+		textField_4.setBounds(696, 327, 226, 25);
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 		textFields.put("textField4", textField_4);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setEditable(false);
 		textField_5.setBounds(452, 364, 226, 25);
 		frame.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
 		textFields.put("textField5", textField_5);
-		
+
 		textField_6 = new JTextField();
 		textField_6.setEditable(false);
 		textField_6.setBounds(696, 365, 226, 25);
 		frame.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 		textFields.put("textField6", textField_6);
-		
+
 		JLabel lblEffetsDeLa = new JLabel("Effets de la variante");
 		lblEffetsDeLa.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblEffetsDeLa.setBounds(584, 201, 170, 19);
@@ -360,8 +417,6 @@ public class InterfaceReglages {
 		textField.setColumns(10);
 		textFields.put("textField0", textField);
 
-	
-
 		JLabel lblVariante = new JLabel("Variante");
 		lblVariante.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblVariante.setBounds(702, 83, 72, 18);
@@ -369,6 +424,9 @@ public class InterfaceReglages {
 
 	}
 
+	/**
+	 * @return
+	 */
 	public JFrame getFrame() {
 		// TODO Auto-generated method stub
 		return frame;

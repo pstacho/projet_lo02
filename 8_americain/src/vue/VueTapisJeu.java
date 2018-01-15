@@ -1,14 +1,10 @@
 package vue;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Observable;
 import java.util.Observer;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.*;
 
 import controleur.ControleurBoutonContreCarte;
@@ -27,18 +23,48 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+/**
+ * @author Stacho
+ *
+ */
+@SuppressWarnings("deprecation")
 public class VueTapisJeu implements Observer {
+	/**
+	 * 
+	 */
 	private ArrayList<VueOrdinateur> vueOrdi;
+	/**
+	 * 
+	 */
 	private JFrame frame;
+	/**
+	 * 
+	 */
 	private JLabel talon;
+	/**
+	 * 
+	 */
 	private Manche laManche;
 
+	/**
+	 * 
+	 */
 	private JPanel panelMain;
+	/**
+	 * 
+	 */
 	private JPanel piocheTalon;
+	/**
+	 * 
+	 */
 	private JTextField effet;
 
 	/**
 	 * Create the application.
+	 */
+	/**
+	 * @param frame
+	 * @param maManche
 	 */
 	public VueTapisJeu(JFrame frame, Manche maManche) {
 
@@ -59,8 +85,11 @@ public class VueTapisJeu implements Observer {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	/**
+	 * 
+	 */
 	private void initialize() {
-		
+
 		frame.setBounds(0, 0, 1600, 600);
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,10 +109,10 @@ public class VueTapisJeu implements Observer {
 
 		piocheTalon.add(pioche);
 		effet = new JTextField("");
-		//effet.setEditable(false);
+		// effet.setEditable(false);
 		effet.setBounds(700, 300, 400, 30);
 		frame.getContentPane().add(effet);
-		
+
 		talon = new JLabel();
 		ImageIcon carteTalon = new ImageIcon("images/cartes/" + laManche.getLeTalon().getCarteDessus().getValeur() + "_"
 				+ laManche.getLeTalon().getCarteDessus().getCouleur() + ".png");
@@ -91,9 +120,8 @@ public class VueTapisJeu implements Observer {
 		piocheTalon.add(talon);
 		frame.getContentPane().add(piocheTalon, BorderLayout.CENTER);
 
-		
-		//frame.getContentPane().add(effet, BorderLayout.SOUTH);
-		
+		// frame.getContentPane().add(effet, BorderLayout.SOUTH);
+
 		// lblVert = new JLabel(new ImageIcon("images/autres/vert.png"));
 		// lblVert.setBounds(0, 0, 1920, 1080);
 		// frame.getContentPane().add(lblVert);
@@ -138,9 +166,11 @@ public class VueTapisJeu implements Observer {
 		new ControleurBoutonContreCarte(btnContreCarte);
 		frame.getContentPane().add(panelbtnaction, BorderLayout.WEST);
 
-
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable o, Object arg1) {
 
@@ -158,10 +188,6 @@ public class VueTapisJeu implements Observer {
 				if (o instanceof JoueurPhysique) {
 					if (arg1 != null) {
 						if (arg1.equals("a joué")) {
-							/**
-							 * Redefinir les cartes visibles en main en fonction du tour qu'a jouÃ© le
-							 * joueur.
-							 */
 							panelMain.removeAll();
 							ArrayList<Carte> cartesJoueurPhysique = Partie.getPartie().getListeJoueurs().get(0)
 									.getMainJoueur();

@@ -1,16 +1,23 @@
 package controleur;
+
 import modèle.Ordinateur;
 
 import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.JButton;
-import javax.swing.JTextArea;
 import modèle.Joueur;
 import modèle.Partie;
 
+/**
+ * @author Stacho
+ *
+ */
 public class ControleurBoutonContreCarte {
 
+	/**
+	 * @param contrecarte
+	 */
 	public ControleurBoutonContreCarte(JButton contrecarte) {
 		contrecarte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -25,7 +32,7 @@ public class ControleurBoutonContreCarte {
 					}
 				} while (it.hasNext() && !trouve);
 				if (trouve && !next.isCarte()) {
-					System.out.println (next.getNom()+ " est contre-carte !");
+					System.out.println(next.getNom() + " est contre-carte !");
 					next.setContrecarte(true);
 				}
 			}

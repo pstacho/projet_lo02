@@ -8,28 +8,37 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
+
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import modèle.Joueur;
 import modèle.Ordinateur;
 import modèle.Manche;
 import modèle.JoueurPhysique;
 import modèle.Partie;
-import modèle.Variante;
 import vue.VueTapisJeu;
 
+/**
+ * @author Stacho
+ *
+ */
 public class ControleurReglages {
-	
 
+	/**
+	 * @param ordis
+	 * @param difficults
+	 * @param variantes
+	 * @param textFields
+	 * @param valider
+	 * @param positif
+	 * @param negatif
+	 * @param maPartie
+	 * @param frame
+	 */
 	public ControleurReglages(HashMap<String, JCheckBox> ordis, HashMap<String, JRadioButton> difficults,
 			HashMap<String, JRadioButton> variantes, HashMap<String, JTextField> textFields, JButton valider,
 			JRadioButton positif, JRadioButton negatif, Partie maPartie, JFrame frame) {
-		
-		
 
 		for (int i = 1; i <= 6; i++) {
 			ordis.get("ordi" + i).addActionListener(new ActionListener() {
@@ -142,7 +151,7 @@ public class ControleurReglages {
 				System.out.println("blablacool");
 				LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();
 				int modeComptage;
-				String variante="";
+				String variante = "";
 				if (negatif.isSelected()) {
 					modeComptage = 1;
 				} else {
@@ -163,16 +172,15 @@ public class ControleurReglages {
 
 				for (int i = 0; i <= 7; i++) {
 					if (variantes.get("variante" + (i)).isSelected()) {
-						variante=("variante"+i);
+						variante = ("variante" + i);
 					}
 				}
 
-				
 				maPartie.updatePartie(modeComptage, listeJoueurs, variante);
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				System.out.println("camarche ou pas ?");
-				Manche maManche=maPartie.lancerJeu();
+				Manche maManche = maPartie.lancerJeu();
 				new VueTapisJeu(frame, maManche);
 
 			}
