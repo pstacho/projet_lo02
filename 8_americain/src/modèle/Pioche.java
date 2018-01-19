@@ -4,27 +4,34 @@ import java.util.LinkedList;
 import java.util.Collections;
 import java.util.Iterator;
 
-// Classe représentant le paquet de carte qui constituera la pioche
 /**
+ * Classe qui représente la pioche d'une manche de jeu.
+ * 
+ * La pioche est caractérisée par les informations suivantes : jeuDeCartes qui
+ * représente les cartes contenues dans la pioche. On utilise un LinkedList pour
+ * jeuDeCartes afin de récupérer les cartes dans l'ordre où elles sont placées.
+ * 
  * @author Stacho
  *
  */
 public class Pioche {
 
 	/**
-	 * 
+	 * La liste des cartes qui constitue la pioche.
 	 */
 	protected LinkedList<Carte> jeuDeCartes = new LinkedList<Carte>();
 
-	// Création du jeu de cartes
 	/**
+	 * Constructeur de la classe Pioche.
+	 * 
 	 * @param nombreDeCartes
+	 *            Le nombre de cartes dans la pioche.
 	 */
 	public Pioche(int nombreDeCartes) {
-	
-		
-System.out.println("On joue avec "+nombreDeCartes + " cartes");
 
+		System.out.println("On joue avec " + nombreDeCartes + " cartes");
+
+		// dans le cas où il y a 52 cartes
 		if (nombreDeCartes == 52) {
 			String[] couleur = new String[] { "Pique", "Trefle", "Coeur", "Carreau" };
 			String[] valeur = new String[] { "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
@@ -37,8 +44,8 @@ System.out.println("On joue avec "+nombreDeCartes + " cartes");
 					this.jeuDeCartes.add(carte);
 				}
 			}
-		}
-		else {
+			// Sinon une pioche de 32 cartes est créée
+		} else {
 			String[] couleur = new String[] { "Pique", "Trefle", "Coeur", "Carreau" };
 			String[] valeur = new String[] { "Sept", "Huit", "Neuf", "Dix", "Valet", "Dame", "Roi", "As" };
 			int[] point = new int[] { 7, 8, 9, 10, 11, 12, 13, 14 };
@@ -51,52 +58,41 @@ System.out.println("On joue avec "+nombreDeCartes + " cartes");
 			}
 		}
 
-
-	melanger();
-	System.out.println(jeuDeCartes);
-
-	/*
-	 * int k=0; for(int i = 0; i < jeuDeCartes.size(); i++) {
-	 * System.out.println(jeuDeCartes.get(i)); k++; } System.out.println(k);
-	 */
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Pioche [jeuDeCartes=" + jeuDeCartes + "]";
+		melanger();
 	}
 
 	/**
-	 * @return
+	 * Retourne la liste des cartes {@link jeuDeCartes} dans la pioche.
+	 * 
+	 * @return La valeur de jeuDeCartes.
 	 */
 	public LinkedList<Carte> getJeuDeCartes() {
 		return jeuDeCartes;
 	}
 
 	/**
+	 * Met à jour la liste des cartes {@link jeuDeCartes} dans la pioche.
+	 * 
 	 * @param jeuDeCartes
+	 *            La nouvelle valeur de jeuDeCartes.
 	 */
 	public void setJeuDeCartes(LinkedList<Carte> jeuDeCartes) {
 		this.jeuDeCartes = jeuDeCartes;
 	}
 
-	// Mélange les cartes du jeu de cartes
 	/**
-	 * 
+	 * Méthode qui mélange jeuDeCartes.
 	 */
 	public void melanger() {
 		Collections.shuffle(jeuDeCartes);
 	}
 
-	// Distribue les cartes aux joueurs
 	/**
-	 * 
+	 * Méthode qui permet de distribuer les cartes de la pioche aux différents
+	 * joueurs.
 	 */
 	public void distribuer() {
-System.out.println("on distribue");
+		System.out.println("on distribue");
 		for (int i = 0; i < Partie.getPartie().getNombreCarteJoueur(); i++) {
 			for (int j = 0; j < (Partie.getPartie().getNombreOrdinateur() + 1); j++) {
 
@@ -108,8 +104,14 @@ System.out.println("on distribue");
 
 	// Permet de piocher la première carte de la Pioche
 	/**
+	 * Méthode qui permet de piocher la première carte de la pioche. La carte est
+	 * retourné par la méthode et est supprimé de la pioche. Si la pioche est vide,
+	 * on remet les cartes du talon dans la pioche
+	 * {@link Talon.remettreCartePioche()}.
+	 * 
 	 * @param leTalon
-	 * @return
+	 *            Le talon de la manche en cours.
+	 * @return La carte piochée.
 	 */
 	public Carte piocherCarte(Talon leTalon) {
 		if (!jeuDeCartes.isEmpty()) {
@@ -126,6 +128,7 @@ System.out.println("on distribue");
 	}
 
 	/**
+	 * Méthode qui attribue les points aux cartes dans la pioche.
 	 * 
 	 */
 	public void attribuerPointCarte() {

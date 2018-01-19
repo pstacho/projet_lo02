@@ -1,8 +1,8 @@
 package modèle;
 
 /**
- * Classe qui représente un ordinateur qui joue une partie.
- * Ordinateur hérite de la classe Joueur.
+ * Classe qui représente un ordinateur qui joue une partie. Ordinateur hérite de
+ * la classe Joueur. Il est caractérisé par une difficulté et une stratégie.
  * 
  * @author Stacho
  *
@@ -10,9 +10,7 @@ package modèle;
 public class Ordinateur extends Joueur {
 
 	/**
-	 * La difficulté du joueur.
-	 * Normale si égale à 1.
-	 * Difficile dans les autres cas.
+	 * La difficulté du joueur. Normale si égale à 1. Difficile dans les autres cas.
 	 */
 	private int difficultee;
 
@@ -25,9 +23,9 @@ public class Ordinateur extends Joueur {
 	 * Constructeur de la classe Ordinateur.
 	 * 
 	 * @param indexBot
-	 * 		Le numéro de l'ordinateur.
+	 *            Le numéro de l'ordinateur.
 	 * @param difficultee
-	 * 		La difficulté de l'ordinateur.
+	 *            La difficulté de l'ordinateur.
 	 */
 	public Ordinateur(int indexBot, int difficultee) {
 
@@ -35,7 +33,7 @@ public class Ordinateur extends Joueur {
 
 		this.nom = "BOT" + indexBot;
 		this.difficultee = difficultee;
-		if (difficultee == 1) {
+		if (this.difficultee == 1) {
 			strategie = (Strategie) new StrategieNormal();
 		} else {
 			strategie = (Strategie) new StrategieDifficile();
@@ -47,9 +45,7 @@ public class Ordinateur extends Joueur {
 	 * Méthode qui permet à l'ordinateur de jouer une carte.
 	 * 
 	 * @param maManche
-	 * 
-	 * @param leTalon
-	 * @param laPioche
+	 *            La manche en cours.
 	 */
 	@SuppressWarnings("deprecation")
 	public void jouerCarteOrdi(Manche maManche) {
@@ -63,24 +59,11 @@ public class Ordinateur extends Joueur {
 
 		this.setChanged();
 		this.notifyObservers();
-
 	}
 
 	/**
-	 * @return
-	 */
-	public int getDifficultee() {
-		return difficultee;
-	}
-
-	/**
-	 * @param difficultee
-	 */
-	public void setDifficultee(int difficultee) {
-		this.difficultee = difficultee;
-	}
-
-	/**
+	 * Retourne la Stratégie du joueur {@link modele.Strategie}.
+	 * 
 	 * @return
 	 */
 	public Strategie getStrategie() {
@@ -88,7 +71,10 @@ public class Ordinateur extends Joueur {
 	}
 
 	/**
+	 * Met a jour la stratégie du joueur.
+	 * 
 	 * @param strategie
+	 *            La stratgie du joueur.
 	 */
 	public void setStrategie(Strategie strategie) {
 		this.strategie = strategie;

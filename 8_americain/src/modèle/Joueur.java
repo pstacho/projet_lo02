@@ -5,17 +5,12 @@ import java.util.Iterator;
 import java.util.Observable;
 
 /**
- * Une classe qui représente un joueur.*
- * La classe Joueur est observable.
- * Le joueur peut être un joueur physique ou un ordinateur.
- * Un joueur est caractérisé par les informations suivantes :
- * Une main où sont contenu ses cartes
- * Un nom
- * Un score
- * Un numéro de joueur
- * Un boolean qui indique si le joueur a dit "carte"
- * Un boolean qui indique si le joueur a dit "contre-carte
- *  
+ * Une classe qui représente un joueur.* La classe Joueur est observable. Le
+ * joueur peut être un joueur physique ou un ordinateur. Un joueur est
+ * caractérisé par les informations suivantes : Une main où sont contenu ses
+ * cartes Un nom Un score Un numéro de joueur Un boolean qui indique si le
+ * joueur a dit "carte" Un boolean qui indique si le joueur a dit "contre-carte
+ * 
  * @author Stacho
  *
  */
@@ -31,7 +26,7 @@ public class Joueur extends Observable {
 	 */
 	protected String nom;
 	/**
-	 *	Le score du joueur.
+	 * Le score du joueur.
 	 */
 	private int score;
 	/**
@@ -47,12 +42,14 @@ public class Joueur extends Observable {
 	 */
 	protected boolean contreCarte;
 	/**
-	 * L'indice Joueur est un compteur de la classe joueur.
-	 * Il indique le nombre d'instance de la classe Joueur.
+	 * L'indice Joueur est un compteur de la classe joueur. Il indique le nombre
+	 * d'instance de la classe Joueur.
 	 */
 	protected static int indiceJoueur = 0;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
@@ -73,22 +70,23 @@ public class Joueur extends Observable {
 	// Vérifie si la carte choisi par le joueur peut être poser sur le talon
 
 	/**
-	 * Méthode qui vérifie si la carte en paramètre est compatible avec la carte du dessus du talon {@link Talon.carteDessus}.
+	 * Méthode qui vérifie si la carte en paramètre est compatible avec la carte du
+	 * dessus du talon {@link Talon.carteDessus}.
 	 * 
 	 * @param maManche
-	 * 		La manche manche en cours.
+	 *            La manche manche en cours.
 	 * @param carte
-	 * 		La carte dont on souhaite vérifier la compatibilité avec la carte du talon.
-	 * @return
-	 * 		Un boolean à vrai si la carte est compatible.
+	 *            La carte dont on souhaite vérifier la compatibilité avec la carte
+	 *            du talon.
+	 * @return Un boolean à vrai si la carte est compatible.
 	 */
 	public boolean carteCompatible(Manche maManche, Carte carte) {
 
 		if ((carte.getCouleur() == maManche.getLeTalon().getCarteDessus().getCouleur() || carte.isJoker() == true)
 				|| carte.getValeur() == maManche.getLeTalon().getCarteDessus().getValeur()) {
 			if (maManche.getCarteAPiocherAs() > 0) {
-				if (carte.getEffet().equals("permet de changer de couleur et arrête les attaques") || carte.getValeur()
-						.equals("As")) {
+				if (carte.getEffet().equals("permet de changer de couleur et arrête les attaques")
+						|| carte.getValeur().equals("As")) {
 					return true;
 				} else {
 					return false;
@@ -103,9 +101,9 @@ public class Joueur extends Observable {
 	}
 
 	/**
-	 * Méthode qui compte le score du joueur.
-	 * Cette méthode est appelé à la fin d'une manche.
-	 * Compte le score en focntion des cartes qui reste en main à la fin de la manche.
+	 * Méthode qui compte le score du joueur. Cette méthode est appelé à la fin
+	 * d'une manche. Compte le score en focntion des cartes qui reste en main à la
+	 * fin de la manche.
 	 */
 	public void compterScore() {
 		Iterator<Carte> it = mainJoueur.iterator();
@@ -128,7 +126,7 @@ public class Joueur extends Observable {
 	 * Met à jour la liste des cartes dans la main du joueur.
 	 * 
 	 * @param mainJoueur
-	 * 			La nouvelle liste des cartes dans la main du joueur.
+	 *            La nouvelle liste des cartes dans la main du joueur.
 	 */
 	public void setMainJoueur(ArrayList<Carte> mainJoueur) {
 		this.mainJoueur = mainJoueur;
@@ -147,16 +145,16 @@ public class Joueur extends Observable {
 	 * Met à jour le nom du joueur.
 	 * 
 	 * @param nom
-	 * 		Le nouveau nom du joueur.
+	 *            Le nouveau nom du joueur.
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	/**
 	 * 
 	 */
-	public void changed()
-	{
+	public void changed() {
 		this.setChanged();
 	}
 
@@ -173,7 +171,7 @@ public class Joueur extends Observable {
 	 * Met à jour la valeur du boolean carte.
 	 * 
 	 * @param carte
-	 * 		La nouvelle valeur du boolean carte.
+	 *            La nouvelle valeur du boolean carte.
 	 */
 	public void setCarte(boolean carte) {
 		this.carte = carte;
@@ -192,17 +190,15 @@ public class Joueur extends Observable {
 	 * Met à jour la valeur du boolean contreCarte.
 	 * 
 	 * @param contrecarte
-	 * 			La nouvelle valeur de contreCarte.
+	 *            La nouvelle valeur de contreCarte.
 	 */
 	public void setContrecarte(boolean contreCarte) {
-		
-		this.contreCarte = contreCarte;	
-		this.mainJoueur.add(Partie.getPartie().getManche().getLaPioche().piocherCarte(Partie.getPartie().getManche().getLeTalon()));
+
+		this.contreCarte = contreCarte;
+		this.mainJoueur.add(
+				Partie.getPartie().getManche().getLaPioche().piocherCarte(Partie.getPartie().getManche().getLeTalon()));
 		this.setChanged();
 		this.notifyObservers();
-			
+
 	}
-	}
-	
-	
-	
+}

@@ -3,16 +3,15 @@ package modèle;
 /**
  * Une classe qui représente une carte.
  * 
- * Une carte est caractérisé par les informations suivantes :
- * Une valeur
- * Une couleur
- * Un nombre point qui sert à compter les points du joueur.
- * Un effet qui peut être nulle.
+ * Une carte est caractérisé par les informations suivantes : Une valeur Une
+ * couleur Un nombre point qui sert à compter les points du joueur. Un effet qui
+ * peut être nulle.
+ * 
  * @author Stacho
  *
  */
 public class Carte {
-	
+
 	/**
 	 * La valeur de la carte.
 	 */
@@ -28,15 +27,16 @@ public class Carte {
 	/**
 	 * L'effet de la carte.
 	 */
-	private String effet="null";
+	private String effet = "null";
 	/**
 	 * 
 	 */
-	private boolean Joker=false;
+	private boolean Joker = false;
 	/**
 	 * La couleur de la carte lorsqu'elle est instanciée.
 	 */
 	private String vraiCouleur;
+
 	/**
 	 * Retourne la couleur d'origine de la carte.
 	 * 
@@ -50,7 +50,7 @@ public class Carte {
 	 * Met à jour la couleur de la carte.
 	 * 
 	 * @param vraiCouleur
-	 * 					La nouvelle couleur de la carte.
+	 *            La nouvelle couleur de la carte.
 	 */
 	public void setVraiCouleur(String vraiCouleur) {
 		this.vraiCouleur = vraiCouleur;
@@ -78,7 +78,7 @@ public class Carte {
 	 * Met a jour la condition de carte joker.
 	 * 
 	 * @param joker
-	 * 			La nouvelle valeur de joker.
+	 *            La nouvelle valeur de joker.
 	 */
 	public void setJoker(boolean joker) {
 		Joker = joker;
@@ -88,7 +88,7 @@ public class Carte {
 	 * Met à jour l'effet de la carte.
 	 * 
 	 * @param effet
-	 * 			Le nouvel effet de la carte.
+	 *            Le nouvel effet de la carte.
 	 */
 	public void setEffet(String effet) {
 		this.effet = effet;
@@ -98,11 +98,11 @@ public class Carte {
 	 * Constructeur Carte.
 	 * 
 	 * @param val
-	 * 		La valeur de la carte.
+	 *            La valeur de la carte.
 	 * @param color
-	 * 		La couleur de la carte.
+	 *            La couleur de la carte.
 	 * @param point
-	 * 		La valeur de point de la carte.
+	 *            La valeur de point de la carte.
 	 */
 	public Carte(String val, String color, int point) {
 		this.valeur = val;
@@ -124,7 +124,7 @@ public class Carte {
 	 * Met à jour la valeur de la carte.
 	 * 
 	 * @param valeur
-	 * 			La nouvelle valeur de la carte.
+	 *            La nouvelle valeur de la carte.
 	 */
 	public void setValeur(String valeur) {
 		this.valeur = valeur;
@@ -143,7 +143,7 @@ public class Carte {
 	 * Met à jour la couleur de la carte.
 	 * 
 	 * @param couleur
-	 * 			La nouvelle couleur de la carte.
+	 *            La nouvelle couleur de la carte.
 	 */
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
@@ -162,12 +162,15 @@ public class Carte {
 	 * Met à jour le nombre de points de la carte.
 	 * 
 	 * @param point
-	 * 			Le nouveau nombre de point de la carte.
+	 *            Le nouveau nombre de point de la carte.
 	 */
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {

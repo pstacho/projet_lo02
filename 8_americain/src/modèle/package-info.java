@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author Stacho
- *
- */
-package modèle;

@@ -1,20 +1,17 @@
 package modèle;
 
-
 import modèle.Carte;
 import modèle.Partie;
 
 /**
- * Classe qui représente le joueur réel qui joue.
- * JoueurPhysique hérite de la classe Joueur.
- * Un joueur physique est également caractérisé par :
- * Un boolean attenteVue
+ * Classe qui représente le joueur réel qui joue. JoueurPhysique hérite de la
+ * classe Joueur. Un joueur physique est également caractérisé par : Un boolean
+ * attenteVue
  * 
  * @author Stacho
  *
  */
 public class JoueurPhysique extends Joueur {
-
 
 	/**
 	 * Le boolean attenteVue.
@@ -25,7 +22,7 @@ public class JoueurPhysique extends Joueur {
 	 * Constructeur de JoueurPhysique.
 	 * 
 	 * @param nomJoueur
-	 * 		Le nom du joueur.
+	 *            Le nom du joueur.
 	 */
 	public JoueurPhysique(String nomJoueur) {
 
@@ -38,7 +35,7 @@ public class JoueurPhysique extends Joueur {
 	 * Met à jour la valeur de attenteVue.
 	 * 
 	 * @param attenteVue
-	 * 		La nouvelle valeur de attenteVue.
+	 *            La nouvelle valeur de attenteVue.
 	 */
 	public void setAttenteVue(boolean attenteVue) {
 		this.attenteVue = attenteVue;
@@ -65,7 +62,7 @@ public class JoueurPhysique extends Joueur {
 	 * Méthode qui permet au joueur physique de jouer une carte.
 	 * 
 	 * @param maManche
-	 * 		La manche en cours.
+	 *            La manche en cours.
 	 */
 	@SuppressWarnings("deprecation")
 	public void jouerCarte(Manche maManche) {

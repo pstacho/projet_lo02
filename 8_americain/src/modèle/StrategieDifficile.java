@@ -3,25 +3,35 @@ package modèle;
 import java.util.ArrayList;
 
 /**
+ * Classe StrategieDifficile qui implémente l'interface Strategie. Définit la
+ * méthode jouerCarte si la difficulté de Ordinateur est différent de 1.
+ * 
  * @author Stacho
  *
  */
 public class StrategieDifficile implements Strategie {
 
-	/* (non-Javadoc)
-	 * @see modèle.Strategie#jouerCarte(modèle.Ordinateur, modèle.Talon, modèle.Pioche, modèle.Manche)
+	/**
+	 * Méthode qui définit la carte à jouer par Ordinateur.
+	 * 
+	 * @param ordi
+	 *            Ordinateur qui utilise la méthode.
+	 * @param maManche
+	 *            La manche en cours.
 	 */
 	public void jouerCarte(Ordinateur ordi, Manche maManche) {
-
+		// création d'un ArrayList qui contient les cartes qui peuvent être jouées.
 		ArrayList<Carte> carteJouable = new ArrayList<Carte>();
 
+		// On parcours la liste, si la carte peut être jouée, on l'ajoute à
+		// carteJouable.
 		for (int i = 0; i < ordi.mainJoueur.size(); i++) {
 			if (ordi.carteCompatible(maManche, ordi.mainJoueur.get(i))) {
 				carteJouable.add(ordi.mainJoueur.get(i));
 			}
 		}
 
-		// S'il n'y a pas de cartes jouables l'ordi pioche
+		// S'il n'y a pas de cartes jouables l'ordinateur pioche
 		if (carteJouable.isEmpty()) {
 			if (maManche.getCarteAPiocherAs() > 0) {
 				Effet.piocherAS(maManche);
@@ -35,7 +45,9 @@ public class StrategieDifficile implements Strategie {
 		else {
 			System.out.println("il peut jouer une carte");
 			Carte carteJouee;
-			ArrayList<Carte> cartesEffet = new ArrayList<Carte>(); // On regarde s'il y a des cartes à effet
+			// On créée une liste carteEffet
+			ArrayList<Carte> cartesEffet = new ArrayList<Carte>();
+			// On regarde s'il y a des cartes à effet et on les ajoute à cartesEffet
 			for (int i = 0; i < carteJouable.size(); i++) {
 				if (!carteJouable.get(i).getEffet().equals("null")) {
 					cartesEffet.add(carteJouable.get(i));
@@ -64,8 +76,12 @@ public class StrategieDifficile implements Strategie {
 	// méthode pour trouver la carte qui vaut le plus de point dans une liste de
 	// carte
 	/**
+	 * Méthode qui permet de trouver la carte qui à la plus grande valeur de points
+	 * dans une liste de cartes. Retourne la position de cette carte.
+	 * 
 	 * @param cartes
-	 * @return
+	 *            Une liste de cartes.
+	 * @return Un entier qui représente la position de la carte dans la liste.
 	 */
 	public int trouverCartePlusForte(ArrayList<Carte> cartes) {
 		int pointCarte = 0;

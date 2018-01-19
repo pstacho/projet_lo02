@@ -3,35 +3,41 @@ package modèle;
 import java.util.ArrayList;
 
 /**
+ * Classe qui représente la variante. Elle est caractérisé par son nom. Elle
+ * applique les effets aux cartes en focntion de sa valeur.
+ * 
  * @author Stacho
  *
  */
 public class Variante {
 
 	/**
-	 * 
+	 * La variante en cours dans la partie.
 	 */
 	private String varianteEnCours;
 	/**
-	 * 
+	 * La liste des variantes possibles pour la partie.
 	 */
 	protected ArrayList<String> listeVariantes = new ArrayList<String>();
 
 	/**
-	 * 
+	 * Constructeur de la variante. Récupère la variante de la partie.
 	 */
 	public Variante() {
 
 		this.varianteEnCours = Partie.getPartie().getVariante();
-		
-	}
-	
 
-	// nouvelle version:
+	}
 
 	/**
+	 * Méthode qui détermine le nombre de cartes avec lesquelles joués en fonction
+	 * de la variante de la partie.
+	 * 
 	 * @param VarianteEnCours
+	 *            La variante de la partie.
+	 * 
 	 * @param maManche
+	 *            La manche en cours.
 	 */
 	public void setVariante(String VarianteEnCours, Manche maManche) {
 
@@ -47,7 +53,11 @@ public class Variante {
 	}
 
 	/**
+	 * Méthode qui applique la variante de la partie. Affecte les effets des cartes
+	 * dans la pioche de la manche.
+	 * 
 	 * @param laPioche
+	 *            La pioche de la manche.
 	 */
 	public void appliquerVariante(Pioche laPioche) {
 
@@ -104,23 +114,16 @@ public class Variante {
 	}
 
 	/**
-	 * @return
-	 */
-	public String getVarianteEnCours() {
-		return varianteEnCours;
-	}
-
-	/**
-	 * @param varianteEnCours
-	 */
-	public void setVarianteEnCours(String varianteEnCours) {
-		this.varianteEnCours = varianteEnCours;
-	}
-
-	/**
+	 * Méthode qui affecte le nom des effets aux cartes de la pioche qui ont la
+	 * valeur renseigné en paramètre.
+	 * 
 	 * @param laPioche
+	 *            La pioche de la manche.
 	 * @param valeur
+	 *            La valeur de la carte à qui on attribue l'effet.
 	 * @param effet
+	 *            L'effet à appliquer à la carte.
+	 * 
 	 */
 	public void changerEffet(Pioche laPioche, String valeur, String effet) { // on verifie la valeur de toute les Cartes
 																				// du jeu
@@ -134,10 +137,17 @@ public class Variante {
 	// Il est très rare de voir des effets qui ne s'apllique qu'a une couleur
 	// précise, dans ce cas on utilise cette methode plus complete
 	/**
+	 * Méthode qui applique l'effet à une carte spécifique. On renseigne en
+	 * paramètres la valeur de la carte mais également sa couleur.
+	 * 
 	 * @param laPioche
+	 *            La pioche de la manche.
 	 * @param valeur
+	 *            La valeur de la carte à qui on attribue l'effet.
 	 * @param couleur
+	 *            La couleur de la carte à qui on attribue l'effet.
 	 * @param effet
+	 *            L'effet à attribuer à la carte.
 	 */
 	public void changerEffetPlus(Pioche laPioche, String valeur, String couleur, String effet) {
 		for (int i = 0; i < laPioche.jeuDeCartes.size(); i++) {
