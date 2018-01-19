@@ -11,12 +11,12 @@ public class StrategieDifficile implements Strategie {
 	/* (non-Javadoc)
 	 * @see modèle.Strategie#jouerCarte(modèle.Ordinateur, modèle.Talon, modèle.Pioche, modèle.Manche)
 	 */
-	public void jouerCarte(Ordinateur ordi, Talon leTalon, Pioche laPioche, Manche maManche) {
+	public void jouerCarte(Ordinateur ordi, Manche maManche) {
 
 		ArrayList<Carte> carteJouable = new ArrayList<Carte>();
 
 		for (int i = 0; i < ordi.mainJoueur.size(); i++) {
-			if (ordi.carteCompatible(maManche, leTalon, ordi.mainJoueur.get(i))) {
+			if (ordi.carteCompatible(maManche, ordi.mainJoueur.get(i))) {
 				carteJouable.add(ordi.mainJoueur.get(i));
 			}
 		}
@@ -24,9 +24,9 @@ public class StrategieDifficile implements Strategie {
 		// S'il n'y a pas de cartes jouables l'ordi pioche
 		if (carteJouable.isEmpty()) {
 			if (maManche.getCarteAPiocherAs() > 0) {
-				Effet.piocherAS(maManche, laPioche);
+				Effet.piocherAS(maManche);
 			} else {
-				Carte cartePioche = laPioche.piocherCarte(leTalon);
+				Carte cartePioche = maManche.getLaPioche().piocherCarte(maManche.getLeTalon());
 				ordi.mainJoueur.add(cartePioche);
 				System.out.println(ordi.nom + " pioche une carte.");
 			}
@@ -55,8 +55,8 @@ public class StrategieDifficile implements Strategie {
 				carteJouee = carteJouable.get(trouverCartePlusForte(carteJouable));
 			}
 			System.out.println(ordi.nom + " a joué la carte " + carteJouee.toString() + " .");
-			Effet.checkEffetApres(maManche, laPioche, carteJouee);
-			leTalon.ajouterCarte(carteJouee);
+			Effet.checkEffetApres(maManche, carteJouee);
+			maManche.getLeTalon().ajouterCarte(carteJouee);
 			ordi.getMainJoueur().remove(carteJouee);
 		}
 	}

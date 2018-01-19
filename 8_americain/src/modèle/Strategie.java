@@ -12,6 +12,6 @@ public interface Strategie {
 	 * @param laPioche
 	 * @param maManche
 	 */
-	void jouerCarte(Ordinateur ordi, Talon leTalon, Pioche laPioche, Manche maManche);
+	void jouerCarte(Ordinateur ordi, Manche maManche);
 
 }

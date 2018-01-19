@@ -71,7 +71,7 @@ public class VueNouvelleManche {
 		frame.getContentPane().add(btnNouvelleManche, BorderLayout.SOUTH);
 
 		for (int i = 0; i < Partie.getPartie().getListeJoueurs().size(); i++) {
-			Partie.getPartie().getListeJoueurs().get(i).compterPoints();
+			Partie.getPartie().getListeJoueurs().get(i).compterScore();
 		}
 	}
 }

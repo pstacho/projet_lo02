@@ -12,7 +12,7 @@ public class StrategieNormal implements Strategie {
 	 * @see modèle.Strategie#jouerCarte(modèle.Ordinateur, modèle.Talon, modèle.Pioche, modèle.Manche)
 	 */
 	@Override
-	public void jouerCarte(Ordinateur ordi, Talon leTalon, Pioche laPioche, Manche maManche) {
+	public void jouerCarte(Ordinateur ordi, Manche maManche) {
 		// TODO Auto-generated method stub
 
 		boolean trouverCarte = false;
@@ -22,16 +22,16 @@ public class StrategieNormal implements Strategie {
 		while (!trouverCarte && it.hasNext()) {
 			it.next();
 			indexCarteJouee++;
-			if (ordi.carteCompatible(maManche, leTalon, ordi.mainJoueur.get(indexCarteJouee))) {
+			if (ordi.carteCompatible(maManche, ordi.mainJoueur.get(indexCarteJouee))) {
 				trouverCarte = true;
 			}
 		}
 
 		if (!trouverCarte) {
 			if (maManche.getCarteAPiocherAs() > 0) {
-				Effet.piocherAS(maManche, laPioche);
+				Effet.piocherAS(maManche);
 			} else {
-				Carte cartePioche = laPioche.piocherCarte(leTalon);
+				Carte cartePioche = maManche.getLaPioche().piocherCarte(maManche.getLeTalon());
 				ordi.mainJoueur.add(cartePioche);
 				System.out.println(ordi.nom + " pioche une carte.");
 			}
@@ -39,8 +39,8 @@ public class StrategieNormal implements Strategie {
 		} else {
 			Carte carteJouee = ordi.getMainJoueur().get(indexCarteJouee);
 			System.out.println(ordi.nom + " a joué la carte " + carteJouee.toString() + " .");
-			Effet.checkEffetApres(maManche, laPioche, carteJouee);
-			leTalon.ajouterCarte(carteJouee);
+			Effet.checkEffetApres(maManche, carteJouee);
+			maManche.getLeTalon().ajouterCarte(carteJouee);
 			ordi.getMainJoueur().remove(carteJouee);
 		}
 

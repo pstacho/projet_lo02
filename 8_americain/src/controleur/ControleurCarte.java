@@ -27,9 +27,9 @@ public class ControleurCarte {
 
 		bouttonProchaineCarte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Effet.checkEffetAvant(laManche, laManche.getLaPioche(), carteAControler);
+				Effet.checkEffetAvant(carteAControler);
 				if (laManche.getJoueurEnCours() instanceof JoueurPhysique && laManche.getJoueurEnCours()
-						.carteCompatible(laManche, laManche.getLeTalon(), carteAControler)) {
+						.carteCompatible(laManche, carteAControler)) {
 					((JoueurPhysique) laManche.getJoueurEnCours()).jouerTourG(carteAControler);
 
 				}

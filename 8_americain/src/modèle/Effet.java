@@ -18,7 +18,7 @@ public abstract class Effet {
 	 * @param laPioche
 	 * @param carteJouee
 	 */
-	public static void checkEffetAvant(Manche maManche, Pioche laPioche, Carte carteJouee) {
+	public static void checkEffetAvant(Carte carteJouee) {
 		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
 			carteJouee.setJoker(true);
 
@@ -32,7 +32,7 @@ public abstract class Effet {
 	 * @param laPioche
 	 * @param carteJouee
 	 */
-	public static void checkEffetApres(Manche maManche, Pioche laPioche, Carte carteJouee) {
+	public static void checkEffetApres(Manche maManche, Carte carteJouee) {
 
 		if (carteJouee.getEffet().equals("permet de changer de couleur, se pose sur n'importe quelle carte")) {
 			ChangerCouleur(maManche, carteJouee);
@@ -46,20 +46,20 @@ public abstract class Effet {
 		} else if (carteJouee.getEffet().equals("le joueur suivant passe son tour")) {
 			joueurPasseSonTour(maManche);
 		} else if (carteJouee.getEffet().equals("fait piocher une carte au joueur suivant sans recours")) {
-			fairePiocherCartes(maManche, laPioche, 1);
+			fairePiocherCartes(maManche, 1);
 		} else if (carteJouee.getEffet()
 				.equals("fait piocher 3 cartes au joueur suivant, à moins de poser un 8 ou un As")) {
-			fairePiocherCartesAs(maManche, laPioche, 3);
+			fairePiocherCartesAs(maManche, 3);
 		} else if (carteJouee.getEffet().equals("fait piocher 2 cartes au joueur suivant")) {
-			fairePiocherCartes(maManche, laPioche, 2);
+			fairePiocherCartes(maManche, 2);
 		} else if (carteJouee.getEffet()
 				.equals("fait piocher 2 cartes au joueur suivant, à moins de poser un 8 ou un As")) {
-			fairePiocherCartesAs(maManche, laPioche, 2);
+			fairePiocherCartesAs(maManche, 2);
 		} else if (carteJouee.getEffet().equals(
 				"fait piocher 2 cartes au joueur suivant, à moins de poser un autre As qui s'ajoute pour le joueur suivant")) {
-			fairePiocherCartesAs(maManche, laPioche, 2);
+			fairePiocherCartesAs(maManche, 2);
 		} else if (carteJouee.getEffet().equals("fait piocher 3 cartes au joueur suivant sans aucun recours")) {
-			fairePiocherCartes(maManche, laPioche, 3);
+			fairePiocherCartes(maManche, 3);
 		}
 
 	}
@@ -130,11 +130,11 @@ public abstract class Effet {
 	 * @param laPioche
 	 * @param nombreCarteAPiocher
 	 */
-	public static void fairePiocherCartes(Manche maManche, Pioche laPioche, int nombreCarteAPiocher) {
+	public static void fairePiocherCartes(Manche maManche, int nombreCarteAPiocher) {
 		maManche.joueurSuivant();
 		System.out.println(maManche.getJoueurEnCours().nom + " doit piocher " + nombreCarteAPiocher + " carte(s)");
 		for (int i = 0; i < nombreCarteAPiocher; i++) {
-			Carte cartePiochee = laPioche.piocherCarte(maManche.getLeTalon());
+			Carte cartePiochee = maManche.getLaPioche().piocherCarte(maManche.getLeTalon());
 			maManche.getJoueurEnCours().mainJoueur.add(cartePiochee);
 			if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");
@@ -149,7 +149,7 @@ public abstract class Effet {
 	 * @param laPioche
 	 * @param nombreCarteAPiocher
 	 */
-	public static void fairePiocherCartesAs(Manche maManche, Pioche laPioche, int nombreCarteAPiocher) {
+	public static void fairePiocherCartesAs(Manche maManche, int nombreCarteAPiocher) {
 
 		maManche.joueurSuivant();
 		maManche.setCarteAPiocherAs(nombreCarteAPiocher + maManche.getCarteAPiocherAs());
@@ -174,12 +174,12 @@ public abstract class Effet {
 	 * @param maManche
 	 * @param laPioche
 	 */
-	public static void piocherAS(Manche maManche, Pioche laPioche) {
+	public static void piocherAS(Manche maManche) {
 
 		System.out.println(
 				maManche.getJoueurEnCours().nom + " doit piocher " + maManche.getCarteAPiocherAs() + " carte(s)");
 		for (int i = 0; i < maManche.getCarteAPiocherAs(); i++) {
-			Carte cartePiochee = laPioche.piocherCarte(maManche.getLeTalon());
+			Carte cartePiochee = maManche.getLaPioche().piocherCarte(maManche.getLeTalon());
 			maManche.getJoueurEnCours().mainJoueur.add(cartePiochee);
 			if (Partie.getPartie().getListeJoueurs().get(maManche.getIndiceJoueurEnCours()) instanceof JoueurPhysique) {
 				System.out.println("Vous avez pioché la carte " + cartePiochee.toString() + " .");

@@ -23,8 +23,7 @@ public class ControleurBoutonPiocher {
 			public void actionPerformed(ActionEvent e) {
 				boolean trouveCarte = false;
 				for (int i = 0; i < maManche.getJoueurEnCours().getMainJoueur().size(); i++) {
-					if (maManche.getJoueurEnCours().carteCompatible(maManche, maManche.getLeTalon(),
-							maManche.getJoueurEnCours().getMainJoueur().get(i))) {
+					if (maManche.getJoueurEnCours().carteCompatible(maManche, maManche.getJoueurEnCours().getMainJoueur().get(i))) {
 						trouveCarte = true;
 					}
 				}

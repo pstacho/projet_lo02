@@ -1,27 +1,31 @@
 package modèle;
 
-import java.util.Scanner;
 
 import modèle.Carte;
 import modèle.Partie;
 
 /**
+ * Classe qui représente le joueur réel qui joue.
+ * JoueurPhysique hérite de la classe Joueur.
+ * Un joueur physique est également caractérisé par :
+ * Un boolean attenteVue
+ * 
  * @author Stacho
  *
  */
 public class JoueurPhysique extends Joueur {
 
+
 	/**
-	 * 
-	 */
-	Scanner sc = new Scanner(System.in);
-	/**
-	 * 
+	 * Le boolean attenteVue.
 	 */
 	private boolean attenteVue = true;
 
 	/**
+	 * Constructeur de JoueurPhysique.
+	 * 
 	 * @param nomJoueur
+	 * 		Le nom du joueur.
 	 */
 	public JoueurPhysique(String nomJoueur) {
 
@@ -31,14 +35,17 @@ public class JoueurPhysique extends Joueur {
 	}
 
 	/**
+	 * Met à jour la valeur de attenteVue.
+	 * 
 	 * @param attenteVue
+	 * 		La nouvelle valeur de attenteVue.
 	 */
 	public void setAttenteVue(boolean attenteVue) {
 		this.attenteVue = attenteVue;
 	}
 
 	/**
-	 * 
+	 * Méthode qui affiche la main du joueur dans la console.
 	 */
 	public void afficherMainJoueur() {
 
@@ -55,12 +62,15 @@ public class JoueurPhysique extends Joueur {
 	}
 
 	/**
+	 * Méthode qui permet au joueur physique de jouer une carte.
+	 * 
 	 * @param maManche
+	 * 		La manche en cours.
 	 */
 	@SuppressWarnings("deprecation")
 	public void jouerCarte(Manche maManche) {
 		this.carte = false;
-		this.contrecarte = false;
+		this.contreCarte = false;
 		while (attenteVue == true) {
 			try {
 				Thread.sleep(100);
@@ -75,6 +85,7 @@ public class JoueurPhysique extends Joueur {
 	}
 
 	/**
+	 * 
 	 * @param carteAPoser
 	 */
 	public void jouerTourG(Carte carteAPoser) {
@@ -90,15 +101,14 @@ public class JoueurPhysique extends Joueur {
 	@SuppressWarnings("deprecation")
 	public void poserCarteGraphique(Carte carteAPoser) {
 
-		Effet.checkEffetApres(Partie.getPartie().getManche(), Partie.getPartie().getManche().getLaPioche(),
-				carteAPoser);
+		Effet.checkEffetApres(Partie.getPartie().getManche(), carteAPoser);
 		Partie.getPartie().getManche().getLeTalon().setCarteDessus(carteAPoser); //
 
 		System.out.println("Vous jouez " + carteAPoser);
 		this.mainJoueur.remove(carteAPoser);
 
 		if (this.getMainJoueur().size() == 1) {
-			DireCarte ditCarte = new DireCarte(this);
+			new DireCarte(this);
 		}
 
 		// On notifie l'interface que la carte a ete retiree de la main du joueur

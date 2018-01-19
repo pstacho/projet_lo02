@@ -1,27 +1,33 @@
 package modèle;
 
 /**
+ * Classe qui représente un ordinateur qui joue une partie.
+ * Ordinateur hérite de la classe Joueur.
+ * 
  * @author Stacho
  *
  */
 public class Ordinateur extends Joueur {
 
 	/**
-	 * 
+	 * La difficulté du joueur.
+	 * Normale si égale à 1.
+	 * Difficile dans les autres cas.
 	 */
 	private int difficultee;
+
 	/**
-	 * 
-	 */
-	private Carte carteJouee;
-	/**
-	 * 
+	 * La stratégie du joueur.
 	 */
 	private Strategie strategie;
 
 	/**
+	 * Constructeur de la classe Ordinateur.
+	 * 
 	 * @param indexBot
+	 * 		Le numéro de l'ordinateur.
 	 * @param difficultee
+	 * 		La difficulté de l'ordinateur.
 	 */
 	public Ordinateur(int indexBot, int difficultee) {
 
@@ -38,15 +44,18 @@ public class Ordinateur extends Joueur {
 	}
 
 	/**
+	 * Méthode qui permet à l'ordinateur de jouer une carte.
+	 * 
 	 * @param maManche
+	 * 
 	 * @param leTalon
 	 * @param laPioche
 	 */
 	@SuppressWarnings("deprecation")
-	public void jouerCarteOrdi(Manche maManche, Talon leTalon, Pioche laPioche) {
+	public void jouerCarteOrdi(Manche maManche) {
 
 		System.out.println(this.nom + "a actuellement " + this.mainJoueur.size() + " cartes.");
-		strategie.jouerCarte(this, leTalon, laPioche, maManche);
+		strategie.jouerCarte(this, maManche);
 		if (this.mainJoueur.size() == 1) {
 			new DireContreCarte(this);
 		}
@@ -85,17 +94,4 @@ public class Ordinateur extends Joueur {
 		this.strategie = strategie;
 	}
 
-	/**
-	 * @return
-	 */
-	public Carte getCarteJouee() {
-		return carteJouee;
-	}
-
-	/**
-	 * @param carteJouee
-	 */
-	public void setCarteJouee(Carte carteJouee) {
-		this.carteJouee = carteJouee;
-	}
 }

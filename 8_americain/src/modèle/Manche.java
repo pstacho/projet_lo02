@@ -5,6 +5,7 @@ import java.util.Observable;
 
 
 /**
+ * 
  * @author Stacho
  *
  */
@@ -12,6 +13,7 @@ import java.util.Observable;
 public class Manche extends Observable implements Runnable {
 
 	/**
+	 * 
 	 * @return
 	 */
 	public int getNumeroManche() {
@@ -240,7 +242,7 @@ public class Manche extends Observable implements Runnable {
 
 		} else {
 			System.out.println(joueurEnCours.getNom() + " joue son tour.");
-			((Ordinateur) joueurEnCours).jouerCarteOrdi(this, leTalon, laPioche);
+			((Ordinateur) joueurEnCours).jouerCarteOrdi(this);
 			System.out.println(joueurEnCours.nom + " a " + joueurEnCours.mainJoueur.size() + " carte(s) en main\r\n");
 		}
 	//	checkdireCarte(leTalon);
@@ -284,7 +286,7 @@ public class Manche extends Observable implements Runnable {
 		// TODO Auto-generated method stub
 			System.out.println(joueurEnCours.nom + " a gagné la manche n°" + numeroManche);
 			for (int i = 0; i < Partie.getPartie().getListeJoueurs().size(); i++) {
-				Partie.getPartie().getListeJoueurs().get(i).compterPoints();
+				Partie.getPartie().getListeJoueurs().get(i).compterScore();
 		}
 		System.out.println("Voulez-vous faire une autre manche ? ( 1 si oui | 0 si non )");
 		
